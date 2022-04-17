@@ -9,7 +9,8 @@
     "start": "next start",
     "test": "jest --watch",
     "lint": "eslint . --ext .js,.jsx,.ts,.tsx --quiet",
-    "lint:fix": "eslint . --ext .js,.jsx,.ts,.tsx --fix"
+    "lint:fix": "eslint . --ext .js,.jsx,.ts,.tsx --fix",
+    "check": "npx tsc --noEmit && npx eslint . && npx prettier --write . && npx jest"
   },
   "dependencies": {
     "@chakra-ui/react": "^1.8.8",
@@ -18,6 +19,7 @@
     "@nikolovlazar/chakra-ui-prose": "^1.0.8",
     "framer-motion": "^6.3.0",
     "next": "12.1.5",
+    "next-i18next": "^11.0.0",
     "react": "18.0.0",
     "react-dom": "18.0.0"
   },

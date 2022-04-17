@@ -4,9 +4,17 @@ import Head from 'next/head';
 import Image from 'next/image';
 import styles from '../styles/Home.module.css';
 import Button from 'components/Button';
+import Header from 'components/Header';
 import ColorModeToggle from 'components/ColorModeToggle';
+import { GetStaticProps } from 'next';
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
+import { useTranslation } from 'next-i18next';
+// import { useRouter } from 'next/router';
 
 const Home: NextPage = () => {
+  const { t } = useTranslation('home');
+  // const { locale } = useRouter();
+
   return (
     <div className={styles.container}>
       <Head>
@@ -15,6 +23,7 @@ const Home: NextPage = () => {
         <link rel='icon' href='/favicon.ico' />
       </Head>
 
+      <Header />
       <main className={styles.main}>
         <h1 className={styles.title}>
           Welcome to <a href='https://nextjs.org'>Next.js!</a>
@@ -27,7 +36,7 @@ const Home: NextPage = () => {
         <ColorModeToggle />
         <div className={styles.grid}>
           <a href='https://nextjs.org/docs' className={styles.card}>
-            <h2>Documentation &rarr;</h2>
+            <h2>Hello world &rarr;</h2>
             <p>Find in-depth information about Next.js features and API.</p>
           </a>
 
@@ -45,7 +54,7 @@ const Home: NextPage = () => {
             href='https://vercel.com/new?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app'
             className={styles.card}
           >
-            <h2>Deploy &rarr;</h2>
+            <h2>{t('deploy')} &rarr;</h2>
             <p>Instantly deploy your Next.js site to a public URL with Vercel.</p>
           </a>
         </div>
@@ -68,3 +77,12 @@ const Home: NextPage = () => {
 };
 
 export default Home;
+
+export const getStaticProps: GetStaticProps = async ({ locale = 'en' }) => {
+  return {
+    props: {
+      ...(await serverSideTranslations(locale, ['common', 'home'])),
+      // Will be passed to the page component as props
+    },
+  };
+};
