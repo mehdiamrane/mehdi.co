@@ -1,9 +1,15 @@
 import React from 'react';
-import '../styles/globals.css';
 import type { AppProps } from 'next/app';
+import { Chakra } from 'components/Chakra';
+
+import '../styles/globals.css';
 
 function MyApp({ Component, pageProps }: AppProps) {
-  return <Component {...pageProps} />;
+  return (
+    <Chakra cookies={pageProps.cookies}>
+      <Component {...pageProps} />
+    </Chakra>
+  );
 }
 
 export default MyApp;
