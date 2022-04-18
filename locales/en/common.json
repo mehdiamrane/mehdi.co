@@ -1,4 +1,20 @@
 {
-  "home": "Home",
-  "about": "About"
+  "nav": {
+    "menu": "Menu",
+    "menu_close": "Close menu",
+    "enable_dark_mode": "Enable dark mode",
+    "enable_light_mode": "Enable light mode",
+    "toggle_color_mode": "Toggle dark or light mode",
+    "toggle_sound": "Toggle sound effects",
+    "enable_sound": "Enable sound effects",
+    "disable_sound": "Disable sound effects",
+    "toggle_locale": "Change language",
+    "toggle_french": "Set language to French",
+    "toggle_english": "Set language to English",
+    "about": "About",
+    "projects": "Projects",
+    "blog": "Blog",
+    "notes": "Notes",
+    "contact": "Contact"
+  }
 }

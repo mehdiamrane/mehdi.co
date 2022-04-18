@@ -1,0 +1,10 @@
+{
+  "hero": {
+    "title": "Hello, ici Mehdi.",
+    "subtitle": "Développeur Front-end.",
+    "subtitle_short": "Dev Front-end.",
+    "body": "Je crée des <0>produits numériques</0>, aime écrire des <1>articles</1>, partager mes <2>notes</2>, et je suis passionné par le web.",
+    "view_projects": "Voir mes projets",
+    "about_me": "À propos de moi"
+  }
+}

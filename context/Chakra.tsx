@@ -3,7 +3,7 @@ import { ChakraProvider, cookieStorageManager, localStorageManager } from '@chak
 import { GetServerSideProps } from 'next';
 import theme from 'styles/theme';
 
-export function Chakra({ cookies, children }: { cookies: string; children: React.ReactNode }) {
+export function Chakra({ cookies, children }: { cookies?: string; children: React.ReactNode }) {
   const colorModeManager = typeof cookies === 'string' ? cookieStorageManager(cookies) : localStorageManager;
 
   return (

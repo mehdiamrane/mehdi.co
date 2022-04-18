@@ -2,6 +2,7 @@
 import { extendTheme, type ThemeConfig } from '@chakra-ui/react';
 import { mode } from '@chakra-ui/theme-tools';
 import { withProse } from '@nikolovlazar/chakra-ui-prose';
+import type { ComponentStyleConfig } from '@chakra-ui/theme';
 
 // 2. Extend the theme to include custom colors, fonts, etc
 const colors = {
@@ -53,6 +54,58 @@ const config: ThemeConfig = {
   useSystemColorMode: false,
 };
 
+const fonts = {
+  heading: 'Space Grotesk', // weight 300 -> 700
+  body: 'Inter', // weight 100 -> 900
+};
+
+const shadows = {
+  // Brand
+  smFlatBrand: '0px 0px 20px -3px rgba(253,54,89,0.75)',
+  xlFlatBrand: '0px 0px 20px 0px rgba(253,54,89,0.75)',
+  // White
+  xsWhite: '0 0 0 1px rgba(255, 255, 255, 0.05)',
+  smWhite: '0 1px 2px 0 rgba(255, 255, 255, 0.05)',
+  baseWhite: '0 1px 3px 0 rgba(255,255,255, 0.1),0 1px 2px 0 rgba(255,255,255, 0.06)',
+  mdWhite: '0 4px 6px -1px rgba(255, 255, 255, 0.1),0 2px 4px -1px rgba(255, 255, 255, 0.06)',
+  lgWhite: '0 10px 15px -3px rgba(255, 255, 255, 0.1),0 4px 6px -2px rgba(255, 255, 255, 0.05)',
+  xlWhite: '0 20px 25px -5px rgba(255, 255, 255, 0.1),0 10px 10px -5px rgba(255, 255, 255, 0.04)',
+  '2xlWhite': '0 25px 50px -12px rgba(255, 255, 255, 0.25)',
+};
+
+// You can also use the more specific type for
+// a single part component: ComponentSingleStyleConfig
+const Heading: ComponentStyleConfig = {
+  sizes: {
+    title: {
+      fontSize: { base: '3xl', sm: '4xl', md: '5xl' },
+      fontWeight: 600,
+    },
+  },
+  variants: {
+    gradient: {
+      bgGradient: 'linear(to-l, #FD3659,#FF0080)',
+      backgroundClip: 'text',
+    },
+  },
+};
+
+const Button: ComponentStyleConfig = {
+  variants: {
+    glow: {
+      color: 'white',
+      bgColor: 'brand.500',
+      shadow: 'smFlatBrand',
+      _hover: {
+        shadow: 'xlFlatBrand',
+      },
+      _active: {
+        bgColor: 'brand.700',
+      },
+    },
+  },
+};
+
 const styles = {
   global: (props: object) => ({
     // html: {
@@ -65,6 +118,19 @@ const styles = {
   }),
 };
 
-const theme = extendTheme({ colors, styles, config }, withProse());
+const theme = extendTheme(
+  {
+    colors,
+    styles,
+    config,
+    fonts,
+    shadows,
+    components: {
+      Heading,
+      Button,
+    },
+  },
+  withProse(),
+);
 
 export default theme;

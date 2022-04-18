@@ -1,3 +1,10 @@
 {
-  "deploy": "Deploy"
+  "hero": {
+    "title": "Hi. I'm Mehdi.",
+    "subtitle": "A Front-end developer.",
+    "subtitle_short": "A Front-end dev.",
+    "body": "I bring <0>digital products</0> to life, enjoy writing <1>articles</1>, sharing my <2>notes</2>, and eager to learn any exciting tech that comes my way.",
+    "view_projects": "View projects",
+    "about_me": "About me"
+  }
 }
