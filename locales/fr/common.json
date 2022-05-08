@@ -9,12 +9,16 @@
     "enable_sound": "Activer les effets sonores",
     "disable_sound": "Désactiver les effets sonores",
     "toggle_locale": "Changer de langue",
-    "toggle_french": "Définir la langue en français",
-    "toggle_english": "Définir la langue en anglais",
+    "toggle_french": "Voir en français",
+    "toggle_english": "Voir en anglais",
     "about": "À propos",
     "projects": "Projets",
+    "snippets": "Snippets",
     "blog": "Blog",
     "notes": "Notes",
     "contact": "Contact"
+  },
+  "misc": {
+    "more": "Plus"
   }
 }

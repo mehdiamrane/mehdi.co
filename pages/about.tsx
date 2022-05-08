@@ -4,6 +4,7 @@ import Head from 'next/head';
 import { GetStaticProps } from 'next';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import useTranslation from 'hooks/useTranslation';
+import SectionTitle from 'components/blocks/SectionTitle';
 
 const About: NextPage = () => {
   const { t } = useTranslation('about');
@@ -17,6 +18,8 @@ const About: NextPage = () => {
       </Head>
 
       <h1>{t('hello')}</h1>
+
+      <SectionTitle title='salut' subtitle='salut' />
     </div>
   );
 };

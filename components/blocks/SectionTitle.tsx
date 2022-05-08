@@ -1,33 +1,33 @@
-import React, { FC, useEffect } from 'react';
-import { MotionBox, MotionHeading, MotionText } from 'components/motion';
-import { fadeInUp, delayStaggerInView } from 'styles/animations';
-import { useAnimation } from 'framer-motion';
-import { useInView } from 'react-intersection-observer';
+import React, { FC } from 'react';
+import { IoArrowForwardSharp } from 'react-icons/io5';
+import Button from 'components/shared/Button';
+import Link from 'components/shared/Link';
+import s from './SectionTitle.module.scss';
+import useTranslation from 'hooks/useTranslation';
 
 type SectionTitleProps = {
   title: string;
-  subtitle: string;
+  subtitle?: string;
+  moreHref?: string;
 };
 
-const SectionTitle: FC<SectionTitleProps> = ({ title, subtitle }) => {
-  const controls = useAnimation();
-  const { ref, inView } = useInView();
-
-  useEffect(() => {
-    if (inView) {
-      controls.start('animate');
-    }
-  }, [controls, inView]);
+const SectionTitle: FC<SectionTitleProps> = ({ title, subtitle, moreHref }) => {
+  const { t } = useTranslation('common');
 
   return (
-    <MotionBox ref={ref} initial='initial' animate={controls} variants={delayStaggerInView}>
-      <MotionHeading variants={fadeInUp} as='h2' fontSize={{ base: '2xl', md: '3xl', lg: '4xl' }} fontWeight={500} mb={2}>
-        {title}
-      </MotionHeading>
-      <MotionText variants={fadeInUp} fontSize={{ base: 'md', md: 'lg', lg: 'xl' }}>
-        {subtitle}
-      </MotionText>
-    </MotionBox>
+    <div className={s.sectiontitle}>
+      <div>
+        <h2 className={s.sectiontitle__title}>{title}</h2>
+        {subtitle ? <p className={s.sectiontitle__subtitle}>{subtitle}</p> : null}
+      </div>
+      {moreHref ? (
+        <Link bare href={moreHref}>
+          <Button size='small' variant='secondary' rightIcon={IoArrowForwardSharp}>
+            {t('misc.more')}
+          </Button>
+        </Link>
+      ) : null}
+    </div>
   );
 };
 

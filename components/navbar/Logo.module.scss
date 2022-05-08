@@ -1,0 +1,43 @@
+@import 'styles/_theme';
+
+.logo {
+  display: flex;
+  font-family: $fonts-heading;
+  font-size: 24px;
+  font-weight: $fontWeights-semibold;
+
+  &__text {
+    animation: typing 1s steps(20, end) forwards;
+    overflow: hidden;
+    white-space: nowrap;
+    width: 0;
+  }
+
+  &__underscore {
+    animation: blinking 1s 3;
+    color: $colors-brand-500;
+  }
+
+  &:hover .logo__underscore {
+    animation: blinking 1s infinite;
+    color: $colors-brand-500;
+  }
+}
+
+@keyframes typing {
+  from {
+    width: 0;
+  }
+  to {
+    width: 100%;
+  }
+}
+
+@keyframes blinking {
+  from {
+    color: transparent;
+  }
+  to {
+    color: $colors-brand-500;
+  }
+}

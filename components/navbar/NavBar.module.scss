@@ -1,0 +1,41 @@
+@import 'styles/_theme';
+@import 'styles/_mixins';
+
+.navbar {
+  backdrop-filter: saturate(100%) blur(0px);
+  background-color: $colors-transparent;
+  border-bottom: $borders-none;
+  border-color: $colors-gray-100;
+  left: 0;
+  position: fixed;
+  top: 0;
+  transition-duration: $transition-duration-normal;
+  transition-property: $transition-property-common;
+  transition-timing-function: $transition-easing-ease-out;
+  width: 100%;
+  z-index: $zIndices-docked;
+
+  &--scrolled {
+    backdrop-filter: saturate(180%) blur(5px);
+    background-color: $colors-whiteAlpha-700;
+    border-bottom: $borders-2px $colors-gray-100;
+  }
+
+  &__nav {
+    @include container();
+    align-items: center;
+    display: flex;
+    justify-content: space-between;
+    height: $header-height;
+    padding-bottom: 0;
+    padding-top: 0;
+  }
+
+  &__menu {
+    align-items: center;
+    display: flex;
+    flex-direction: row;
+    gap: $sizes-1;
+    justify-content: center;
+  }
+}

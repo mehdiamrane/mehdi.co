@@ -1,0 +1,17 @@
+@import 'styles/_theme';
+
+.avatar {
+  aspect-ratio: 1 / 1;
+  border-radius: $radii-full;
+  background-image: linear-gradient(to top, $colors-blackAlpha-500, $colors-blackAlpha-200);
+  backdrop-filter: saturate(180%) blur(5px);
+  overflow: hidden;
+  width: 100%;
+
+  &__image {
+    margin: 0 auto;
+    margin-top: 20px;
+    object-fit: cover;
+    width: 80%;
+  }
+}

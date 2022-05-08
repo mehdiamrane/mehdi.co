@@ -1,0 +1,46 @@
+@import 'styles/_theme';
+
+.navlink {
+  align-items: center;
+  background-color: $colors-transparent;
+  border-radius: $radii-md;
+  color: $colors-gray-800;
+  cursor: pointer;
+  display: flex;
+  font-size: $fontSizes-md;
+  font-weight: $fontWeights-semibold;
+  height: $sizes-8;
+  justify-content: center;
+  line-height: 1.2;
+  min-width: $sizes-8;
+  padding: 0 $space-3;
+  text-decoration: none;
+  transition-duration: $transition-duration-normal;
+  transition-property: $transition-property-common;
+  transition-timing-function: $transition-easing-ease-out;
+  user-select: none;
+
+  &:hover {
+    background-color: $colors-blackAlpha-100;
+  }
+
+  &__icon {
+    color: inherit;
+    display: inline-block;
+    font-size: $fontSizes-md;
+    flex-shrink: 0;
+    height: $sizes-4;
+    line-height: $sizes-4;
+    margin-right: $space-2;
+    width: $sizes-4;
+  }
+
+  &--current {
+    background-color: $colors-brand-50;
+    color: $colors-brand-500;
+
+    &:hover {
+      background-color: $colors-brand-100;
+    }
+  }
+}

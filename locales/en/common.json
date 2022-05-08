@@ -9,12 +9,16 @@
     "enable_sound": "Enable sound effects",
     "disable_sound": "Disable sound effects",
     "toggle_locale": "Change language",
-    "toggle_french": "Set language to French",
-    "toggle_english": "Set language to English",
+    "toggle_french": "Switch to French",
+    "toggle_english": "Switch to English",
     "about": "About",
     "projects": "Projects",
+    "snippets": "Snippets",
     "blog": "Blog",
     "notes": "Notes",
     "contact": "Contact"
+  },
+  "misc": {
+    "more": "More"
   }
 }

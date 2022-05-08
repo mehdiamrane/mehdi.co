@@ -1,15 +1,28 @@
 {
   "hero": {
-    "title": "Hello, ici Mehdi.",
-    "subtitle": "Développeur Front-end.",
-    "subtitle_short": "Dev Front-end.",
+    "title": "Mehdi Amrane",
+    "subtitle": "Développeur Front-End chez Oxeva",
     "body": "Je crée des <0>produits digitaux</0>, aime écrire des <1>articles</1>, partager mes <2>notes</2>, et je suis passionné par le web.",
-    "view_projects": "Voir mes projets",
-    "about_me": "À propos de moi"
+    "primary_cta": "Voir les articles",
+    "secondary_cta": "À propos"
   },
   "contact": {
     "title": "Prendre contact",
     "body": "Bien que je ne sois pas actuellement à la recherche de nouvelles opportunités, ma boîte de réception est toujours ouverte. Que vous ayez une question ou que vous souhaitiez simplement me dire bonjour, je ferai de mon mieux pour vous répondre !",
     "button": "Dire bonjour"
+  },
+  "section": {
+    "posts": {
+      "title": "Derniers Articles",
+      "subtitle": "Tutoriels où je partage ce que j'ai appris"
+    },
+    "snippets": {
+      "title": "Derniers Snippets",
+      "subtitle": "Ma collection de bouts de code utiles"
+    },
+    "projects": {
+      "title": "Travail & Projets",
+      "subtitle": "Des expériences pro aux projets stupides"
+    }
   }
 }

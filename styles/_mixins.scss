@@ -1,0 +1,68 @@
+@import 'styles/_theme';
+
+@mixin screen-xs() {
+  @media (min-width: $breakpoints-xs) {
+    @content;
+  }
+}
+
+@mixin screen-sm() {
+  @media (min-width: $breakpoints-sm) {
+    @content;
+  }
+}
+
+@mixin screen-md() {
+  @media (min-width: $breakpoints-md) {
+    @content;
+  }
+}
+
+@mixin screen-lg() {
+  @media (min-width: $breakpoints-lg) {
+    @content;
+  }
+}
+
+// @mixin screen-xl() {
+//   @media (min-width: $breakpoints-xl) {
+//     @content;
+//   }
+// }
+
+// @mixin screen-2xl() {
+//   @media (min-width: $breakpoints-2xl) {
+//     @content;
+//   }
+// }
+
+@mixin container() {
+  margin: 0 auto;
+  max-width: $page-width;
+  padding-left: $page-padding-horizontal;
+  padding-right: $page-padding-horizontal;
+  width: 100%;
+
+  @include screen-lg() {
+    padding-left: 0px;
+    padding-right: 0px;
+  }
+}
+
+@mixin spacing($direction) {
+  @if $direction == 'top' {
+    padding-top: $sizes-16;
+
+    @include screen-md() {
+      padding-top: $sizes-20;
+    }
+  }
+
+  @if $direction == 'bottom' {
+    padding-bottom: $sizes-16;
+
+    @include screen-md() {
+      padding-bottom: $sizes-20;
+    }
+  }
+}

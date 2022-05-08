@@ -1,4 +1,4 @@
-import { RiToolsFill, RiMessage2Fill, RiUserSmileFill } from 'react-icons/ri';
+import { RiToolsFill, RiUserSmileFill, RiFileCodeFill, RiPencilFill } from 'react-icons/ri';
 
 const links = [
   {
@@ -7,14 +7,19 @@ const links = [
     icon: RiUserSmileFill,
   },
   {
+    key: 'blog',
+    href: '/blog',
+    icon: RiPencilFill,
+  },
+  {
     key: 'projects',
     href: '/projects',
     icon: RiToolsFill,
   },
   {
-    key: 'contact',
-    href: '/contact',
-    icon: RiMessage2Fill,
+    key: 'snippets',
+    href: '/snippets',
+    icon: RiFileCodeFill,
   },
 ];
 

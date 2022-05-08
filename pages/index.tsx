@@ -3,12 +3,15 @@ import type { NextPage } from 'next';
 import { GetStaticProps } from 'next';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import Head from 'next/head';
-import Row from 'components/layout/Row';
-import { useColorModeValue as mode } from '@chakra-ui/react';
-import HomepageHero from 'components/blocks/HomepageHero';
-import ContactSection from 'components/blocks/ContactSection';
+import HomeHero from 'components/blocks/HomeHero';
+import SectionTitle from 'components/blocks/SectionTitle';
+import s from 'styles/pages/Homepage.module.scss';
+import PostsList from 'components/posts/PostsList';
+import useTranslation from 'hooks/useTranslation';
 
 const Homepage: NextPage = () => {
+  const { t } = useTranslation('home');
+
   return (
     <>
       <Head>
@@ -17,18 +20,26 @@ const Homepage: NextPage = () => {
         <link rel='icon' href='/favicon.ico' />
       </Head>
 
-      <Row
-        py={{ base: 20, md: 28 }}
-        bgGradient={mode('linear(to-b, white, gray.200)', 'linear(to-b, dark.900, dark.800)')}
-        borderBottom='2px solid'
-        borderColor={mode('gray.300', 'dark.600')}
-      >
-        <HomepageHero />
-      </Row>
+      <main className={s.homepage}>
+        <div className={s.homepage__hero}>
+          <HomeHero />
+        </div>
 
-      <Row py={{ base: 24, lg: 32 }}>
-        <ContactSection />
-      </Row>
+        <div className={s.homepage__posts}>
+          <SectionTitle title={t('section.posts.title')} subtitle={t('section.posts.subtitle')} moreHref='/blog' />
+          <PostsList />
+        </div>
+
+        <div className={s.homepage__snippets}>
+          <SectionTitle title={t('section.snippets.title')} subtitle={t('section.snippets.subtitle')} moreHref='/snippets' />
+          <PostsList />
+        </div>
+
+        <div className={s.homepage__projects}>
+          <SectionTitle title={t('section.projects.title')} subtitle={t('section.projects.subtitle')} moreHref='/projects' />
+          <PostsList />
+        </div>
+      </main>
     </>
   );
 };

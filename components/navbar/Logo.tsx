@@ -1,17 +1,19 @@
 import React from 'react';
-import { Box, Flex, Text, useBreakpointValue as breakpoint } from '@chakra-ui/react';
-import CustomLink from 'components/shared/CustomLink';
+import Link from 'components/shared/Link';
+import s from './Logo.module.scss';
 
 type LogoProps = {
   onClick?: React.MouseEventHandler<HTMLAnchorElement>;
 };
 const Logo = ({ onClick }: LogoProps) => (
-  <CustomLink href='/' bare onClick={onClick}>
-    <Flex className='logo' fontWeight={700} fontSize={24} fontFamily='Space Grotesk'>
-      <Text className='logo__text'>{breakpoint({ base: 'm', sm: 'mehdi' })}</Text>
-      <Text className='logo__underscore'>_</Text>
-    </Flex>
-  </CustomLink>
+  <Link href='/' bare onClick={onClick}>
+    <div className={s.logo}>
+      <div className={s.logo__text}>
+        <span>mehdi</span>
+      </div>
+      <span className={s.logo__underscore}>_</span>
+    </div>
+  </Link>
 );
 
 export default Logo;
