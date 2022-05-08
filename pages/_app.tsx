@@ -4,6 +4,7 @@ import type { AppProps } from 'next/app';
 import { appWithTranslation } from 'next-i18next';
 import { Chakra } from 'context/Chakra';
 import NavBar from 'components/navbar/NavBar';
+import Footer from 'components/layout/Footer';
 import 'focus-visible/dist/focus-visible';
 import 'styles/globals.css';
 
@@ -38,6 +39,7 @@ function MyApp({ Component, pageProps, router }: AppProps) {
       <AnimatePresence exitBeforeEnter>
         <MotionPageContainer key={router.route} initial='initial' animate='animate' exit='exit' variants={pageTransition}>
           <Component {...pageProps} />
+          <Footer />
         </MotionPageContainer>
       </AnimatePresence>
     </Chakra>
