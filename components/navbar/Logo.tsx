@@ -1,5 +1,5 @@
 import React from 'react';
-import { Box, Text, useBreakpointValue as breakpoint } from '@chakra-ui/react';
+import { Box, Flex, Text, useBreakpointValue as breakpoint } from '@chakra-ui/react';
 import CustomLink from 'components/shared/CustomLink';
 
 type LogoProps = {
@@ -7,12 +7,10 @@ type LogoProps = {
 };
 const Logo = ({ onClick }: LogoProps) => (
   <CustomLink href='/' bare onClick={onClick}>
-    <Text fontWeight={700} fontSize={24} fontFamily='Space Grotesk'>
-      {breakpoint({ base: 'm', sm: 'mehdi' })}
-      <Box as='span' color='#FD3559'>
-        _
-      </Box>
-    </Text>
+    <Flex className='logo' fontWeight={700} fontSize={24} fontFamily='Space Grotesk'>
+      <Text className='logo__text'>{breakpoint({ base: 'm', sm: 'mehdi' })}</Text>
+      <Text className='logo__underscore'>_</Text>
+    </Flex>
   </CustomLink>
 );
 
