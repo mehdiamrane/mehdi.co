@@ -6,6 +6,7 @@ import Head from 'next/head';
 import Row from 'components/layout/Row';
 import { useColorModeValue as mode } from '@chakra-ui/react';
 import HomepageHero from 'components/blocks/HomepageHero';
+import ContactSection from 'components/blocks/ContactSection';
 
 const Homepage: NextPage = () => {
   return (
@@ -23,6 +24,10 @@ const Homepage: NextPage = () => {
         borderColor={mode('gray.300', 'dark.600')}
       >
         <HomepageHero />
+      </Row>
+
+      <Row py={{ base: 24, lg: 32 }}>
+        <ContactSection />
       </Row>
     </>
   );
