@@ -1,7 +1,7 @@
 {
-    "blog": {
-        "title": "Latest Posts",
-        "subtitle": "Sharing what I've learned with the world",
-        "description": "test description"
-    }
+  "blog": {
+    "title": "Latest Posts",
+    "subtitle": "Sharing what I've learned with the world",
+    "description": "test description"
+  }
 }
