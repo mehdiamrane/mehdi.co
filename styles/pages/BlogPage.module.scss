@@ -1,0 +1,21 @@
+@import 'styles/_theme';
+@import 'styles/_mixins';
+@import 'styles/_placeholders';
+
+.blogpage {
+  @extend %main;
+
+  &__hero {
+    background-image: linear-gradient(to bottom, $colors-white, $colors-gray-200);
+    border-bottom: $borders-2px $colors-gray-300;
+  }
+
+  &__posts {
+    @include container();
+    @include spacing($direction: top);
+  }
+
+  &__projects {
+    @include spacing($direction: bottom);
+  }
+}

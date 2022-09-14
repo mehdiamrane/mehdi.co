@@ -5,11 +5,11 @@ import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import Head from 'next/head';
 import HomeHero from 'components/blocks/HomeHero';
 import SectionTitle from 'components/blocks/SectionTitle';
-import s from 'styles/pages/Homepage.module.scss';
+import s from 'styles/pages/HomePage.module.scss';
 import PostsList from 'components/posts/PostsList';
 import useTranslation from 'hooks/useTranslation';
 
-const Homepage: NextPage = () => {
+const HomePage: NextPage = () => {
   const { t } = useTranslation('home');
 
   return (
@@ -44,7 +44,7 @@ const Homepage: NextPage = () => {
   );
 };
 
-export default Homepage;
+export default HomePage;
 
 export const getStaticProps: GetStaticProps = async ({ locale = 'en' }) => {
   return {
