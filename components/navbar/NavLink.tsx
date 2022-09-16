@@ -2,8 +2,7 @@ import React from 'react';
 import Link from 'components/shared/Link';
 import { type IconType } from 'react-icons';
 
-import s from './NavLink.module.scss';
-import clsx from 'clsx';
+import { Button } from '@chakra-ui/react';
 
 type NavLinkProps = {
   currentPath: string;
@@ -13,16 +12,20 @@ type NavLinkProps = {
   leftIcon: IconType;
 };
 
-const DesktopNavLink = ({ currentPath, title, href, leftIcon, ...props }: NavLinkProps) => {
+const DesktopNavLink = ({ currentPath, title, href, leftIcon }: NavLinkProps) => {
   const isCurrent = currentPath.startsWith(href);
   const Icon = leftIcon;
 
   return (
     <Link href={href} bare>
-      <div className={clsx(s.navlink, isCurrent && s['navlink--current'])} aria-current={isCurrent ? 'page' : undefined}>
-        <Icon className={s.navlink__icon} />
-        <span>{title}</span>
-      </div>
+      <Button
+        as='div'
+        leftIcon={<Icon />}
+        variant={isCurrent ? 'navlink-current' : 'navlink'}
+        aria-current={isCurrent ? 'page' : undefined}
+      >
+        {title}
+      </Button>
     </Link>
   );
 };

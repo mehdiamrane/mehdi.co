@@ -1,6 +1,6 @@
 import React, { FC } from 'react';
 
-export const France = ({ className }: { className?: string }) => (
+export const France: FC = ({ className }: { className?: string }) => (
   <svg viewBox='0 85.333 512 341.333' height='1em' width='1em' className={className}>
     <path fill='#FFF' d='M0 85.331h512v341.337H0z' />
     <path fill='#0052B4' d='M0 85.331h170.663v341.337H0z' />
@@ -8,7 +8,7 @@ export const France = ({ className }: { className?: string }) => (
   </svg>
 );
 
-export const US = ({ className }: { className?: string }) => (
+export const US: FC = ({ className }: { className?: string }) => (
   <svg viewBox='0 0 513 342' height='1em' width='1em' className={className}>
     <path fill='#FFF' d='M0 0h513v342H0z' />
     <g fill='#D80027'>

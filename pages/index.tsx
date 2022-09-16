@@ -5,9 +5,11 @@ import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import Head from 'next/head';
 import HomeHero from 'components/blocks/HomeHero';
 import SectionTitle from 'components/blocks/SectionTitle';
-import s from 'styles/pages/HomePage.module.scss';
+
 import PostsList from 'components/posts/PostsList';
 import useTranslation from 'hooks/useTranslation';
+import { Box } from '@chakra-ui/react';
+import theme, { containerProps } from 'styles/theme';
 
 const HomePage: NextPage = () => {
   const { t } = useTranslation('home');
@@ -20,26 +22,42 @@ const HomePage: NextPage = () => {
         <link rel='icon' href='/favicon.ico' />
       </Head>
 
-      <main className={s.homepage}>
-        <div className={s.homepage__hero}>
+      <Box bgColor='white' mb={20} mt={16} w='full' as='main'>
+        <Box
+          bgImage={`linear-gradient(to bottom, ${theme.colors.white}, ${theme.colors.gray[200]})`}
+          borderBottom='2px solid'
+          borderColor='gray.300'
+        >
           <HomeHero />
-        </div>
+        </Box>
 
-        <div className={s.homepage__posts}>
-          <SectionTitle title={t('section.posts.title')} subtitle={t('section.posts.subtitle')} moreHref='/blog' />
+        <Box {...containerProps}>
+          <SectionTitle
+            title={t('section.posts.title')}
+            subtitle={t('section.posts.subtitle')}
+            moreHref='/blog'
+          />
           <PostsList />
-        </div>
+        </Box>
 
-        <div className={s.homepage__snippets}>
-          <SectionTitle title={t('section.snippets.title')} subtitle={t('section.snippets.subtitle')} moreHref='/snippets' />
+        <Box {...containerProps}>
+          <SectionTitle
+            title={t('section.snippets.title')}
+            subtitle={t('section.snippets.subtitle')}
+            moreHref='/snippets'
+          />
           <PostsList />
-        </div>
+        </Box>
 
-        <div className={s.homepage__projects}>
-          <SectionTitle title={t('section.projects.title')} subtitle={t('section.projects.subtitle')} moreHref='/projects' />
+        <Box {...containerProps} pb={{ base: 16, md: 20 }}>
+          <SectionTitle
+            title={t('section.projects.title')}
+            subtitle={t('section.projects.subtitle')}
+            moreHref='/projects'
+          />
           <PostsList />
-        </div>
-      </main>
+        </Box>
+      </Box>
     </>
   );
 };

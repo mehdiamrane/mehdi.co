@@ -2,20 +2,33 @@ import React from 'react';
 
 import LocaleSwitch from 'components/shared/LocaleSwitch';
 
-import s from './Footer.module.scss';
+import { containerProps } from 'styles/theme';
+import theme from 'styles/theme';
+import { Box, Flex, Text } from '@chakra-ui/react';
 
 const Footer = () => {
   const year: number = new Date().getFullYear();
 
   return (
-    <footer className={s.footer__container}>
-      <div className={s.footer__inner}>
-        <span className={s.footer__copyright}>&copy; 2020 - {year} Mehdi Amrane</span>
-        <div className={s.footer__localeswitch}>
+    <Box
+      as='footer'
+      bgImage={`linear-gradient(to top, ${theme.colors.white}, ${theme.colors.gray[300]})`}
+      bottom={0}
+      h={20}
+      maxH={20}
+      position='fixed'
+      w='full'
+      zIndex='hide'
+    >
+      <Flex align='center' justify='space-between' direction='row' h='full' {...containerProps}>
+        <Text as='span' fontSize='sm' color='gray.700'>
+          &copy; 2020 - {year} Mehdi Amrane
+        </Text>
+        <Box mr={-1}>
           <LocaleSwitch />
-        </div>
-      </div>
-    </footer>
+        </Box>
+      </Flex>
+    </Box>
   );
 };
 

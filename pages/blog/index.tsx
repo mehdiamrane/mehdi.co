@@ -4,9 +4,11 @@ import { GetStaticProps } from 'next';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import Head from 'next/head';
 import PageHero from 'components/blocks/PageHero';
-import s from 'styles/pages/BlogPage.module.scss';
+
 import PostsList from 'components/posts/PostsList';
 import useTranslation from 'hooks/useTranslation';
+import { Box } from '@chakra-ui/react';
+import theme, { containerProps } from 'styles/theme';
 
 const BlogPage: NextPage = () => {
   const { t } = useTranslation('blog');
@@ -19,20 +21,24 @@ const BlogPage: NextPage = () => {
         <link rel='icon' href='/favicon.ico' />
       </Head>
 
-      <main className={s.blogpage}>
-        <div className={s.blogpage__hero}>
+      <Box bgColor='white' mb={20} mt={16} w='full' as='main'>
+        <Box
+          bgImage={`linear-gradient(to bottom, ${theme.colors.white}, ${theme.colors.gray[200]})`}
+          borderBottom='2px solid'
+          borderColor='gray.300'
+        >
           <PageHero
             title={t('blog.title')}
             subtitle={t('blog.subtitle')}
             description={t('blog.description')}
             image={{ src: '/images/pencil.png', alt: 'Pencil Illustration' }}
           />
-        </div>
+        </Box>
 
-        <div className={s.blogpage__posts}>
+        <Box {...containerProps} pt={{ base: 16, md: 20 }}>
           <PostsList />
-        </div>
-      </main>
+        </Box>
+      </Box>
     </>
   );
 };
@@ -42,7 +48,7 @@ export default BlogPage;
 export const getStaticProps: GetStaticProps = async ({ locale = 'en' }) => {
   return {
     props: {
-      ...(await serverSideTranslations(locale, ['common', 'home'])),
+      ...(await serverSideTranslations(locale, ['common', 'home', 'blog'])),
     },
   };
 };

@@ -1,18 +1,27 @@
 import React from 'react';
 import Link from 'components/shared/Link';
-import s from './Logo.module.scss';
+
+import { Flex, Box } from '@chakra-ui/react';
 
 type LogoProps = {
   onClick?: React.MouseEventHandler<HTMLAnchorElement>;
 };
 const Logo = ({ onClick }: LogoProps) => (
   <Link href='/' bare onClick={onClick}>
-    <div className={s.logo}>
-      <div className={s.logo__text}>
+    <Flex
+      color='gray.900'
+      fontFamily='heading'
+      fontSize='24px'
+      fontWeight='semibold'
+      className='logo'
+    >
+      <Box overflow='hidden' whiteSpace='nowrap' w='0' className='logo__text'>
         <span>mehdi</span>
-      </div>
-      <span className={s.logo__underscore}>_</span>
-    </div>
+      </Box>
+      <Box as='span' color='brand.500' className='logo__underscore'>
+        _
+      </Box>
+    </Flex>
   </Link>
 );
 
