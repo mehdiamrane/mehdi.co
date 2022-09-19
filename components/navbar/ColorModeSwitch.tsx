@@ -1,17 +1,17 @@
 import React from 'react';
 import { IconButton, useColorMode, Tooltip } from '@chakra-ui/react';
 import { IoMoon, IoSunny } from 'react-icons/io5';
-import useSound from 'use-sound';
+// import useSound from 'use-sound';
 import useTranslation from 'hooks/useTranslation';
 
-const ColorModeSwitch = ({ ml }: { ml: object }) => {
+const ColorModeSwitch = () => {
   const { colorMode, toggleColorMode } = useColorMode();
   const { t } = useTranslation('common');
-  const [play] = useSound(colorMode === 'light' ? '/sounds/switch-off.mp3' : '/sounds/switch-on.mp3');
+  // const [play] = useSound(colorMode === 'light' ? '/sounds/switch-off.mp3' : '/sounds/switch-on.mp3');
 
   const handleClick = () => {
     toggleColorMode();
-    play();
+    // play();
   };
 
   return (
@@ -30,7 +30,6 @@ const ColorModeSwitch = ({ ml }: { ml: object }) => {
         aria-label={t('nav.toggle_color_mode')}
         colorScheme='gray'
         onClick={handleClick}
-        ml={ml}
       />
     </Tooltip>
   );

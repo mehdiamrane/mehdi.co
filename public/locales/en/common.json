@@ -1,0 +1,41 @@
+{
+  "meta": {
+    "title": "Mehdi Amrane - Front-End JavaScript Developer",
+    "partial-title": "| Mehdi Amrane - Front-End JavaScript Developer",
+    "description": "Front-End React Developer based in Paris, I'm passionate about web and tech. Caffeine addict, I like working on ambitious projects with positive people."
+  },
+  "nav": {
+    "menu": "Menu",
+    "menu_close": "Close menu",
+    "enable_dark_mode": "Enable dark mode",
+    "enable_light_mode": "Enable light mode",
+    "toggle_color_mode": "Toggle dark or light mode",
+    "toggle_sound": "Toggle sound effects",
+    "enable_sound": "Enable sound effects",
+    "disable_sound": "Disable sound effects",
+    "toggle_locale": "Change language",
+    "toggle_french": "Switch to French",
+    "toggle_english": "Switch to English",
+    "about": "About",
+    "projects": "Projects",
+    "snippets": "Snippets",
+    "blog": "Blog",
+    "notes": "Notes",
+    "contact": "Contact"
+  },
+  "misc": {
+    "more": "More",
+    "copy": "Copy",
+    "copied": "Copied!"
+  },
+  "404": {
+    "title": "404 error",
+    "description": "Oops, looks like you're trying to access a page that doesn't exist.",
+    "button": "Back to home"
+  },
+  "500": {
+    "title": "Error 500",
+    "description": "Oops, looks like the site has a little problem. No worries, the developer will be punished accordingly.",
+    "button": "Back to home"
+  }
+}

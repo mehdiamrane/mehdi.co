@@ -4,7 +4,7 @@ import { Tooltip, IconButton } from '@chakra-ui/react';
 import { France, US } from 'components/shared/CustomIcons';
 import useTranslation from 'hooks/useTranslation';
 
-const LocaleSwitch = ({ ml }: { ml: object }) => {
+const LocaleSwitch = () => {
   const router = useRouter();
   const { t } = useTranslation('common');
 
@@ -31,7 +31,6 @@ const LocaleSwitch = ({ ml }: { ml: object }) => {
         aria-label={t('nav.toggle_locale')}
         colorScheme='gray'
         onClick={handleLocaleChange}
-        ml={ml}
       />
     </Tooltip>
   );

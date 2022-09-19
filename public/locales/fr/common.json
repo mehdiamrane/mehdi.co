@@ -1,0 +1,41 @@
+{
+  "meta": {
+    "title": "Mehdi Amrane — Développeur Front-End JavaScript",
+    "partial-title": "| Mehdi Amrane — Développeur Front-End JavaScript",
+    "description": "Développeur Front-End React basé à Paris, je suis passionné par le web et la tech, accro à la caféine, et j'aime travailler sur des projets ambitieux avec des personnes positives."
+  },
+  "nav": {
+    "menu": "Menu",
+    "menu_close": "Fermer le menu",
+    "enable_dark_mode": "Activer le mode sombre",
+    "enable_light_mode": "Activer le mode clair",
+    "toggle_color_mode": "Basculer en mode sombre ou clair",
+    "toggle_sound": "Activer ou désactiver les effets sonores",
+    "enable_sound": "Activer les effets sonores",
+    "disable_sound": "Désactiver les effets sonores",
+    "toggle_locale": "Changer de langue",
+    "toggle_french": "Voir en français",
+    "toggle_english": "Voir en anglais",
+    "about": "À propos",
+    "projects": "Projets",
+    "snippets": "Snippets",
+    "blog": "Blog",
+    "notes": "Notes",
+    "contact": "Contact"
+  },
+  "misc": {
+    "more": "Plus",
+    "copy": "Copier",
+    "copied": "Copié!"
+  },
+  "404": {
+    "title": "Erreur 404",
+    "description": "Oups, on dirait que vous essayez d'accéder à une page qui n'existe pas.",
+    "button": "Retour à l'accueil"
+  },
+  "500": {
+    "title": "Erreur 500",
+    "description": "Oups, on dirait que le site a un petit problème. Pas d'inquiétude, le développeur sera puni en conséquence.",
+    "button": "Retour à l'accueil"
+  }
+}

@@ -1,33 +1,57 @@
-import React, { FC, useEffect } from 'react';
-import { MotionBox, MotionHeading, MotionText } from 'components/motion';
-import { fadeInUp, delayStaggerInView } from 'styles/animations';
-import { useAnimation } from 'framer-motion';
-import { useInView } from 'react-intersection-observer';
+import React, { FC } from 'react';
+import { IoArrowForwardSharp } from 'react-icons/io5';
+import Link from 'components/shared/Link';
+import useTranslation from 'hooks/useTranslation';
+import { Flex, Heading, Button, Text, useColorModeValue as mode } from '@chakra-ui/react';
 
 type SectionTitleProps = {
   title: string;
-  subtitle: string;
+  subtitle?: string;
+  moreHref?: string;
 };
 
-const SectionTitle: FC<SectionTitleProps> = ({ title, subtitle }) => {
-  const controls = useAnimation();
-  const { ref, inView } = useInView();
-
-  useEffect(() => {
-    if (inView) {
-      controls.start('animate');
-    }
-  }, [controls, inView]);
+const SectionTitle: FC<SectionTitleProps> = ({ title, subtitle, moreHref }) => {
+  const { t } = useTranslation('common');
 
   return (
-    <MotionBox ref={ref} initial='initial' animate={controls} variants={delayStaggerInView}>
-      <MotionHeading variants={fadeInUp} as='h2' fontSize={{ base: '2xl', md: '3xl', lg: '4xl' }} fontWeight={500} mb={2}>
-        {title}
-      </MotionHeading>
-      <MotionText variants={fadeInUp} fontSize={{ base: 'md', md: 'lg', lg: 'xl' }}>
-        {subtitle}
-      </MotionText>
-    </MotionBox>
+    <Flex
+      align='center'
+      borderBottom='2px solid'
+      borderColor={mode('gray.200', 'dark.200')}
+      gap={2}
+      justify='space-between'
+      mt={2}
+      pb={2}
+      mb={2}
+      pt={{ base: 8, md: 14 }}
+    >
+      <div>
+        <Heading
+          as='h2'
+          color={mode('gray.900', 'whiteAlpha.900')}
+          fontSize={{ base: '2xl', md: '3xl' }}
+          fontWeight='medium'
+        >
+          {title}
+        </Heading>
+        {subtitle ? (
+          <Text
+            color={mode('gray.800', 'whiteAlpha.800')}
+            fontSize={{ base: 'md', md: 'lg' }}
+            mt={1}
+          >
+            {subtitle}
+          </Text>
+        ) : null}
+      </div>
+      {moreHref ? (
+        <Link bare href={moreHref}>
+          <Button size='sm' variant='secondary' rightIcon={<IoArrowForwardSharp />}>
+            {t('misc.more')}
+          </Button>
+        </Link>
+      ) : null}
+    </Flex>
   );
 };
 

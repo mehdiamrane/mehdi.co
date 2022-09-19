@@ -2,7 +2,6 @@ import React from 'react';
 import { render, screen } from '@testing-library/react';
 import '@testing-library/jest-dom';
 import Home from 'pages/index';
-import { Chakra } from 'context/Chakra';
 import 'testing/matchMedia';
 
 jest.mock('next/router', () => ({
@@ -17,7 +16,8 @@ jest.mock('next/router', () => ({
 }));
 
 // jest.mock('react-i18next', () => ({
-//   // this mock makes sure any components using the translate hook can use it without a warning being shown
+//   // this mock makes sure any components using the translate hook
+//   // can use it without a warning being shown
 //   useTranslation: () => {
 //     return {
 //       t: (str: string) => str,
@@ -37,11 +37,7 @@ jest.mock('next/router', () => ({
 // TODO: Fix tests with i18n
 describe('Homepage', () => {
   it('renders a heading', () => {
-    render(
-      <Chakra>
-        <Home />
-      </Chakra>,
-    );
+    render(<Home />);
 
     const heading = screen.getByRole('heading', {
       // name: /Hi. I'm Mehdi./i,

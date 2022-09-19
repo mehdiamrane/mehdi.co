@@ -1,56 +1,50 @@
 import React from 'react';
-import { Box, Flex, useColorModeValue as mode, Stack } from '@chakra-ui/react';
 import NavLink from 'components/navbar/NavLink';
-import ColorModeSwitch from 'components/navbar/ColorModeSwitch';
-import SoundSwitch from 'components/navbar/SoundSwitch';
-import LocaleSwitch from 'components/navbar/LocaleSwitch';
 import useScrollPosition from 'hooks/useScrollPosition';
 import Logo from 'components/navbar/Logo';
-import MobileMenu from 'components/navbar/MobileMenu';
+import ColorModeSwitch from 'components/navbar/ColorModeSwitch';
+import LocaleSwitch from 'components/navbar/LocaleSwitch';
 import links from 'data/nav-links';
 import type { AppProps } from 'next/app';
 import useTranslation from 'hooks/useTranslation';
+
+import { containerProps } from 'styles/theme';
+import { Box, Flex, useColorModeValue as mode } from '@chakra-ui/react';
 
 const NavBar = ({ router }: { router: AppProps['router'] }) => {
   const { t } = useTranslation('common');
   const { isAtTop } = useScrollPosition();
 
-  const backgroundColor = isAtTop ? mode('transparent', 'transparent') : mode('rgba(255, 255, 255, 0.7)', 'rgba(18, 18, 18, 0.7)');
-  const borderBottom = isAtTop ? '0px solid' : '2px solid';
-  const backdropFilter = isAtTop ? 'saturate(100%) blur(0px)' : 'saturate(180%) blur(20px)';
-
   return (
     <Box
       as='header'
-      pos='fixed'
+      position='fixed'
       top={0}
       left={0}
       w='full'
-      backgroundColor={backgroundColor}
-      borderBottom={borderBottom}
-      borderColor={mode('gray.100', 'dark.800')}
-      backdropFilter={backdropFilter}
-      transition='all 200ms ease-in-out'
-      zIndex={20}
+      zIndex='docked'
+      backdropFilter={isAtTop ? 'saturate(100%) blur(0px)' : 'saturate(180%) blur(5px)'}
+      bgColor={
+        isAtTop ? mode('transparent', 'transparent') : mode('whiteAlpha.700', 'blackAlpha.600')
+      }
+      borderBottom={isAtTop ? '0px solid' : '2px solid'}
+      borderColor={mode('gray.100', 'blackAlpha.800')}
+      transition='all 150ms ease'
     >
-      <Flex as='nav' w='full' align='center' justify='space-between' h={16} px={6} maxW='6xl' mx='auto'>
+      <Flex {...containerProps} as='nav' h={16} justify='space-between' align='center'>
         <Logo />
-        <Flex align='center' justify='center'>
-          <Stack display={{ base: 'none', md: 'flex' }} direction='row' spacing={2} align='center'>
-            {links.map((link) => (
-              <NavLink.Desktop
-                key={link.key}
-                title={t(`nav.${link.key}`)}
-                href={link.href}
-                leftIcon={link.icon}
-                currentPath={router.asPath}
-              />
-            ))}
-          </Stack>
-          <MobileMenu currentPath={router.asPath} />
-          <ColorModeSwitch ml={{ base: 2, md: 4 }} />
-          <SoundSwitch ml={{ base: 2, md: 4 }} />
-          <LocaleSwitch ml={{ base: 2, md: 4 }} />
+        <Flex align='center' direction='row' gap={1} justify='center'>
+          {links.map((link) => (
+            <NavLink.Desktop
+              key={link.key}
+              title={t(`nav.${link.key}`)}
+              href={link.href}
+              leftIcon={link.icon}
+              currentPath={router.route}
+            />
+          ))}
+          <ColorModeSwitch />
+          <LocaleSwitch />
         </Flex>
       </Flex>
     </Box>

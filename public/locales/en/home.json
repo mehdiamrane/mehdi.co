@@ -1,0 +1,80 @@
+{
+  "meta": {
+    "title": "Mehdi Amrane - Front-End JavaScript Developer",
+    "description": "Front-End React Developer based in Paris, I'm passionate about web and tech, caffeine addict, and I like working on ambitious projects with positive people."
+  },
+  "hero": {
+    "title": "Mehdi Amrane",
+    "subtitle": "Front-End React Developer",
+    "body": "Hello 👋 Based in Paris, I'm passionate about web and tech, addicted to caffeine, and I love working on ambitious projects with positive people.",
+    "buttons": {
+      "resume": "My resume",
+      "work": "Experience",
+      "contact": "Contact"
+    }
+  },
+  "intro": {
+    "part1": "I occasionally tinker with back-end stuff, but I mostly just build front-end and mobile apps with React and React Native.",
+    "part2": "Feel free to explore this site and check out some of my notes if you are a developer yourself."
+  },
+  "tech": {
+    "title": "Tech stack",
+    "subtitle": "Technologies and tools I like to work with"
+  },
+  "work": {
+    "title": "Work experience",
+    "subtitle": "What I have accomplished in my career as a developer",
+    "oxeva": {
+      "title": "Oxeva / Nua.ge",
+      "role": "Front-End Developer",
+      "duration": "1 year and 3 months",
+      "subtitle": "Integration into the development team of Nua.ge, an IaaS cloud service, during a complete refactoring of the React codebase.",
+      "description": "Sprint planning, code reviews, and close collaboration with the PO. Refactor to make the code more efficient and maintainable, while improving existing interfaces. Added features, associated tests, and documentation. Took over responsibility for the JS SDK, published on NPM.",
+      "link": {
+        "name": "Nua.ge website",
+        "url": "https://nua.ge"
+      },
+      "image-alt": "Screenshot of Nua.ge"
+    },
+    "restaurant": {
+      "title": "Restaurant order taking application",
+      "role": "Freelance Fullstack Developer",
+      "duration": "9 months",
+      "subtitle": "Mock-up, design and conception of a web app for restaurant ordering and a mobile app for order management from scratch.",
+      "description": "Project planning with Trello and Notion. Mock-ups done with Whimsical. React and Next.js for the front-end + Chakra-UI for the interface. Use of Next.js serverless API routes (Node.js). Firebase for auth, database, and notifications. Integration of Stripe API for payments. Web app deployed on Vercel in continuous integration. Mobile app coded with React Native and deployed via Fastlane and Firebase App Distribution.",
+      "image-alt": "Screenshot of the app"
+    },
+    "lacapsule": {
+      "title": "La Capsule",
+      "role": "Freelance Assistant Trainer",
+      "duration": "3 months",
+      "subtitle": "After my bootcamp at La Capsule, I was honored to be able to join my former teacher and assist him as a Teacher Assistant.",
+      "description": "Interacting with students to unblock them on technical issues, or to deepen some aspects of the course.",
+      "link": {
+        "name": "La Capsule website",
+        "url": "https://lacapsule.academy"
+      },
+      "image-alt": "Screenshot from The Capsule"
+    }
+  },
+  "contact": {
+    "title": "Contact",
+    "subtitle": "Say hello!",
+    "body": "My inbox is always open. Whether you have a question or just want to say hello, I'll do my best to respond!",
+    "button": "Send an email"
+  },
+  "section": {
+    "posts": {
+      "title": "Latest Posts",
+      "subtitle": "Tutorials where I share what I've learned"
+    },
+    "snippets": {
+      "title": "Latest Snippets",
+      "subtitle": "My collection of useful code snippets"
+    },
+    "projects": {
+      "title": "Work & Projects",
+      "subtitle": "From pro experiences to stupid projects"
+    }
+  }
+}
