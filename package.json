@@ -7,7 +7,7 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "vercel-install": "./vercel-submodule-workaround.sh && npm install",
+    "preinstall": "./vercel-submodule-workaround.sh",
     "content:init": "cd content && git submodule init && git submodule update && cd ..",
     "content:update": "git submodule update --remote",
     "test": "jest --watch",
