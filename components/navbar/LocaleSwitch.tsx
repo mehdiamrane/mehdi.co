@@ -1,8 +1,8 @@
 import React from 'react';
 import { useRouter } from 'next/router';
+import { Tooltip, IconButton } from '@chakra-ui/react';
 import { France, US } from 'components/shared/CustomIcons';
 import useTranslation from 'hooks/useTranslation';
-import { Button } from '@chakra-ui/react';
 
 const LocaleSwitch = () => {
   const router = useRouter();
@@ -17,14 +17,22 @@ const LocaleSwitch = () => {
   };
 
   return (
-    <Button
-      variant='ghost'
-      size='sm'
-      leftIcon={router.locale === 'fr' ? <France /> : <US />}
-      onClick={handleLocaleChange}
+    <Tooltip
+      hasArrow
+      rounded='sm'
+      label={t(router.locale === 'fr' ? 'nav.toggle_english' : 'nav.toggle_french')}
+      aria-label={t('nav.toggle_locale')}
     >
-      {t(router.locale === 'fr' ? 'nav.toggle_english' : 'nav.toggle_french')}
-    </Button>
+      <IconButton
+        fontSize='md'
+        size='sm'
+        variant='solid'
+        icon={router.locale === 'fr' ? <France /> : <US />}
+        aria-label={t('nav.toggle_locale')}
+        colorScheme='gray'
+        onClick={handleLocaleChange}
+      />
+    </Tooltip>
   );
 };
 

@@ -18,7 +18,7 @@ const Avatar = () => {
         mt={5}
         objectFit='cover'
         w='80%!important'
-        src='/images/avatar.png'
+        src='/images/illustrations/avatar.png'
         alt='Avatar Illustration'
       />
     </AspectRatio>

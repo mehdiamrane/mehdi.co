@@ -1,10 +1,9 @@
 import React from 'react';
 
-import LocaleSwitch from 'components/shared/LocaleSwitch';
-
 import { containerProps } from 'styles/theme';
 import theme from 'styles/theme';
-import { Box, Flex, Text } from '@chakra-ui/react';
+import { Box, Flex, Text, Button, useColorModeValue as mode } from '@chakra-ui/react';
+import Link from 'components/shared/Link';
 
 const Footer = () => {
   const year: number = new Date().getFullYear();
@@ -12,20 +11,26 @@ const Footer = () => {
   return (
     <Box
       as='footer'
-      bgImage={`linear-gradient(to top, ${theme.colors.white}, ${theme.colors.gray[300]})`}
+      bgImage={`linear-gradient(to top, ${mode(theme.colors.white, theme.colors.dark[900])}, ${mode(
+        theme.colors.gray[100],
+        theme.colors.gray[900],
+      )})`}
       bottom={0}
       h={20}
       maxH={20}
-      position='fixed'
+      position='absolute'
       w='full'
-      zIndex='hide'
     >
       <Flex align='center' justify='space-between' direction='row' h='full' {...containerProps}>
-        <Text as='span' fontSize='sm' color='gray.700'>
+        <Text as='span' fontSize='sm' color='gray.500'>
           &copy; 2020 - {year} Mehdi Amrane
         </Text>
         <Box mr={-1}>
-          <LocaleSwitch />
+          <Link href='https://github.com/mehdiamrane/mehdi.co'>
+            <Button size='sm' variant='ghost' colorScheme={mode('blackAlpha', 'gray')}>
+              Source code
+            </Button>
+          </Link>
         </Box>
       </Flex>
     </Box>

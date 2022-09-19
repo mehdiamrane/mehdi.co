@@ -1,15 +1,24 @@
-import React, { FC } from 'react';
+import React, { FC, useMemo } from 'react';
 import Link from 'components/shared/Link';
-import { Flex, Text } from '@chakra-ui/react';
+import { Flex, Text, useColorModeValue as mode } from '@chakra-ui/react';
+import { formatPostDate } from 'utils';
+import { useRouter } from 'next/router';
 
 type PostItemProps = {
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  post: any;
+  postData: {
+    title: string;
+    href: string;
+    publishedAt: string;
+  };
 };
 
-const PostItem: FC<PostItemProps> = ({ post }) => {
+const PostItem: FC<PostItemProps> = ({ postData }) => {
+  const router = useRouter();
+  const locale = useMemo(() => (router.locale === 'fr' ? 'fr' : 'en'), []);
+  const publishedAtDate = useMemo(() => formatPostDate(postData.publishedAt, locale), []);
+
   return (
-    <Link href={post.href} bare>
+    <Link href={postData.href} bare>
       <Flex
         align='center'
         bgColor='transparent'
@@ -21,26 +30,26 @@ const PostItem: FC<PostItemProps> = ({ post }) => {
         px={4}
         py={2}
         transition='all 150ms ease'
-        _hover={{ bgColor: 'gray.200' }}
-        _active={{ bgColor: 'gray.300' }}
+        _hover={{ bgColor: mode('gray.200', 'dark.200') }}
+        _active={{ bgColor: mode('gray.300', 'dark.300') }}
       >
         <Text
           as='span'
-          color='gray.900'
+          color={mode('gray.900', 'whiteAlpha.900')}
           fontSize={{ base: 'sm', sm: 'md', md: 'lg' }}
           fontWeight='medium'
         >
-          {post.title}
+          {postData.title}
         </Text>
         <Text
           as='span'
-          color='gray.600'
+          color={mode('gray.600', 'whiteAlpha.600')}
           fontFamily='mono'
           fontSize='sm'
           fontWeight='medium'
           whiteSpace='nowrap'
         >
-          {post.publishedAt}
+          {publishedAtDate}
         </Text>
       </Flex>
     </Link>

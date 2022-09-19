@@ -51,7 +51,7 @@ const colors = {
 // color mode config
 const config: ThemeConfig = {
   initialColorMode: 'system',
-  useSystemColorMode: false,
+  useSystemColorMode: true,
 };
 
 const fonts = {
@@ -92,6 +92,10 @@ export const containerProps = {
   w: 'full',
 };
 
+const themeMode = (colorMode: 'light' | 'dark', lightValue: any, darkValue: any) => {
+  return colorMode === 'light' ? lightValue : darkValue;
+};
+
 const Button: ComponentStyleConfig = {
   variants: {
     glow: {
@@ -116,32 +120,32 @@ const Button: ComponentStyleConfig = {
         bgColor: 'dark.50',
       },
     },
-    navlink: {
-      color: 'gray.800',
+    navlink: ({ colorMode }) => ({
+      color: themeMode(colorMode, 'gray.800', 'whiteAlpha.900'),
       bgColor: 'transparent',
       rounded: 'md',
       h: 8,
       p: 3,
       _hover: {
-        bgColor: 'blackAlpha.200',
+        bgColor: themeMode(colorMode, 'blackAlpha.200', 'whiteAlpha.300'),
       },
       _active: {
-        bgColor: 'blackAlpha.50',
+        bgColor: themeMode(colorMode, 'blackAlpha.50', 'whiteAlpha.400'),
       },
-    },
-    'navlink-current': {
-      color: 'brand.500',
-      bgColor: 'brand.50',
+    }),
+    'navlink-current': ({ colorMode }) => ({
+      color: themeMode(colorMode, 'brand.500', 'white'),
+      bgColor: themeMode(colorMode, 'brand.50', 'brand.500'),
       rounded: 'md',
       h: 8,
       p: 3,
       _hover: {
-        bgColor: 'brand.100',
+        bgColor: themeMode(colorMode, 'brand.100', 'brand.600'),
       },
       _active: {
-        bgColor: 'brand.50',
+        bgColor: themeMode(colorMode, 'brand.50', 'brand.700'),
       },
-    },
+    }),
   },
 };
 
@@ -151,8 +155,12 @@ const styles = {
       scrollBehavior: 'smooth',
     },
     body: {
-      color: mode('gray.800', 'whiteAlpha.800')(props),
+      color: mode('gray.900', 'whiteAlpha.800')(props),
       bg: mode('white', 'dark.900')(props),
+    },
+    '#__next': {
+      minH: '100vh',
+      pb: 20,
     },
   }),
 };

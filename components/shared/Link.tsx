@@ -14,7 +14,8 @@ const Link = forwardRef<HTMLAnchorElement, LinkProps>(
 
     if (isInternalLink) {
       return (
-        <NextLink href={href} passHref scroll={false}>
+        // TODO: add scroll={false} when adding page animations.
+        <NextLink href={href} passHref>
           <a
             ref={ref}
             style={{ textDecoration: bare ? 'none' : 'initial' }}
@@ -30,7 +31,9 @@ const Link = forwardRef<HTMLAnchorElement, LinkProps>(
     return (
       <a
         ref={ref}
+        href={href}
         target='_blank'
+        rel='noreferrer'
         style={{ textDecoration: bare ? 'none' : 'initial' }}
         onClick={onClick}
         {...rest}

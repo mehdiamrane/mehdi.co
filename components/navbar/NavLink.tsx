@@ -13,7 +13,7 @@ type NavLinkProps = {
 };
 
 const DesktopNavLink = ({ currentPath, title, href, leftIcon }: NavLinkProps) => {
-  const isCurrent = currentPath.startsWith(href);
+  const isCurrent = href === '/' ? currentPath === href : currentPath.startsWith(href);
   const Icon = leftIcon;
 
   return (

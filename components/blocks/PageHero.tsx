@@ -1,7 +1,7 @@
 import React, { FC } from 'react';
 import { containerProps } from 'styles/theme';
 
-import { Flex, Box, Heading, Text, Image } from '@chakra-ui/react';
+import { Flex, Box, Heading, Text, Image, useColorModeValue as mode } from '@chakra-ui/react';
 
 type PageHeroProps = {
   title: string;
@@ -29,18 +29,18 @@ const PageHero: FC<PageHeroProps> = ({ title, subtitle, description, image }) =>
         </Heading>
         <Heading
           as='h2'
-          color='gray.800'
+          color={mode('gray.800', 'whiteAlpha.800')}
           fontFamily='body'
-          fontSize={{ base: 'sm', sm: 'md', md: 'lg' }}
+          fontSize={{ base: 'md', md: 'lg' }}
           fontWeight='normal'
         >
           {subtitle}
         </Heading>
         <Text
-          color='gray.900'
+          color={mode('gray.900', 'whiteAlpha.900')}
           lineHeight='tall'
           mt={4}
-          fontSize={{ base: 'sm', sm: 'md', md: 'lg' }}
+          fontSize={{ base: 'md', md: 'lg' }}
           fontWeight='medium'
         >
           {description}

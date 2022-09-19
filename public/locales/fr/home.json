@@ -1,15 +1,67 @@
 {
+  "meta": {
+    "title": "Mehdi Amrane — Développeur Front-End JavaScript",
+    "description": "Développeur Front-End React basé à Paris, je suis passionné par le web et la tech, accro à la caféine, et j'aime travailler sur des projets ambitieux avec des personnes positives."
+  },
   "hero": {
     "title": "Mehdi Amrane",
-    "subtitle": "Développeur Front-End chez Oxeva",
-    "body": "Je crée des <0>produits digitaux</0>, aime écrire des <1>articles</1>, partager mes <2>notes</2>, et je suis passionné par le web.",
-    "primary_cta": "Voir les articles",
-    "secondary_cta": "À propos"
+    "subtitle": "Développeur Front-End React",
+    "body": "Hello 👋 Basé à Paris, je suis passionné par le web et la tech, accro à la caféine, et j'aime travailler sur des projets ambitieux avec des personnes positives.",
+    "buttons": {
+      "resume": "Mon CV",
+      "work": "Expérience",
+      "contact": "Contact"
+    }
+  },
+  "intro": {
+    "part1": "Il m'arrive de bricoler des trucs en back-end, mais je me contente surtout de construire des applications front-end et mobiles avec React et React Native.",
+    "part2": "N'hésitez pas à explorer ce site et à consulter certaines de mes notes si vous êtes vous-même un développeur."
+  },
+  "tech": {
+    "title": "Tech stack",
+    "subtitle": "Technologies et outils avec lesquels j'aime travailler"
+  },
+  "work": {
+    "title": "Expérience professionnelle",
+    "subtitle": "Ce que j'ai accompli dans ma carrière de développeur",
+    "oxeva": {
+      "title": "Oxeva / Nua.ge",
+      "role": "Développeur Front-End",
+      "duration": "1 an et 3 mois",
+      "subtitle": "Intégration au sein de l’équipe de développement de Nua.ge, un service cloud de type IaaS, lors d’un refactor complet de la code-base React.",
+      "description": "Sprint planning, code reviews, et collaboration proche avec le PO. Refactor pour rendre le code plus efficace et plus facile à maintenir, tout en améliorant les interfaces existantes. Ajout de fonctionnalités, de tests associés, et de documentation. Reprise de la responsabilité du SDK JS, publication sur NPM.",
+      "link": {
+        "name": "Site de Nua.ge",
+        "url": "https://nua.ge"
+      },
+      "image-alt": "Capture d'écran de Nua.ge"
+    },
+    "restaurant": {
+      "title": "Application de prise de commande pour restaurant",
+      "role": "Développeur Fullstack Freelance",
+      "duration": "9 mois",
+      "subtitle": "Maquettage, design et conception d'une web app de commande pour restaurant et d’une app mobile de gestion de commandes from scratch.",
+      "description": "Planification du projet avec Trello et Notion. Maquettage réalisé avec Whimsical. React et Next.js pour le front-end + Chakra-UI pour l’interface. Utilisation des routes API serverless de Next.js (Node.js). Firebase pour l’auth, la base de données, et notifications. Intégration de l’API Stripe pour les paiements. Web app déployée sur Vercel en intégration continue. Application mobile codée avec React Native et déployée via Fastlane et Firebase App Distribution.",
+      "image-alt": "Capture d'écran de l'application"
+    },
+    "lacapsule": {
+      "title": "La Capsule",
+      "role": "Formateur Assistant Freelance",
+      "duration": "3 mois",
+      "subtitle": "Après mon bootcamp à La Capsule, j'ai eu l'honneur de pouvoir rejoindre mon ancien formateur et l'assister en tant que Teacher Assistant.",
+      "description": "Intervention auprès des étudiants pour les débloquer sur des problèmes techniques, ou pour approfondir certains aspects du cours.",
+      "link": {
+        "name": "Site de La Capsule",
+        "url": "https://lacapsule.academy"
+      },
+      "image-alt": "Capture d'écran de La Capsule"
+    }
   },
   "contact": {
-    "title": "Prendre contact",
-    "body": "Bien que je ne sois pas actuellement à la recherche de nouvelles opportunités, ma boîte de réception est toujours ouverte. Que vous ayez une question ou que vous souhaitiez simplement me dire bonjour, je ferai de mon mieux pour vous répondre !",
-    "button": "Dire bonjour"
+    "title": "Contact",
+    "subtitle": "Dites bonjour !",
+    "body": "Ma boîte de réception est toujours ouverte. Que vous ayez une question ou que vous souhaitiez simplement me dire bonjour, je ferai de mon mieux pour vous répondre !",
+    "button": "Envoyer un email"
   },
   "section": {
     "posts": {
