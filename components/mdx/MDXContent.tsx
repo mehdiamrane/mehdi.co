@@ -28,8 +28,11 @@ const MDXContent: FC<MDXContentProps> = ({ frontMatter, source }) => {
   const router = useRouter();
   const { t } = useTranslation('notes');
 
-  const locale = useMemo(() => (router.locale === 'fr' ? 'fr' : 'en'), []);
-  const publishedAtDate = useMemo(() => formatPostDate(frontMatter.publishedAt, locale), []);
+  const locale = useMemo(() => (router.locale === 'fr' ? 'fr' : 'en'), [router.locale]);
+  const publishedAtDate = useMemo(
+    () => formatPostDate(frontMatter.publishedAt, locale),
+    [frontMatter.publishedAt, locale],
+  );
 
   return (
     <Box as='main' {...containerProps} pb={{ base: 12, md: 16 }} pt={{ base: 24, md: 32 }}>

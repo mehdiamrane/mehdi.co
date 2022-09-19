@@ -14,8 +14,11 @@ type PostItemProps = {
 
 const PostItem: FC<PostItemProps> = ({ postData }) => {
   const router = useRouter();
-  const locale = useMemo(() => (router.locale === 'fr' ? 'fr' : 'en'), []);
-  const publishedAtDate = useMemo(() => formatPostDate(postData.publishedAt, locale), []);
+  const locale = useMemo(() => (router.locale === 'fr' ? 'fr' : 'en'), [router.locale]);
+  const publishedAtDate = useMemo(
+    () => formatPostDate(postData.publishedAt, locale),
+    [postData.publishedAt, locale],
+  );
 
   return (
     <Link href={postData.href} bare>
