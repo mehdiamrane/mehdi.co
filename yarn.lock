@@ -6731,14 +6731,6 @@
     "@types/istanbul-lib-coverage" "^2.0.1"
     "convert-source-map" "^1.6.0"
 
-"vercel-submodules@^1.0.6":
-  "integrity" "sha512-PkcWMkXwXOZWy6MYO/Q9SEjD+oXlt0ZrfSrTVmtWC8//rUZSsvEgNr5nwUfGfK9siXMFxzGm8ezROx08UDzROg=="
-  "resolved" "https://registry.npmjs.org/vercel-submodules/-/vercel-submodules-1.0.6.tgz"
-  "version" "1.0.6"
-  dependencies:
-    "git-url-parse" "^13.0.0"
-    "zx" "^7.0.8"
-
 "vfile-location@^4.0.0":
   "integrity" "sha512-JDxPlTbZrZCQXogGheBHjbRWjESSPEak770XwWPfw5mTc1v1nWGLB/apzZxsx8a0SJVfF8HK8ql8RD308vXRUw=="
   "resolved" "https://registry.npmjs.org/vfile-location/-/vfile-location-4.0.1.tgz"
