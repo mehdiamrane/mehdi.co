@@ -29,7 +29,7 @@
     "copied": "Copied!"
   },
   "404": {
-    "title": "404 error",
+    "title": "Error 404",
     "description": "Oops, looks like you're trying to access a page that doesn't exist.",
     "button": "Back to home"
   },
