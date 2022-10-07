@@ -22,7 +22,7 @@ const NavBar = ({ router }: { router: AppProps['router'] }) => {
       top={0}
       left={0}
       w='full'
-      zIndex='docked'
+      zIndex='sticky'
       backdropFilter={isAtTop ? 'saturate(100%) blur(0px)' : 'saturate(180%) blur(5px)'}
       bgColor={
         isAtTop ? mode('transparent', 'transparent') : mode('whiteAlpha.700', 'blackAlpha.600')

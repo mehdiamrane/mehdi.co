@@ -1,7 +1,7 @@
 import React, { FC } from 'react';
 import { containerProps } from 'styles/theme';
-
-import { Flex, Box, Heading, Text, Image, useColorModeValue as mode } from '@chakra-ui/react';
+import { Flex, Box, Heading, Text, useColorModeValue as mode } from '@chakra-ui/react';
+import DraggableImage from 'components/shared/DraggableImage';
 
 type PageHeroProps = {
   title: string;
@@ -46,7 +46,7 @@ const PageHero: FC<PageHeroProps> = ({ title, subtitle, description, image }) =>
           {description}
         </Text>
       </Box>
-      <Image w={24} src={image.src} alt={image.alt} />
+      <DraggableImage w={24} src={image.src} alt={image.alt} />
     </Flex>
   );
 };
