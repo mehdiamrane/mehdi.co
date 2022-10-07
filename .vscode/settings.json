@@ -36,7 +36,7 @@
   "jest.runAllTestsFirst": false,
   "prettier.jsxSingleQuote": true,
   "[json]": {
-    "editor.defaultFormatter": "vscode.json-language-features"
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
   "[typescriptreact]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
