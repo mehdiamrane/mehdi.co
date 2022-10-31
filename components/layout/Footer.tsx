@@ -2,11 +2,14 @@ import React from 'react';
 
 import { containerProps } from 'styles/theme';
 import theme from 'styles/theme';
-import { Box, Flex, Text, Button, useColorModeValue as mode } from '@chakra-ui/react';
+import { Box, Flex, Text, Button, IconButton, useColorModeValue as mode } from '@chakra-ui/react';
 import Link from 'components/shared/Link';
+import { RiDoorLockLine } from 'react-icons/ri';
 
 const Footer = () => {
   const year: number = new Date().getFullYear();
+
+  const emojiCursor = `url("data:image/svg+xml;utf8, <svg xmlns='http://www.w3.org/2000/svg' width='32' height='32' style='font-size: 24px'><text y='20'>🔑</text></svg>"), auto`;
 
   return (
     <Box
@@ -30,6 +33,17 @@ const Footer = () => {
             <Button size='sm' variant='ghost' colorScheme={mode('blackAlpha', 'gray')}>
               Source code
             </Button>
+          </Link>
+          <Link href='/admin'>
+            <IconButton
+              cursor={emojiCursor}
+              aria-label='Admin'
+              icon={<RiDoorLockLine />}
+              size='sm'
+              fontSize='xl'
+              variant='ghost'
+              colorScheme={mode('blackAlpha', 'gray')}
+            />
           </Link>
         </Box>
       </Flex>

@@ -13,6 +13,11 @@ const nextConfig = {
           'https://drive.google.com/drive/folders/1HeYTn72Iy9IqNsPSv6_5kWeDEiaAbjze?usp=sharing',
         permanent: false,
       },
+      {
+        source: '/admin',
+        destination: 'https://app.forestry.io/sites/r-cbfyz7mk6zwq/#/sections/notes/content',
+        permanent: false,
+      },
     ];
   },
 };
