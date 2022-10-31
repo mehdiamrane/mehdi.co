@@ -21,6 +21,21 @@ const mdxOptions = {
 // NOTES UTILS
 /// /////////////////////////
 
+type matterData = Record<string, unknown>;
+
+// UTILS
+export const formatMatterData = (data: matterData): matterData => {
+  const dataCopy: matterData = {};
+  for (const [key, value] of Object.entries(data)) {
+    if (value instanceof Date) {
+      dataCopy[key] = JSON.stringify(value);
+    } else {
+      dataCopy[key] = value;
+    }
+  }
+  return dataCopy;
+};
+
 // getStaticProps
 export const getAllNotesContent = (locale: string) => {
   const noteFilePathsCorrectLocale = noteFilePaths.filter((filePath) =>
@@ -35,7 +50,7 @@ export const getAllNotesContent = (locale: string) => {
 
     return {
       content,
-      data,
+      data: formatMatterData(data),
       filePath,
       slug,
     };
@@ -49,12 +64,13 @@ export const getSingleNoteContent = async (slug: string, locale: string) => {
   const noteFilePath = path.join(NOTES_PATH, `${slug}.${locale}.mdx`);
   const source = fs.readFileSync(noteFilePath);
   const { content, data } = matter(source);
+
   const mdxSource = await serialize(content, {
     mdxOptions,
-    scope: data,
+    scope: formatMatterData(data),
   });
 
-  return { mdxSource, data };
+  return { mdxSource, data: formatMatterData(data) };
 };
 
 // getStaticPaths
