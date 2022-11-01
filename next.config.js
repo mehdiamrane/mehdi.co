@@ -15,7 +15,7 @@ const nextConfig = {
       },
       {
         source: '/admin',
-        destination: 'https://app.forestry.io/sites/r-cbfyz7mk6zwq/#/sections/notes/content',
+        destination: 'https://app.forestry.io/sites/2nkekdm6-bvq4q/',
         permanent: false,
       },
     ];
