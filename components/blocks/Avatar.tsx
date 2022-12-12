@@ -20,6 +20,7 @@ const Avatar = () => {
         w='80%!important'
         src='/images/illustrations/avatar.png'
         alt='Avatar Illustration'
+        pointerEvents='none'
       />
     </AspectRatio>
   );

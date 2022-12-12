@@ -17,13 +17,13 @@ const ColumnLayout: FC<IColumnLayoutProps> = ({ main, aside, keepOnMobile }) => 
         h='100vh'
         minW={
           keepOnMobile === 'aside'
-            ? breakpoint({ base: '100%', md: 'xs' })
-            : breakpoint({ base: 'xs' })
+            ? breakpoint({ base: '100%', md: 'xs' }, { ssr: false })
+            : breakpoint({ base: 'xs' }, { ssr: false })
         }
         display={
           keepOnMobile === 'aside'
-            ? breakpoint({ base: 'block' })
-            : breakpoint({ base: 'none', lg: 'block' })
+            ? breakpoint({ base: 'block' }, { ssr: false })
+            : breakpoint({ base: 'none', lg: 'block' }, { ssr: false })
         }
       >
         {aside}
@@ -34,8 +34,8 @@ const ColumnLayout: FC<IColumnLayoutProps> = ({ main, aside, keepOnMobile }) => 
         overflowY='scroll'
         display={
           keepOnMobile === 'main'
-            ? breakpoint({ base: 'block' })
-            : breakpoint({ base: 'none', sm: 'block' })
+            ? breakpoint({ base: 'block' }, { ssr: false })
+            : breakpoint({ base: 'none', sm: 'block' }, { ssr: false })
         }
       >
         {main}
