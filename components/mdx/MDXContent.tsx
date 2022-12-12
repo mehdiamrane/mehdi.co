@@ -12,7 +12,6 @@ import {
   useColorModeValue as mode,
 } from '@chakra-ui/react';
 import MDXComponents from 'components/mdx/MDXComponents';
-import { containerProps } from 'styles/theme';
 import { formatPostDate } from 'utils';
 import useTranslation from 'hooks/useTranslation';
 import { useRouter } from 'next/router';
@@ -22,9 +21,10 @@ import { IoArrowBackSharp } from 'react-icons/io5';
 type MDXContentProps = {
   source: NoteSource;
   frontMatter: NoteFrontMatter;
+  topDivRef?: React.LegacyRef<HTMLDivElement>;
 };
 
-const MDXContent: FC<MDXContentProps> = ({ frontMatter, source }) => {
+const MDXContent: FC<MDXContentProps> = ({ frontMatter, source, topDivRef }) => {
   const router = useRouter();
   const { t } = useTranslation('notes');
 
@@ -35,7 +35,8 @@ const MDXContent: FC<MDXContentProps> = ({ frontMatter, source }) => {
   );
 
   return (
-    <Box as='main' {...containerProps} pb={{ base: 12, md: 16 }} pt={{ base: 24, md: 32 }}>
+    <Box as='main' m='0 auto' px={6} w='full' pb={{ base: 12, md: 16 }} maxW='2xl'>
+      <Box h={{ base: 24, md: 32 }} ref={topDivRef} />
       <Link href='/notes' bare>
         <Button
           leftIcon={<IoArrowBackSharp />}

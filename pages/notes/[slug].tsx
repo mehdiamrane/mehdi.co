@@ -1,28 +1,42 @@
-import React, { FC } from 'react';
-import { getSingleNoteContent, getNotesStaticPaths } from 'utils/mdxUtils';
+import React, { FC, useRef } from 'react';
+import { getSingleNoteContent, getNotesStaticPaths, getAllNotesContent } from 'utils/mdxUtils';
 import MDXContent from 'components/mdx/MDXContent';
 import { GetStaticProps, GetStaticPaths } from 'next';
 import useTranslation from 'hooks/useTranslation';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import Head from 'next/head';
+import ColumnLayout from 'components/layout/ColumnLayout';
+import Sidebar from 'components/notes/Sidebar';
+import useScrollToTopWithoutAnchor from 'hooks/useScrollToTopWithoutAnchor';
 
 type NotePageProps = {
   source: NoteSource;
   frontMatter: NoteFrontMatter;
+  notes: Note[];
 };
 
-const NotePage: FC<NotePageProps> = ({ source, frontMatter }) => {
+interface IGetStaticProps {
+  params?: any;
+  locale?: string;
+}
+
+const NotePage: FC<NotePageProps> = ({ notes, source, frontMatter }) => {
   const { t } = useTranslation('notes');
+  const topDivRef = useRef<HTMLDivElement>(null);
+
+  useScrollToTopWithoutAnchor({ ref: topDivRef, trigger: frontMatter });
 
   return (
     <>
       <Head>
-        <title>
-          {frontMatter.title} {t('meta.partial-title')}
-        </title>
+        <title>{`${frontMatter.title} ${t('meta.partial-title')}`}</title>
         <meta name='description' content={frontMatter.summary} />
       </Head>
-      <MDXContent source={source} frontMatter={frontMatter} />
+      <ColumnLayout
+        keepOnMobile='main'
+        main={<MDXContent topDivRef={topDivRef} source={source} frontMatter={frontMatter} />}
+        aside={<Sidebar notes={notes} />}
+      />
     </>
   );
 };
@@ -30,14 +44,12 @@ const NotePage: FC<NotePageProps> = ({ source, frontMatter }) => {
 export const getStaticProps: GetStaticProps = async ({
   params,
   locale = 'en',
-}: {
-  params?: any;
-  locale?: string;
-}) => {
+}: IGetStaticProps) => {
   const { mdxSource, data } = await getSingleNoteContent(params.slug, locale);
-
+  const notes = getAllNotesContent(locale);
   return {
     props: {
+      notes,
       source: mdxSource,
       frontMatter: data,
       ...(await serverSideTranslations(locale, ['common', 'notes'])),

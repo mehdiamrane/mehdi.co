@@ -33,7 +33,7 @@ const HomePage: NextPage = () => {
         <meta name='description' content={t('hero.body')} />
       </Head>
 
-      <Box w='full' as='main'>
+      <Box w='full' as='main' pb={20}>
         <Box
           bgImage={`linear-gradient(to bottom, ${mode(
             theme.colors.white,

@@ -20,3 +20,5 @@ type NoteSource = {
   frontMatter: object;
   scope: NoteFrontMatter;
 };
+
+type Ref = React.MutableRefObject<HTMLElement | null>;

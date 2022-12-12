@@ -9,11 +9,13 @@ import { ChakraProvider } from '@chakra-ui/react';
 import theme from 'styles/theme';
 
 function MyApp({ Component, pageProps, router }: AppProps) {
+  const isAppMode = router.route.startsWith('/notes');
+
   return (
     <ChakraProvider theme={theme} resetCSS>
-      <NavBar router={router} />
+      <NavBar router={router} isAppMode={isAppMode} />
       <Component {...pageProps} />
-      <Footer />
+      <Footer isHidden={isAppMode} />
     </ChakraProvider>
   );
 }

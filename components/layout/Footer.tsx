@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { FC } from 'react';
 
 import { containerProps } from 'styles/theme';
 import theme from 'styles/theme';
@@ -6,10 +6,18 @@ import { Box, Flex, Text, Button, IconButton, useColorModeValue as mode } from '
 import Link from 'components/shared/Link';
 import { RiDoorLockLine } from 'react-icons/ri';
 
-const Footer = () => {
+interface IFooterProps {
+  isHidden: boolean;
+}
+
+const Footer: FC<IFooterProps> = ({ isHidden }) => {
   const year: number = new Date().getFullYear();
 
   const emojiCursor = `url("data:image/svg+xml;utf8, <svg xmlns='http://www.w3.org/2000/svg' width='32' height='32' style='font-size: 24px'><text y='20'>🔑</text></svg>"), auto`;
+
+  if (isHidden) {
+    return null;
+  }
 
   return (
     <Box

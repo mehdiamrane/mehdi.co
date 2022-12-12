@@ -160,7 +160,7 @@ const styles = {
     },
     '#__next': {
       minH: '100vh',
-      pb: 20,
+      // pb: 20,
     },
   }),
 };

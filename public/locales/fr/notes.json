@@ -4,9 +4,15 @@
     "partial-title": "| Mehdi Amrane"
   },
   "notes": {
+    "count": "{{count}} note",
+    "count_plural": "{{count}} notes",
     "back": "Retour aux notes",
     "title": "Notes",
     "subtitle": "Code snippets, mini-tutoriels, et listes de courses",
-    "description": "Plutôt que de garder mes notes privées, je préfère les rendre publiques et partager ce que j'apprends avec les autres."
+    "description": "Plutôt que de garder mes notes privées, je préfère les rendre publiques et partager ce que j'apprends avec les autres.",
+    "placeholder": {
+      "title": "Bienvenue sur mes notes",
+      "description": "Cliquez sur une note à gauche pour la lire."
+    }
   }
 }

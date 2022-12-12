@@ -4,9 +4,15 @@
     "partial-title": "| Mehdi Amrane"
   },
   "notes": {
+    "count": "{{count}} note",
+    "count_plural": "{{count}} notes",
     "back": "Back to notes",
     "title": "Notes",
     "subtitle": "Code snippets, mini-tutorials, and shopping lists",
-    "description": "Rather than keeping my notes private, I prefer to make them public and share what I learn with others."
+    "description": "Rather than keeping my notes private, I prefer to make them public and share what I learn with others.",
+    "placeholder": {
+      "title": "Welcome to my notes!",
+      "description": "Click on any note on the left to read it"
+    }
   }
 }
