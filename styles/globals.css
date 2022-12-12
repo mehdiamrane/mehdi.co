@@ -106,7 +106,7 @@ xl: '80em',
   display: none;
 }
 
-.column-layout__main {
+.column-layout__main--keep-mobile {
   display: block;
 }
 
