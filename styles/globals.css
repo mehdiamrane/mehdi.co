@@ -88,3 +88,50 @@ p > a:hover {
 .logo:hover .logo__underscore {
   animation: blinking 1s infinite;
 }
+
+/* Column Layout (notes) display rules because useBreakpointValue flickers */
+/* Reminder about default chakra breakpoints
+sm: '30em',
+md: '48em',
+lg: '62em',
+xl: '80em',
+'2xl': '96em', */
+
+.column-layout__aside {
+  display: none;
+  min-width: var(--chakra-sizes-xs);
+}
+
+.column-layout__main {
+  display: none;
+}
+
+.column-layout__main {
+  display: block;
+}
+
+.column-layout__aside--keep-mobile {
+  display: block;
+  min-width: 100%;
+}
+
+/* sm */
+@media only screen and (min-width: 30em) {
+  .column-layout__main {
+    display: block;
+  }
+}
+
+/* md */
+@media only screen and (min-width: 48em) {
+  .column-layout__aside--keep-mobile {
+    min-width: var(--chakra-sizes-xs);
+  }
+}
+
+/* lg */
+@media only screen and (min-width: 62em) {
+  .column-layout__aside {
+    display: block;
+  }
+}
