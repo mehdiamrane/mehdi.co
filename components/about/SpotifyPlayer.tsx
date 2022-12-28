@@ -152,13 +152,19 @@ const SpotifyPlayer: FC<SpotifyPlayerProps> = ({ tracks }) => {
       overflow='hidden'
       pos='relative'
       h={height}
+      bgClip='content-box'
+      p='1px'
     >
       <Flex
+        backdropFilter='saturate(180%) blur(80px)'
+        bg={mode('whiteAlpha.600', 'blackAlpha.600')}
+        border='2px solid'
+        borderColor={mode('gray.300', 'gray.800')}
         flexDir='column'
-        bg={mode('whiteAlpha.700', 'blackAlpha.700')}
-        p={6}
         h={height}
-        backdropFilter='saturate(180%) blur(50px)'
+        m='-1px'
+        p={6}
+        rounded='3xl'
       >
         <Flex
           align='center'
@@ -190,7 +196,7 @@ const SpotifyPlayer: FC<SpotifyPlayerProps> = ({ tracks }) => {
           pointerEvents='none'
           userSelect='none'
         />
-        <Flex py={5} align='center' maxW='full'>
+        <Flex py={4} align='center' maxW='full'>
           <Box maxW='calc(100% - 22px - 1.5rem)' mr='1.5rem'>
             <Text
               fontSize='sm'
