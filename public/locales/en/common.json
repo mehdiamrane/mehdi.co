@@ -23,6 +23,15 @@
     "notes": "Notes",
     "contact": "Contact"
   },
+  "music": {
+    "unsupported": "Your browser does not support the audio element.",
+    "open_link": "Open on Spotify",
+    "play_pause": "Play/Pause",
+    "next": "Next",
+    "previous": "Previous",
+    "volume_mute": "Volume/Mute",
+    "liked": "Liked"
+  },
   "misc": {
     "more": "More",
     "copy": "Copy",

@@ -88,7 +88,7 @@ const Heading: ComponentStyleConfig = {
 export const containerProps = {
   m: '0 auto',
   maxW: '3xl',
-  px: { base: 6, lg: 0 },
+  px: { base: 6, md: 0 },
   w: 'full',
 };
 

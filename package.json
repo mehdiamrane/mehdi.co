@@ -20,6 +20,7 @@
     "@emotion/styled": "^11.10.5",
     "framer-motion": "^6.5.1",
     "gray-matter": "^4.0.3",
+    "isomorphic-unfetch": "^3.1.0",
     "next": "12.3.0",
     "next-i18next": "^12.0.1",
     "next-mdx-remote": "^4.1.0",
@@ -30,7 +31,8 @@
     "rehype-autolink-headings": "^6.1.1",
     "rehype-code-titles": "^1.1.0",
     "rehype-prism-plus": "^1.5.0",
-    "rehype-slug": "^5.0.1"
+    "rehype-slug": "^5.0.1",
+    "spotify-web-api-node": "^5.0.2"
   },
   "devDependencies": {
     "@testing-library/jest-dom": "^5.16.4",
@@ -38,6 +40,7 @@
     "@types/node": "18.7.18",
     "@types/react": "18.0.20",
     "@types/react-dom": "18.0.6",
+    "@types/spotify-web-api-node": "^5.0.7",
     "@typescript-eslint/eslint-plugin": "^5.19.0",
     "eslint": "8.23.1",
     "eslint-config-next": "12.3.0",

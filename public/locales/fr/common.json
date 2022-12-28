@@ -23,6 +23,15 @@
     "notes": "Notes",
     "contact": "Contact"
   },
+  "music": {
+    "unsupported": "Votre navigateur ne prend pas en charge l'élément audio.",
+    "open_link": "Ouvrir sur Spotify",
+    "play_pause": "Lecture/Pause",
+    "next": "Suivant",
+    "previous": "Précédent",
+    "volume_mute": "Volume/Muet",
+    "liked": "Liké"
+  },
   "misc": {
     "more": "Plus",
     "copy": "Copier",
