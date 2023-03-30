@@ -6,7 +6,7 @@ import { GetStaticProps } from 'next';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import useTranslation from 'hooks/useTranslation';
 
-import { Box, Stack, Button, Skeleton } from '@chakra-ui/react';
+import { Box, Stack, Button, Skeleton, useColorModeValue as mode } from '@chakra-ui/react';
 import { containerProps } from 'styles/theme';
 import { RiAddFill } from 'react-icons/ri';
 
@@ -61,7 +61,15 @@ const HomePage: NextPage = () => {
             {starredRepos.length !== 0
               ? starredRepos.map((repo) => <StarredRepoItem repo={repo} key={repo.id} />)
               : Array.from({ length: 10 }).map((_item, index) => (
-                  <Skeleton w='full' h='37px' rounded='lg' key={index} opacity={1 / index} />
+                  <Skeleton
+                    w='full'
+                    h='37px'
+                    rounded='lg'
+                    key={index}
+                    opacity={1 / index}
+                    startColor={mode('gray.100', 'whiteAlpha.100')}
+                    endColor={mode('gray.300', 'whiteAlpha.300')}
+                  />
                 ))}
           </Stack>
           {hasMore && (
