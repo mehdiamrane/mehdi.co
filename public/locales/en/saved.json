@@ -1,0 +1,13 @@
+{
+  "meta": {
+    "title": "Saved Links | Mehdi Amrane",
+    "partial-title": "| Mehdi Amrane",
+    "description": "Starred GitHub repositories, bookmarks, useful links."
+  },
+  "saved": {
+    "github": {
+      "title": "GitHub Repositories",
+      "subtitle": "Most recently starred GitHub repositories"
+    }
+  }
+}

@@ -1,0 +1,13 @@
+{
+  "meta": {
+    "title": "Favoris | Mehdi Amrane",
+    "partial-title": "| Mehdi Amrane",
+    "description": "Stars GitHub, favoris, liens utiles."
+  },
+  "saved": {
+    "github": {
+      "title": "GitHub stars",
+      "subtitle": "Derniers projets GitHub mis en favoris"
+    }
+  }
+}
