@@ -61,6 +61,29 @@ const HomePage: NextPage = () => {
           <SectionTitle title={t('work.title')} subtitle={t('work.subtitle')} />
           <WorkItem
             hasBottomDivider
+            title={t('work.shadow.title')}
+            subtitle={t('work.shadow.subtitle')}
+            description={t('work.shadow.description')}
+            role={t('work.shadow.role')}
+            duration={t('work.shadow.duration')}
+            techs={[
+              'React',
+              'TypeScript',
+              'Storybook',
+              'Styled-Components',
+              'GitLab CI',
+              'i18n',
+              'React Query',
+              'Google Tag Manager',
+            ]}
+            links={[{ name: t('work.shadow.link.name'), url: t('work.shadow.link.url') }]}
+            image={{
+              src: '/images/work/shadow.png',
+              alt: t('work.shadow.image-alt'),
+            }}
+          />
+          <WorkItem
+            hasBottomDivider
             title={t('work.oxeva.title')}
             subtitle={t('work.oxeva.subtitle')}
             description={t('work.oxeva.description')}

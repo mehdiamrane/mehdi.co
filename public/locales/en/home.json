@@ -55,6 +55,18 @@
         "url": "https://lacapsule.academy"
       },
       "image-alt": "Screenshot from The Capsule"
+    },
+    "shadow": {
+      "title": "Shadow",
+      "role": "Front-End Developer",
+      "duration": "1 year and 7 months",
+      "subtitle": "I joined the team responsible for the new platform used by our customers and our internal applications for B2C and B2B. I was focused on the Shop and Customer Space, as well as the backoffice, which I developed independently.",
+      "description": "Design of clean, organized and readable codebases, always with the future of the projects in mind. Writing documentation (features and internal processes). Backoffice development with React and Ant Design. Set up a tagging plan with the Metrics team. Ensured deliveries to production, and delivery of hotfixes in production. Organized knowledge-sharing workshops.",
+      "link": {
+        "name": "Shadow website",
+        "url": "https://eu.shadow.tech/shop/fr-fr"
+      },
+      "image-alt": "Screenshot from the Shadow shop"
     }
   },
   "contact": {

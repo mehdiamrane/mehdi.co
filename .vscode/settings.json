@@ -28,7 +28,7 @@
   "eslint.packageManager": "yarn", // change to npm if you use npm
   "eslint.quiet": true,
   "editor.codeActionsOnSave": {
-    "source.fixAll.eslint": true
+    "source.fixAll.eslint": "explicit"
   },
   "css.validate": false,
   "jest.enableInlineErrorMessages": true,

@@ -55,6 +55,18 @@
         "url": "https://lacapsule.academy"
       },
       "image-alt": "Capture d'écran de La Capsule"
+    },
+    "shadow": {
+      "title": "Shadow",
+      "role": "Développeur Front-End",
+      "duration": "1 an et 7 mois",
+      "subtitle": "J'ai rejoint l'équipe chargée de la nouvelle plateforme utilisée par nos clients et nos applications internes pour le B2C et le B2B. J’étais focalisé sur le Shop et le Customer Space, ainsi que sur le backoffice que j’ai développé en autonomie.",
+      "description": "Conception de codebases propres, organisées et lisibles en gardant toujours en tête le futur des projets. Rédaction de documentation (features et processus internes). Conception d’un backoffice avec React et Ant Design. Mise en place d’un plan de taggage avec l’équipe Metrics. J’ai assuré des livraisons en production, et livré des hotfixes en prod. Animation de workshops de partages de connaissances.",
+      "link": {
+        "name": "Site e-commerce de Shadow",
+        "url": "https://eu.shadow.tech/shop/fr-fr"
+      },
+      "image-alt": "Capture d'écran du shop de Shadow"
     }
   },
   "contact": {

@@ -1,5 +1,6 @@
 const techs = [
   { name: 'React', image: '/images/techs/react.png' },
+  { name: 'TypeScript', image: '/images/techs/typescript.png' },
   { name: 'CSS3', image: '/images/techs/css.png' },
   { name: 'HTML5', image: '/images/techs/html.png' },
   { name: 'Firebase', image: '/images/techs/firebase.png' },
