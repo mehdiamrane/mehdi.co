@@ -15,15 +15,14 @@ const Link = forwardRef<HTMLAnchorElement, LinkProps>(
     if (isInternalLink) {
       return (
         // TODO: add scroll={false} when adding page animations.
-        <NextLink href={href} passHref>
-          <a
-            ref={ref}
-            style={{ textDecoration: bare ? 'none' : 'initial' }}
-            onClick={onClick}
-            {...rest}
-          >
-            {children}
-          </a>
+        <NextLink
+          href={href}
+          ref={ref}
+          style={{ textDecoration: bare ? 'none' : 'initial' }}
+          onClick={onClick}
+          {...rest}
+        >
+          {children}
         </NextLink>
       );
     }
