@@ -12,7 +12,8 @@
     "test": "jest --watch",
     "lint": "eslint . --ext .js,.jsx,.ts,.tsx --quiet",
     "lint:fix": "eslint . --ext .js,.jsx,.ts,.tsx --fix",
-    "check": "npx tsc --noEmit && npx eslint . && npx prettier --write . && npx jest"
+    "prettier": "npx prettier --write .",
+    "check": "npx tsc --noEmit && npx eslint ."
   },
   "dependencies": {
     "@chakra-ui/react": "^2.8.2",
@@ -37,6 +38,7 @@
   "devDependencies": {
     "@testing-library/jest-dom": "^6.4.6",
     "@testing-library/react": "^16.0.0",
+    "@types/jest": "^29.5.12",
     "@types/node": "^20.14.10",
     "@types/react": "^18.3.3",
     "@types/react-dom": "^18.3.0",

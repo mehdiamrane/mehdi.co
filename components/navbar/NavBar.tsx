@@ -37,8 +37,8 @@ const NavBar: FC<INavBarProps> = ({ router, isAppMode }) => {
         isAppMode
           ? mode('white', 'dark.900')
           : isAtTop
-          ? mode('transparent', 'transparent')
-          : mode('whiteAlpha.700', 'blackAlpha.600')
+            ? mode('transparent', 'transparent')
+            : mode('whiteAlpha.700', 'blackAlpha.600')
       }
       borderBottom={isAppMode ? '2px solid' : isAtTop ? '0px solid' : '2px solid'}
       borderColor={mode('gray.100', 'blackAlpha.800')}
