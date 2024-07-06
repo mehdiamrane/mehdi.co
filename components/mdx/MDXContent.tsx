@@ -77,7 +77,7 @@ const MDXContent: FC<MDXContentProps> = ({ frontMatter, source, topDivRef }) => 
         <Img rounded='md' src={frontMatter.image} alt={frontMatter.title} w='full' my={8} />
       )}
 
-      <MDXRemote {...source} components={MDXComponents} />
+      <MDXRemote {...source} frontmatter={frontMatter} components={MDXComponents} />
     </Box>
   );
 };
