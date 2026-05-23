@@ -1,0 +1,12 @@
+node_modules
+.next
+.git
+.gitmodules
+.vercel
+.husky
+.DS_Store
+*.pem
+npm-debug.log*
+.env
+.env*.local
+coverage

@@ -8,9 +8,10 @@ import rehypeAutolinkHeadings from 'rehype-autolink-headings';
 import rehypeSlug from 'rehype-slug';
 import rehypeCodeTitles from 'rehype-code-titles';
 
-export const NOTES_PATH = path.join(process.cwd(), 'content/notes'); // useful when you want to get the path to a specific file
-export const noteFilePaths = fs.readdirSync(NOTES_PATH).filter((path) => /\.mdx?$/.test(path)); // Only include md(x) files
-// noteFilePaths is the list of all mdx files inside the NOTES_PATH directory
+export const NOTES_PATH = path.join(process.cwd(), 'content/notes');
+export const noteFilePaths = fs.existsSync(NOTES_PATH)
+  ? fs.readdirSync(NOTES_PATH).filter((path) => /\.mdx?$/.test(path))
+  : [];
 
 const mdxOptions = {
   remarkPlugins: [],
