@@ -1,16 +1,14 @@
 ---
-// Phosphor Icon component — renders inline SVG from @phosphor-icons/core
-// Usage: <Icon name="envelope" size={16} />
+// Phosphor Icon — inline SVG from @phosphor-icons/core
+// Usage: <Icon name="envelope" size={16} class="opacity-50" />
 
 export interface Props {
   name: string;
   size?: number;
-  class?: string;
 }
 
-const { name, size = 16, class: className = '' } = Astro.props;
+const { name, size = 16, ...attrs } = Astro.props;
 
-// Map of icon name → SVG path
 const paths: Record<string, string> = {
   'envelope': 'M224,48H32a8,8,0,0,0-8,8V192a16,16,0,0,0,16,16H216a16,16,0,0,0,16-16V56A8,8,0,0,0,224,48Zm-96,85.15L52.57,64H203.43ZM98.71,128,40,181.81V74.19Zm11.84,10.85,12,11.05a8,8,0,0,0,10.82,0l12-11.05,58,53.15H52.57ZM157.29,128,216,74.18V181.82Z',
   'linkedin-logo': 'M216,24H40A16,16,0,0,0,24,40V216a16,16,0,0,0,16,16H216a16,16,0,0,0,16-16V40A16,16,0,0,0,216,24Zm0,192H40V40H216V216ZM96,112v64a8,8,0,0,1-16,0V112a8,8,0,0,1,16,0Zm-8-44a12,12,0,1,1-12,12A12,12,0,0,1,88,68Zm96,108a8,8,0,0,1-16,0V136a24,24,0,0,0-48,0v40a8,8,0,0,1-16,0V112a8,8,0,0,1,15.79-1.78A40,40,0,0,1,184,136Z',
@@ -21,9 +19,6 @@ const paths: Record<string, string> = {
 };
 
 const d = paths[name];
-if (!d) {
-  console.warn(`Icon "${name}" not found`);
-}
 ---
 
 {
@@ -34,8 +29,8 @@ if (!d) {
       height={size}
       fill="currentColor"
       viewBox="0 0 256 256"
-      class={className}
       aria-hidden="true"
+      {...attrs}
     >
       <path d={d} />
     </svg>
