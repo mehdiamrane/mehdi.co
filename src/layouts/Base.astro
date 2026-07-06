@@ -68,14 +68,16 @@ const navLabels = lang === 'fr' ? { home: 'Accueil', blog: 'Blog' } : { home: 'H
           <nav class="hidden sm:flex items-center gap-5 text-sm font-medium" aria-label="Primary">
             <a
               href={homeHref}
-              class={`transition-colors duration-150 ${isHomeActive ? 'text-[var(--color-text)]' : 'text-[var(--color-muted)] hover:text-[var(--color-accent)]'}`}
+              class={`transition-colors duration-150 ${isHomeActive ? 'text-[var(--color-text)] font-semibold' : 'text-[var(--color-muted)] hover:text-[var(--color-accent)]'}`}
+              style={isHomeActive ? 'box-shadow: inset 0 -0.125em 0 var(--color-accent)' : ''}
               aria-current={isHomeActive ? 'page' : undefined}
             >
               {navLabels.home}
             </a>
             <a
               href={blogHref}
-              class={`transition-colors duration-150 ${isBlogActive ? 'text-[var(--color-text)]' : 'text-[var(--color-muted)] hover:text-[var(--color-accent)]'}`}
+              class={`transition-colors duration-150 ${isBlogActive ? 'text-[var(--color-text)] font-semibold' : 'text-[var(--color-muted)] hover:text-[var(--color-accent)]'}`}
+              style={isBlogActive ? 'box-shadow: inset 0 -0.125em 0 var(--color-accent)' : ''}
               aria-current={isBlogActive ? 'page' : undefined}
             >
               {navLabels.blog}
