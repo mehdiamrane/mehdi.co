@@ -14,14 +14,6 @@ const t = content[lang];
 <Base title={t.meta.title} description={t.meta.description} lang={lang} image="/og/home.png">
   <!-- Hero -->
   <header class="mb-24 reveal">
-    <div class="inline-flex items-center gap-1.5 text-xs text-[var(--color-muted)] mb-4">
-      <span class="relative flex h-1.5 w-1.5">
-        <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
-        <span class="relative inline-flex rounded-full h-1.5 w-1.5 bg-green-500"></span>
-      </span>
-      {t.contact.status}
-    </div>
-
     <div class="flex items-start gap-5 mb-8">
       <img
         src="/avatar.png"
@@ -37,7 +29,16 @@ const t = content[lang];
       </div>
     </div>
 
-    <nav class="flex flex-wrap gap-x-5 gap-y-2 text-sm">
+    <div class="inline-flex items-center gap-1.5 text-xs mb-4">
+      <span class="inline-flex items-center gap-1.5 px-3 py-1.5 text-xs bg-[var(--color-card)] border border-[var(--color-border)] rounded-full text-[var(--color-muted)]">
+        <span class="relative flex h-1.5 w-1.5">
+          <span class="relative inline-flex rounded-full h-1.5 w-1.5 bg-green-500"></span>
+        </span>
+        {t.contact.status}
+      </span>
+    </div>
+
+    <nav class="flex flex-wrap gap-x-5 gap-y-2 text-sm mb-4">
       {t.links.map(link => (
         <a
           href={link.href}
@@ -50,22 +51,6 @@ const t = content[lang];
       ))}
     </nav>
   </header>
-
-  <!-- Education -->
-  <section class="mb-24">
-    <h2 class="text-xs font-semibold uppercase tracking-widest text-[var(--color-muted)] mb-10 reveal">{t.educationTitle}</h2>
-    <div class="space-y-6">
-      {t.education.map((edu, i) => (
-        <div class="reveal flex items-baseline justify-between gap-4" style={`animation-delay: ${(i + 1) * 80}ms`}>
-          <div>
-            <h3 class="font-semibold">{edu.school}</h3>
-            <p class="text-sm text-[var(--color-muted)]">{edu.degree} · {edu.location}</p>
-          </div>
-          <span class="text-sm text-[var(--color-muted)] whitespace-nowrap tabular-nums">{edu.period}</span>
-        </div>
-      ))}
-    </div>
-  </section>
 
   <!-- Work Experience -->
   <section class="mb-24">
@@ -127,6 +112,22 @@ const t = content[lang];
     </div>
   </section>
 
+  <!-- Education -->
+  <section class="mb-24">
+    <h2 class="text-xs font-semibold uppercase tracking-widest text-[var(--color-muted)] mb-10 reveal">{t.educationTitle}</h2>
+    <div class="space-y-6">
+      {t.education.map((edu, i) => (
+        <div class="reveal flex items-baseline justify-between gap-4" style={`animation-delay: ${(i + 1) * 80}ms`}>
+          <div>
+            <h3 class="font-semibold">{edu.school}</h3>
+            <p class="text-sm text-[var(--color-muted)]">{edu.degree} · {edu.location}</p>
+          </div>
+          <span class="text-sm text-[var(--color-muted)] whitespace-nowrap tabular-nums">{edu.period}</span>
+        </div>
+      ))}
+    </div>
+  </section>
+
   <!-- Tech Stack -->
   <section class="mb-24">
     <h2 class="text-xs font-semibold uppercase tracking-widest text-[var(--color-muted)] mb-6 reveal">{t.techStackTitle}</h2>
@@ -136,7 +137,7 @@ const t = content[lang];
           <h3 class="text-xs font-medium text-[var(--color-muted)] mb-2">{category.label}</h3>
           <div class="flex flex-wrap gap-2">
             {category.items.map(tech => (
-              <span class="inline-flex items-center gap-2 px-3 py-2 text-sm bg-[var(--color-card)] border border-[var(--color-border)] rounded-lg text-[var(--color-muted)] hover:text-[var(--color-text)] hover:border-[var(--color-accent)] transition-colors duration-200 cursor-default">
+              <span class="inline-flex items-center gap-2 px-3 py-1.5 text-xs bg-[var(--color-card)] border border-[var(--color-border)] rounded-full text-[var(--color-muted)] hover:text-[var(--color-text)] hover:border-[var(--color-accent)] transition-colors duration-200 cursor-default">
                 {techIcons[tech] && <img src={techIcons[tech]} alt="" width="16" height="16" class="w-4 h-4 object-contain flex-shrink-0" />}
                 {tech}
               </span>

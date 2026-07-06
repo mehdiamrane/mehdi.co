@@ -107,18 +107,16 @@ const navLabels = lang === 'fr' ? { home: 'Accueil', blog: 'Blog' } : { home: 'H
         <a
           href={homeHref}
           class={`block py-2 transition-colors duration-150 ${isHomeActive ? 'text-[var(--color-text)] font-semibold' : 'text-[var(--color-muted)] hover:text-[var(--color-accent)]'}`}
-          style={isHomeActive ? 'box-shadow: inset 0 -0.125em 0 var(--color-accent)' : ''}
           aria-current={isHomeActive ? 'page' : undefined}
         >
-          {navLabels.home}
+          <span style={isHomeActive ? 'box-shadow: inset 0 -0.125em 0 var(--color-accent)' : ''}>{navLabels.home}</span>
         </a>
         <a
           href={blogHref}
           class={`block py-2 transition-colors duration-150 ${isBlogActive ? 'text-[var(--color-text)] font-semibold' : 'text-[var(--color-muted)] hover:text-[var(--color-accent)]'}`}
-          style={isBlogActive ? 'box-shadow: inset 0 -0.125em 0 var(--color-accent)' : ''}
           aria-current={isBlogActive ? 'page' : undefined}
         >
-          {navLabels.blog}
+          <span style={isBlogActive ? 'box-shadow: inset 0 -0.125em 0 var(--color-accent)' : ''}>{navLabels.blog}</span>
         </a>
       </nav>
     </header>
