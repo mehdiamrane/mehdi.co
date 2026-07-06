@@ -1,5 +1,6 @@
 ---
 import '../styles/global.css';
+import LanguageSwitcher from '../components/LanguageSwitcher.astro';
 
 export interface Props {
   title: string;
@@ -40,6 +41,9 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site ?? Astro.url).toStri
   </head>
   <body class="min-h-screen">
     <main class="mx-auto max-w-2xl px-6 py-16 md:py-24">
+      <div class="flex justify-end mb-8 reveal">
+        <LanguageSwitcher lang={lang} />
+      </div>
       <slot />
     </main>
   </body>

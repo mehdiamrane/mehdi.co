@@ -1,0 +1,27 @@
+---
+import type { Lang } from '../data/content';
+
+export interface Props {
+  lang: Lang;
+}
+
+const { lang } = Astro.props;
+---
+
+<nav class="flex items-center gap-2 text-sm font-medium" aria-label="Language switcher">
+  <a
+    href="/"
+    class={`transition-colors duration-150 ${lang === 'en' ? 'text-[var(--color-text)]' : 'text-[var(--color-muted)] hover:text-[var(--color-accent)]'}`}
+    aria-current={lang === 'en' ? 'page' : undefined}
+  >
+    EN
+  </a>
+  <span class="text-[var(--color-border)]">/</span>
+  <a
+    href="/fr/"
+    class={`transition-colors duration-150 ${lang === 'fr' ? 'text-[var(--color-text)]' : 'text-[var(--color-muted)] hover:text-[var(--color-accent)]'}`}
+    aria-current={lang === 'fr' ? 'page' : undefined}
+  >
+    FR
+  </a>
+</nav>
