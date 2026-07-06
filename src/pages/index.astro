@@ -1,5 +1,6 @@
 ---
 import Base from '../layouts/Base.astro';
+import Icon from '../components/Icon.astro';
 
 const experience = [
   {
@@ -58,11 +59,11 @@ const techStack = [
 ];
 
 const links = [
-  { label: 'Email', href: 'mailto:me.amrane@icloud.com', icon: 'ph-envelope' },
-  { label: 'LinkedIn', href: 'https://linkedin.com/in/mehdiamrane', icon: 'ph-linkedin-logo' },
-  { label: 'GitHub', href: 'https://github.com/mehdiamrane', icon: 'ph-github-logo' },
-  { label: 'X', href: 'https://x.com/indiemehdi', icon: 'ph-x-logo' },
-  { label: 'CV', href: '/cv', icon: 'ph-file-text', external: false },
+  { label: 'Email', href: 'mailto:me.amrane@icloud.com', icon: 'envelope' },
+  { label: 'LinkedIn', href: 'https://linkedin.com/in/mehdiamrane', icon: 'linkedin-logo' },
+  { label: 'GitHub', href: 'https://github.com/mehdiamrane', icon: 'github-logo' },
+  { label: 'X', href: 'https://x.com/indiemehdi', icon: 'x-logo' },
+  { label: 'CV', href: '/cv', icon: 'file-text', external: false },
 ];
 ---
 
@@ -95,7 +96,7 @@ const links = [
           class="inline-flex items-center gap-2 text-[var(--color-muted)] hover:text-[var(--color-accent)] transition-colors duration-150"
           {...(link.external !== false ? { target: '_blank', rel: 'noopener' } : {})}
         >
-          <i class={`ph ${link.icon} text-base`}></i>
+          <Icon name={link.icon} size={16} />
           {link.label}
         </a>
       ))}
@@ -118,7 +119,7 @@ const links = [
             {job.url ? (
               <a href={job.url} class="inline-flex items-center gap-1.5 font-medium text-[var(--color-text)] hover:text-[var(--color-accent)] transition-colors duration-150 group" target="_blank" rel="noopener">
                 {job.company}
-                <i class="ph ph-arrow-up-right text-xs opacity-40 group-hover:opacity-100 group-hover:text-[var(--color-accent)] transition-all duration-150"></i>
+                <Icon name="arrow-up-right" size={12} class="opacity-40 group-hover:opacity-100 group-hover:text-[var(--color-accent)] transition-all duration-150" />
               </a>
             ) : job.company}
             <span class="mx-2">·</span>
