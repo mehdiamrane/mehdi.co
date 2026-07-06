@@ -1,6 +1,8 @@
 ---
 import Base from '../layouts/Base.astro';
 import Icon from '../components/Icon.astro';
+
+const API_URL = import.meta.env.PUBLIC_USAGE_API_URL || 'http://localhost:3099';
 ---
 
 <Base title="Usage — Mehdi Amrane" description="AI services usage dashboard" lang="en" image="/og/home.png">
@@ -18,7 +20,7 @@ import Icon from '../components/Icon.astro';
     <p id="updated-at" class="text-xs text-[var(--color-muted)] mt-3"></p>
   </header>
 
-  <div id="gauges" class="space-y-4">
+  <div id="gauges" class="space-y-4" data-api-url={API_URL}>
     {['openRouter','deepSeek','zai','claude','openAi','kiro','openCodeGo','cursor'].map(name => (
       <div class="rounded-2xl border border-[var(--color-border)] bg-[var(--color-card)] p-5 animate-pulse">
         <div class="h-4 w-24 bg-[var(--color-border)] rounded mb-3"></div>
@@ -29,7 +31,7 @@ import Icon from '../components/Icon.astro';
 </Base>
 
 <script>
-  const API_URL = "https://b7b18f27cfe1ae.lhr.life";
+  const API_URL = document.getElementById('gauges')?.dataset.apiUrl || 'http://localhost:3099';
 
   const gaugeLabels: Record<string, string> = {
     openRouter: 'OpenRouter', deepSeek: 'DeepSeek', zai: 'Z.AI',
