@@ -61,7 +61,7 @@ const navLabels = lang === 'fr' ? { home: 'Accueil', blog: 'Blog' } : { home: 'H
     <meta name="twitter:image" content={ogImage} />
     <ClientRouter />
   </head>
-  <body class="min-h-screen">
+  <body class="min-h-screen flex flex-col">
     <header class="sticky top-0 z-50 border-b border-[var(--color-border)] bg-[var(--color-bg)]/80 backdrop-blur-sm">
       <div class="mx-auto max-w-2xl px-6 h-14 flex items-center justify-between">
         <Logo lang={lang} />
@@ -123,9 +123,13 @@ const navLabels = lang === 'fr' ? { home: 'Accueil', blog: 'Blog' } : { home: 'H
       </nav>
     </header>
 
-    <main class="mx-auto max-w-2xl px-6 py-16 md:py-24">
+    <main class="grow mx-auto w-full max-w-2xl px-6 py-16 md:py-24">
       <slot />
     </main>
+
+    <footer class="w-full mx-auto max-w-2xl px-6 pb-8 text-sm text-[var(--color-muted)] border-t border-[var(--color-border)] pt-8">
+      <p>&copy; 2020 &ndash; {new Date().getFullYear()} Mehdi Amrane</p>
+    </footer>
 
     <script>
       function applyTheme() {
