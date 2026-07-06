@@ -93,8 +93,12 @@ const experience = [
 ];
 
 const techStack = [
-  'TypeScript', 'React', 'Next.js', 'React Native', 'Node.js',
-  'JavaScript', 'Sass', 'CSS', 'Styled-Components', 'Firebase', 'Git', 'npm',
+  'TypeScript', 'JavaScript', 'React', 'Next.js', 'React Native', 'Expo',
+  'Node.js', 'Convex', 'Hono.js', 'Express.js', 'MongoDB', 'Stripe',
+  'Tailwind CSS', 'Chakra-UI', 'Styled-Components', 'Sass', 'CSS',
+  'Firebase', 'Storybook', 'Git', 'GitHub Actions', 'GitLab CI', 'Docker',
+  'Semantic-Release', 'Webpack', 'Rollup', 'Jest', 'Playwright', 'Sentry',
+  'React Query', 'Google Tag Manager', 'npm',
 ];
 
 const links = [
@@ -148,57 +152,53 @@ const links = [
     <div class="space-y-8">
       {experience.map((job, i) => (
         <article
-          class="reveal group rounded-2xl border border-[var(--color-border)] p-6 sm:p-7 transition-shadow duration-300 hover:shadow-[0_12px_32px_rgba(0,0,0,0.06)]"
+          class="reveal group rounded-2xl border border-[var(--color-border)] overflow-hidden transition-shadow duration-300 hover:shadow-[0_12px_32px_rgba(0,0,0,0.06)]"
           style={`animation-delay: ${(i + 1) * 80}ms`}
         >
-          <div class={`flex flex-col gap-6 ${job.image ? `sm:flex-row ${i % 2 === 1 ? 'sm:flex-row-reverse' : ''} sm:items-center` : ''}`}>
-            {job.image && (
-              <div class="sm:w-[42%] flex-shrink-0">
-                <a
-                  href={job.url ?? undefined}
-                  target={job.url ? '_blank' : undefined}
-                  rel={job.url ? 'noopener' : undefined}
-                  class={`block overflow-hidden rounded-xl border border-[var(--color-border)] ${job.url ? '' : 'pointer-events-none'}`}
-                  tabindex={job.url ? 0 : -1}
-                >
-                  <img
-                    src={job.image}
-                    alt={job.imageAlt}
-                    loading="lazy"
-                    class="w-full h-auto object-cover transition-transform duration-500 group-hover:scale-[1.04]"
-                  />
-                </a>
-              </div>
-            )}
+          {job.image && (
+            <a
+              href={job.url ?? undefined}
+              target={job.url ? '_blank' : undefined}
+              rel={job.url ? 'noopener' : undefined}
+              class={`block overflow-hidden ${job.url ? '' : 'pointer-events-none'}`}
+              tabindex={job.url ? 0 : -1}
+            >
+              <img
+                src={job.image}
+                alt={job.imageAlt}
+                loading="lazy"
+                class="w-full h-40 sm:h-48 object-cover transition-transform duration-500 group-hover:scale-[1.04]"
+              />
+            </a>
+          )}
 
-            <div class="flex-1 min-w-0">
-              <div class="flex items-baseline justify-between gap-4 mb-2">
-                <h3 class="font-semibold">
-                  {job.role}
-                </h3>
-                <span class="text-sm text-[var(--color-muted)] whitespace-nowrap tabular-nums">{job.period}</span>
-              </div>
-              <p class="text-sm text-[var(--color-muted)] mb-3">
-                {job.url ? (
-                  <a href={job.url} class="link-underline inline-flex items-center gap-1.5 font-medium text-[var(--color-text)]" target="_blank" rel="noopener">
-                    {job.company}
-                    <Icon name="arrow-up-right" size={12} class="opacity-40 group-hover:opacity-100 group-hover:text-[var(--color-accent)] transition-all duration-150" />
-                  </a>
-                ) : <span class="font-medium text-[var(--color-text)]">{job.company}</span>}
-                <span class="mx-2">·</span>
-                {job.location}
-              </p>
-              <ul class="list-disc list-outside ml-4 space-y-1.5 text-sm leading-relaxed text-[var(--color-muted)] mb-4">
-                {job.highlights.map(h => <li>{h}</li>)}
-              </ul>
-              <div class="flex flex-wrap gap-1.5">
-                {job.techs.map(tech => (
-                  <span class="inline-flex items-center gap-1.5 px-2.5 py-1 text-xs rounded-full border border-[var(--color-border)] text-[var(--color-muted)]">
-                    {techIcons[tech] && <img src={techIcons[tech]} alt="" width="12" height="12" class="w-3 h-3 object-contain" />}
-                    {tech}
-                  </span>
-                ))}
-              </div>
+          <div class="p-6 sm:p-7">
+            <div class="flex items-baseline justify-between gap-4 mb-2">
+              <h3 class="font-semibold">
+                {job.role}
+              </h3>
+              <span class="text-sm text-[var(--color-muted)] whitespace-nowrap tabular-nums">{job.period}</span>
+            </div>
+            <p class="text-sm text-[var(--color-muted)] mb-3">
+              {job.url ? (
+                <a href={job.url} class="link-underline inline-flex items-center gap-1.5 font-medium text-[var(--color-text)]" target="_blank" rel="noopener">
+                  {job.company}
+                  <Icon name="arrow-up-right" size={12} class="opacity-40 group-hover:opacity-100 group-hover:text-[var(--color-accent)] transition-all duration-150" />
+                </a>
+              ) : <span class="font-medium text-[var(--color-text)]">{job.company}</span>}
+              <span class="mx-2">·</span>
+              {job.location}
+            </p>
+            <ul class="list-disc list-outside ml-4 space-y-1.5 text-sm leading-relaxed text-[var(--color-muted)] mb-4">
+              {job.highlights.map(h => <li>{h}</li>)}
+            </ul>
+            <div class="flex flex-wrap gap-1.5">
+              {job.techs.map(tech => (
+                <span class="inline-flex items-center gap-1.5 px-2.5 py-1 text-xs rounded-full border border-[var(--color-border)] text-[var(--color-muted)]">
+                  {techIcons[tech] && <img src={techIcons[tech]} alt="" width="12" height="12" class="w-3 h-3 object-contain" />}
+                  {tech}
+                </span>
+              ))}
             </div>
           </div>
         </article>
@@ -241,19 +241,20 @@ const links = [
 
   .link-underline {
     position: relative;
+    text-decoration: none;
   }
 
   .link-underline::after {
     content: '';
     position: absolute;
     left: 0;
-    bottom: -2px;
-    width: 100%;
+    right: 0;
+    bottom: -3px;
     height: 2px;
     background: var(--color-accent);
     transform: scaleX(0);
     transform-origin: left;
-    transition: transform 0.35s cubic-bezier(0.65, 0, 0.35, 1);
+    transition: transform 0.25s cubic-bezier(0.42, 0.14, 0.28, 0.93);
   }
 
   .link-underline:hover::after,
