@@ -5,6 +5,7 @@ const experience = [
   {
     role: 'Co-founder & Full-Stack Developer',
     company: 'Inkvoice',
+    url: '#',
     period: '2025 — Present',
     location: 'Paris, Remote',
     highlights: [
@@ -16,6 +17,7 @@ const experience = [
   {
     role: 'Front-End Developer',
     company: 'Shadow',
+    url: 'https://eu.shadow.tech/shop/fr-fr',
     period: '2022 — 2025 · 2 yr 10 mo',
     location: 'Paris',
     highlights: [
@@ -27,6 +29,7 @@ const experience = [
   {
     role: 'Front-End Developer',
     company: 'Oxeva / Nua.ge',
+    url: 'https://nua.ge/',
     period: '2021 — 2022 · 1 yr 5 mo',
     location: 'Paris',
     highlights: [
@@ -38,6 +41,7 @@ const experience = [
   {
     role: 'Freelance Web & Mobile Developer',
     company: 'Restaurant sector',
+    url: null,
     period: '2020 — 2021 · 9 mo',
     location: 'Lyon',
     highlights: [
@@ -52,6 +56,14 @@ const techStack = [
   'Node.js', 'Convex', 'Hono.js', 'Stripe', 'Tailwind CSS',
   'Docker', 'GitHub Actions', 'Jest', 'Playwright', 'Storybook',
 ];
+
+const links = [
+  { label: 'Email', href: 'mailto:me.amrane@icloud.com', external: true },
+  { label: 'LinkedIn', href: 'https://linkedin.com/in/mehdiamrane', external: true },
+  { label: 'GitHub', href: 'https://github.com/mehdiamrane', external: true },
+  { label: 'X / Twitter', href: 'https://x.com/indiemehdi', external: true },
+  { label: 'CV', href: '/cv', external: false },
+];
 ---
 
 <Base
@@ -59,64 +71,90 @@ const techStack = [
   description="Senior Front-End Developer specializing in React, Next.js, and TypeScript. Based in Paris."
   lang="en"
 >
-  <!-- Header -->
-  <header class="mb-16">
-    <h1 class="text-3xl font-semibold tracking-tight mb-3">Mehdi Amrane</h1>
-    <p class="text-lg text-[var(--color-muted)] leading-relaxed max-w-lg">
-      Senior Front-End Developer — React, Next.js, TypeScript.<br/>
-      Based in Paris. I build SaaS products, mobile apps, and clean codebases.
-    </p>
+  <!-- Hero -->
+  <header class="mb-20 animate-fade-in">
+    <div class="flex items-start gap-6 mb-8">
+      <img
+        src="/avatar.png"
+        alt="Mehdi Amrane"
+        class="w-20 h-20 rounded-full border-2 border-[var(--color-border)] flex-shrink-0"
+        width="80" height="80"
+      />
+      <div>
+        <h1 class="text-3xl font-semibold tracking-tight mb-2">Mehdi Amrane</h1>
+        <p class="text-[var(--color-muted)] leading-relaxed max-w-md">
+          Senior Front-End Developer — React, Next.js, TypeScript. Based in Paris. I build SaaS products, mobile apps, and clean codebases.
+        </p>
+      </div>
+    </div>
+
+    <!-- Quick links -->
+    <nav class="flex flex-wrap gap-x-6 gap-y-2 text-sm">
+      {links.map(link => (
+        <a
+          href={link.href}
+          class="text-[var(--color-muted)] hover:text-[var(--color-text)] transition-colors duration-150"
+          {...(link.external ? { target: '_blank', rel: 'noopener' } : {})}
+        >
+          {link.label}
+        </a>
+      ))}
+    </nav>
   </header>
 
   <!-- Work Experience -->
-  <section class="mb-16">
-    <h2 class="text-xs font-semibold uppercase tracking-widest text-[var(--color-muted)] mb-8">Experience</h2>
-    <div class="space-y-10">
+  <section class="mb-20">
+    <h2 class="text-xs font-semibold uppercase tracking-widest text-[var(--color-muted)] mb-10">Experience</h2>
+    <div class="space-y-12">
       {experience.map((job) => (
-        <div>
-          <div class="flex items-baseline justify-between gap-4 mb-2">
-            <h3 class="font-semibold">{job.role}</h3>
-            <span class="text-sm text-[var(--color-muted)] whitespace-nowrap">{job.period}</span>
+        <article class="group">
+          <div class="flex items-baseline justify-between gap-4 mb-1">
+            <h3 class="font-semibold">
+              {job.role}
+            </h3>
+            <span class="text-sm text-[var(--color-muted)] whitespace-nowrap tabular-nums">{job.period}</span>
           </div>
           <p class="text-sm text-[var(--color-muted)] mb-3">
-            {job.company} · {job.location}
+            {job.url ? (
+              <a href={job.url} class="hover:text-[var(--color-text)] transition-colors duration-150" target="_blank" rel="noopener">
+                {job.company}
+              </a>
+            ) : job.company}
+            <span class="mx-2">·</span>
+            {job.location}
           </p>
-          <ul class="list-disc list-outside ml-4 space-y-1.5 text-sm leading-relaxed">
+          <ul class="list-disc list-outside ml-4 space-y-1.5 text-sm leading-relaxed text-[var(--color-muted)]">
             {job.highlights.map(h => <li>{h}</li>)}
           </ul>
-        </div>
+        </article>
       ))}
     </div>
   </section>
 
   <!-- Tech Stack -->
-  <section class="mb-16">
+  <section class="mb-20">
     <h2 class="text-xs font-semibold uppercase tracking-widest text-[var(--color-muted)] mb-6">Tech Stack</h2>
     <div class="flex flex-wrap gap-2">
       {techStack.map(tech => (
-        <span class="px-3 py-1 text-sm bg-[var(--color-border)] rounded-full">
+        <span class="px-3 py-1 text-sm border border-[var(--color-border)] rounded-full text-[var(--color-muted)] hover:text-[var(--color-text)] hover:border-[var(--color-accent)] transition-colors duration-150 cursor-default">
           {tech}
         </span>
       ))}
     </div>
   </section>
 
-  <!-- Contact -->
-  <section>
-    <h2 class="text-xs font-semibold uppercase tracking-widest text-[var(--color-muted)] mb-6">Contact</h2>
-    <div class="space-y-2 text-sm">
-      <p>
-        <a href="mailto:me.amrane@icloud.com" class="text-[var(--color-accent)] hover:underline">
-          me.amrane@icloud.com
-        </a>
-      </p>
-      <p>
-        <a href="https://linkedin.com/in/mehdiamrane" class="hover:underline">LinkedIn</a>
-        <span class="text-[var(--color-muted)] mx-2">·</span>
-        <a href="https://github.com/mehdiamrane" class="hover:underline">GitHub</a>
-        <span class="text-[var(--color-muted)] mx-2">·</span>
-        <a href="https://x.com/indiemehdi" class="hover:underline">@indiemehdi</a>
-      </p>
-    </div>
-  </section>
+  <!-- Footer -->
+  <footer class="text-sm text-[var(--color-muted)] border-t border-[var(--color-border)] pt-8">
+    <p>© {new Date().getFullYear()} Mehdi Amrane</p>
+  </footer>
 </Base>
+
+<style>
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(8px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  .animate-fade-in {
+    animation: fadeIn 0.6s ease-out both;
+  }
+</style>
