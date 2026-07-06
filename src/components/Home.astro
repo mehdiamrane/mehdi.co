@@ -49,7 +49,7 @@ const t = content[lang];
     <div class="space-y-8">
       {t.experience.map((job, i) => (
         <article
-          class="reveal group rounded-2xl border border-[var(--color-border)] overflow-hidden transition-shadow duration-300 hover:shadow-[0_12px_32px_rgba(0,0,0,0.06)]"
+          class="reveal group rounded-2xl border border-[var(--color-border)] bg-[var(--color-card)] overflow-hidden transition-shadow duration-300 hover:shadow-[0_12px_32px_rgba(0,0,0,0.06)]"
           style={`animation-delay: ${(i + 1) * 80}ms`}
         >
           {job.image && (

@@ -1,6 +1,7 @@
 ---
 import '../styles/global.css';
 import LanguageSwitcher from '../components/LanguageSwitcher.astro';
+import ThemeToggle from '../components/ThemeToggle.astro';
 
 export interface Props {
   title: string;
@@ -18,6 +19,15 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site ?? Astro.url).toStri
 <!doctype html>
 <html lang={lang}>
   <head>
+    <script is:inline>
+      (function () {
+        var stored = localStorage.getItem('theme');
+        var prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        if (stored ? stored === 'dark' : prefersDark) {
+          document.documentElement.classList.add('dark');
+        }
+      })();
+    </script>
     <meta charset="utf-8" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="icon" type="image/png" href="/favicon.png" />
@@ -41,7 +51,8 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site ?? Astro.url).toStri
   </head>
   <body class="min-h-screen">
     <main class="mx-auto max-w-2xl px-6 py-16 md:py-24">
-      <div class="flex justify-end mb-8 reveal">
+      <div class="flex items-center justify-end gap-4 mb-8 reveal">
+        <ThemeToggle />
         <LanguageSwitcher lang={lang} />
       </div>
       <slot />

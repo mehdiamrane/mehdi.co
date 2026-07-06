@@ -1,11 +1,22 @@
 @import "tailwindcss";
 
+@custom-variant dark (&:where(.dark, .dark *));
+
 @theme {
   --color-accent: #FD3659;
   --color-bg: #fafafa;
   --color-text: #1a1a1a;
   --color-muted: #6b7280;
   --color-border: #e5e7eb;
+  --color-card: #fafafa;
+}
+
+.dark {
+  --color-bg: #0f0f0f;
+  --color-text: #e5e5e5;
+  --color-muted: #9ca3af;
+  --color-border: #2a2a2a;
+  --color-card: #1a1a1a;
 }
 
 body {
@@ -13,6 +24,7 @@ body {
   background: var(--color-bg);
   color: var(--color-text);
   -webkit-font-smoothing: antialiased;
+  transition: background-color 0.2s ease-out, color 0.2s ease-out;
 }
 
 ::selection {
