@@ -78,9 +78,9 @@ const t = content[lang];
             </div>
             <p class="text-sm text-[var(--color-muted)] mb-3">
               {job.url ? (
-                <a href={job.url} class="link-underline inline-flex items-center gap-1.5 font-medium text-[var(--color-text)]" target="_blank" rel="noopener">
+                <a href={job.url} class="link-underline inline-flex items-center gap-1 font-medium text-[var(--color-text)]" target="_blank" rel="noopener">
                   {job.company}
-                  <Icon name="arrow-up-right" size={12} class="opacity-40 group-hover:opacity-100 group-hover:text-[var(--color-accent)] transition-all duration-150" />
+                  <Icon name="arrow-up-right" size={11} class="-mt-px" />
                 </a>
               ) : <span class="font-medium text-[var(--color-text)]">{job.company}</span>}
               <span class="mx-2">·</span>
@@ -160,19 +160,15 @@ const t = content[lang];
   }
 
   .link-underline {
-    text-decoration: underline;
-    text-decoration-color: var(--color-accent);
-    text-decoration-thickness: 1.5px;
-    text-underline-offset: 3px;
-    box-decoration-break: clone;
-    -webkit-box-decoration-break: clone;
-    transition: background-color 0.2s ease-out, color 0.2s ease-out, text-decoration-color 0.2s ease-out;
+    color: inherit;
+    text-decoration: none;
+    box-shadow: inset 0 -0.125em 0 var(--color-accent);
+    transition: all 150ms cubic-bezier(0.42, 0.14, 0.28, 0.93);
   }
 
   .link-underline:hover,
   .link-underline:focus-visible {
-    text-decoration-color: transparent;
-    background-color: var(--color-accent);
+    box-shadow: inset 0 -1.15em 0 0 var(--color-accent);
     color: #fff;
   }
 </style>
