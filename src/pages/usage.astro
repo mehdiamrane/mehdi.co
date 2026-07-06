@@ -29,7 +29,7 @@ import Icon from '../components/Icon.astro';
 </Base>
 
 <script>
-  const API_URL = "https://360854796da0f6.lhr.life";
+  const API_URL = "https://b7b18f27cfe1ae.lhr.life";
 
   const gaugeLabels: Record<string, string> = {
     openRouter: 'OpenRouter', deepSeek: 'DeepSeek', zai: 'Z.AI',
@@ -78,15 +78,15 @@ import Icon from '../components/Icon.astro';
       const title = `${label} ${planLabel}`;
       const resetTime = svc.sessionResets ? new Date(svc.sessionResets).toLocaleTimeString([], {hour:'2-digit',minute:'2-digit'}) : '?';
       const resetUTC = svc.sessionResets ? new Date(svc.sessionResets).toISOString().slice(11,16)+'Z' : '?';
-      const color = svc.sessionPct > 90 ? 'bg-red-500' : svc.sessionPct > 70 ? 'bg-yellow-500' : 'bg-green-500';
-      const tokColor = svc.tokensPct > 90 ? 'bg-red-500' : svc.tokensPct > 70 ? 'bg-yellow-500' : 'bg-green-500';
+      const mcpColor = svc.sessionPct > 90 ? 'bg-red-500' : svc.sessionPct > 70 ? 'bg-yellow-500' : 'bg-green-500';
+      const codingColor = svc.tokensPct > 90 ? 'bg-red-500' : svc.tokensPct > 70 ? 'bg-yellow-500' : 'bg-green-500';
 
       html += `<div class="flex items-center justify-between mb-3">
         <h3 class="font-semibold text-sm">${title}</h3>
         <span class="text-[11px] text-[var(--color-muted)]" title="UTC: ${resetUTC}">Resets ${resetTime}</span>
       </div>`;
-      html += bar(svc.sessionPct, color, 'Session');
-      html += bar(svc.tokensPct, tokColor, 'Tokens');
+      html += bar(svc.sessionPct, mcpColor, 'MCP mo.');
+      html += bar(svc.tokensPct, codingColor, 'Coding');
       if (svc.sessionModels?.length) {
         const models = svc.sessionModels.map((m: any) => `${m.modelCode}:${m.usage}%`).join(' · ');
         html += `<p class="text-[11px] text-[var(--color-muted)] mt-2">${models}</p>`;
@@ -108,7 +108,7 @@ import Icon from '../components/Icon.astro';
       </div>`;
       html += bar(svc.sessionPct, sessionColor, 'Session');
       html += bar(svc.weeklyPct, weeklyColor, 'Weekly');
-      html += `<p class="text-[11px] text-[var(--color-muted)] mt-2">Overage ${svc.overageCredits || 0}/${svc.overageLimit || 0} credits</p>`;
+      html += `<p class="text-[11px] text-[var(--color-muted)] mt-2" title="Extra usage credits beyond plan limits">Overage ${svc.overageCredits || 0}/${svc.overageLimit || 0} credits</p>`;
     }
     // Z.AI — check BEFORE OpenRouter (both have 'limit', only Z.AI has 'remaining')
     else if (svc.remaining !== undefined) {
