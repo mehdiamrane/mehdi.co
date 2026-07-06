@@ -11,7 +11,7 @@ import Icon from '../components/Icon.astro';
         <p class="text-[var(--color-muted)]">Consumption across AI services</p>
       </div>
       <button id="refresh-btn" class="inline-flex items-center gap-2 px-4 py-2 text-sm border border-[var(--color-border)] rounded-full hover:border-[var(--color-accent)] transition-colors cursor-pointer">
-        <svg id="refresh-icon" class="w-3.5 h-3.5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" fill="currentColor"><path d="M224,128a96,96,0,0,1-94.71,96H128A96,96,0,0,1,72.2,164.28L57.37,179.11a8,8,0,0,1-13.42-4.26L36.79,145a8,8,0,0,1,6.18-9.69l29.83-5.34a8,8,0,0,1,6.2,13.42L65.54,156.85A80,80,0,0,0,176,136.77V128a8,8,0,0,1,16,0Zm-68.37-66.82a8,8,0,0,1,1.69,11.22L143.46,86.15A80,80,0,0,0,80,120h0v8a8,8,0,0,1-16,0v-8A96,96,0,0,1,143.3,67.81l14.12-14.12A8,8,0,0,1,170.86,56l7.17,29.83A8,8,0,0,1,172.2,92Z"/></svg>
+        <Icon name="arrows-clockwise" size={14} />
         Refresh
       </button>
     </div>
@@ -29,7 +29,7 @@ import Icon from '../components/Icon.astro';
 </Base>
 
 <script>
-  const API_URL = "https://74f5d540d4967f.lhr.life";
+  const API_URL = "https://360854796da0f6.lhr.life";
 
   const gaugeLabels: Record<string, string> = {
     openRouter: 'OpenRouter', deepSeek: 'DeepSeek', zai: 'Z.AI',
@@ -165,8 +165,7 @@ import Icon from '../components/Icon.astro';
     const btn = document.getElementById('refresh-btn')!;
 
     btn.setAttribute('disabled', 'true');
-    const icon = document.getElementById('refresh-icon');
-    if (icon) icon.classList.add('animate-spin');
+    btn.classList.add('refreshing');
 
     try {
       const res = await fetch(`${API_URL}/usage`);
@@ -181,7 +180,7 @@ import Icon from '../components/Icon.astro';
       container.innerHTML = `<p class="text-red-500">Failed to fetch: ${e.message}</p>`;
     } finally {
       btn.removeAttribute('disabled');
-      if (icon) icon.classList.remove('animate-spin');
+      btn.classList.remove('refreshing');
     }
   }
 
@@ -194,3 +193,12 @@ import Icon from '../components/Icon.astro';
 
   fetchUsage();
 </script>
+
+<style>
+  .refreshing svg {
+    animation: spin 0.8s linear infinite;
+  }
+  @keyframes spin {
+    to { transform: rotate(360deg); }
+  }
+</style>
