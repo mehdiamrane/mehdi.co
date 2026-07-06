@@ -3,18 +3,18 @@ import Base from '../layouts/Base.astro';
 import Icon from '../components/Icon.astro';
 
 const techIcons: Record<string, string> = {
-  'React': '/images/techs/react.png',
-  'TypeScript': '/images/techs/typescript.png',
+  'React': '/images/techs/react.svg',
+  'TypeScript': '/images/techs/typescript.svg',
   'Next.js': '/images/techs/nextjs.svg',
-  'Node.js': '/images/techs/nodejs.png',
-  'React Native': '/images/techs/react-native.png',
-  'CSS': '/images/techs/css.png',
-  'Firebase': '/images/techs/firebase.png',
+  'Node.js': '/images/techs/nodejs.svg',
+  'React Native': '/images/techs/react-native.svg',
+  'CSS': '/images/techs/css.svg',
+  'Firebase': '/images/techs/firebase.svg',
   'Git': '/images/techs/git.svg',
-  'JavaScript': '/images/techs/javascript.png',
-  'npm': '/images/techs/npm.png',
-  'Sass': '/images/techs/sass.png',
-  'Styled-Components': '/images/techs/styled-components.png',
+  'JavaScript': '/images/techs/javascript.svg',
+  'npm': '/images/techs/npm.svg',
+  'Sass': '/images/techs/sass.svg',
+  'Styled-Components': '/images/techs/styled-components.svg',
   'Expo': '/images/techs/expo.svg',
   'Convex': '/images/techs/convex.svg',
   'Hono.js': '/images/techs/hono.svg',
@@ -157,7 +157,7 @@ const links = [
       {links.map(link => (
         <a
           href={link.href}
-          class="inline-flex items-center gap-2 text-[var(--color-muted)] hover:text-[var(--color-accent)] transition-colors duration-150"
+          class={`inline-flex items-center gap-2 text-[var(--color-muted)] transition-colors duration-150 ${link.external !== false ? 'link-underline' : 'hover:text-[var(--color-accent)]'}`}
           {...(link.external !== false ? { target: '_blank', rel: 'noopener' } : {})}
         >
           <Icon name={link.icon} size={16} />
@@ -261,29 +261,18 @@ const links = [
   }
 
   .link-underline {
-    position: relative;
-    text-decoration: none;
+    text-decoration: underline;
+    text-decoration-color: var(--color-accent);
+    text-underline-offset: 3px;
+    box-decoration-break: clone;
+    -webkit-box-decoration-break: clone;
+    transition: background-color 0.15s ease-out, color 0.15s ease-out;
   }
 
-  .link-underline::after {
-    content: '';
-    position: absolute;
-    left: 0;
-    right: 0;
-    bottom: -3px;
-    height: 2px;
-    background: var(--color-accent);
-    transform: scaleX(0);
-    transform-origin: left;
-    transition: transform 0.25s cubic-bezier(0.42, 0.14, 0.28, 0.93);
-  }
-
-  .link-underline:hover::after,
-  .link-underline:focus-visible::after {
-    transform: scaleX(1);
-  }
-
-  .link-underline:hover {
-    color: var(--color-accent);
+  .link-underline:hover,
+  .link-underline:focus-visible {
+    text-decoration-color: transparent;
+    background-color: var(--color-accent);
+    color: #fff;
   }
 </style>
