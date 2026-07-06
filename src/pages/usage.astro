@@ -72,8 +72,28 @@ import Icon from '../components/Icon.astro';
     const bar = (pct: number, color: string, label: string) =>
       `<div class="flex items-center gap-3 mb-1.5"><span class="text-[11px] text-[var(--color-muted)] w-16 flex-shrink-0">${label}</span><div class="flex-1 h-1.5 bg-[var(--color-border)] rounded-full overflow-hidden"><div class="h-full ${color} rounded-full transition-all duration-500" style="width:${Math.min(pct,100)}%"></div></div><span class="text-[11px] text-[var(--color-muted)] tabular-nums w-10 text-right">${pct}%</span></div>`;
 
-    // Claude — 2 gauges: session + weekly
-    if (svc.sessionPct !== undefined) {
+    // Z.AI — has tokensPct (Coding Plan)
+    if (svc.tokensPct !== undefined) {
+      const planLabel = svc.plan ? svc.plan.charAt(0).toUpperCase() + svc.plan.slice(1) : 'Coding';
+      const title = `${label} ${planLabel}`;
+      const resetTime = svc.sessionResets ? new Date(svc.sessionResets).toLocaleTimeString([], {hour:'2-digit',minute:'2-digit'}) : '?';
+      const resetUTC = svc.sessionResets ? new Date(svc.sessionResets).toISOString().slice(11,16)+'Z' : '?';
+      const color = svc.sessionPct > 90 ? 'bg-red-500' : svc.sessionPct > 70 ? 'bg-yellow-500' : 'bg-green-500';
+      const tokColor = svc.tokensPct > 90 ? 'bg-red-500' : svc.tokensPct > 70 ? 'bg-yellow-500' : 'bg-green-500';
+
+      html += `<div class="flex items-center justify-between mb-3">
+        <h3 class="font-semibold text-sm">${title}</h3>
+        <span class="text-[11px] text-[var(--color-muted)]" title="UTC: ${resetUTC}">Resets ${resetTime}</span>
+      </div>`;
+      html += bar(svc.sessionPct, color, 'Session');
+      html += bar(svc.tokensPct, tokColor, 'Tokens');
+      if (svc.sessionModels?.length) {
+        const models = svc.sessionModels.map((m: any) => `${m.modelCode}:${m.usage}%`).join(' · ');
+        html += `<p class="text-[11px] text-[var(--color-muted)] mt-2">${models}</p>`;
+      }
+    }
+    // Claude — has weeklyPct
+    else if (svc.weeklyPct !== undefined) {
       const planLabel = svc.plan ? svc.plan.charAt(0).toUpperCase() + svc.plan.slice(1) : 'Pro';
       const title = `${label} ${planLabel}`;
       const resetLocal = svc.sessionResets ? new Date(svc.sessionResets) : null;
@@ -107,12 +127,17 @@ import Icon from '../components/Icon.astro';
       const pct = hasLimit ? (svc.used / svc.limit) * 100 : (svc.used > 0 ? 100 : 0);
       const color = hasLimit ? (pct > 90 ? 'bg-red-500' : pct > 70 ? 'bg-yellow-500' : 'bg-green-500') : 'bg-[var(--color-muted)]';
       const limitText = svc.limit === null ? 'no limit' : fmtCost(svc.limit);
+      const balance = svc.totalCredits ? (svc.totalCredits - (svc.totalUsage || 0)).toFixed(2) : null;
+
       html += `<div class="flex items-center justify-between mb-1">
         <h3 class="font-semibold text-sm">${label}</h3>
         <span class="text-xs text-[var(--color-muted)] tabular-nums">${fmtCost(svc.used)} / ${limitText}</span>
       </div>`;
       html += hasLimit ? bar(pct, color, '') : `<div class="mb-2"></div>`;
       html += `<p class="text-[11px] text-[var(--color-muted)] mt-1">Day ${fmtCost(svc.daily)} · Week ${fmtCost(svc.weekly)} · Month ${fmtCost(svc.monthly)}</p>`;
+      if (balance) {
+        html += `<p class="text-[11px] text-[var(--color-muted)]">Credits: ${fmtCost(svc.totalCredits)} total · ${fmtCost(parseFloat(balance))} remaining</p>`;
+      }
     }
     // DeepSeek
     else if (svc.totalBalance !== undefined) {
@@ -194,7 +219,7 @@ import Icon from '../components/Icon.astro';
   fetchUsage();
 </script>
 
-<style>
+<style is:global>
   .refreshing svg {
     animation: spin 0.8s linear infinite;
   }
