@@ -33,7 +33,7 @@ const t = content[lang];
       {t.links.map(link => (
         <a
           href={link.href}
-          class={`inline-flex items-center gap-2 text-[var(--color-muted)] transition-colors duration-150 ${link.external !== false ? 'link-underline' : 'hover:text-[var(--color-accent)]'}`}
+          class="link-underline inline-flex items-center gap-2 text-[var(--color-muted)]"
           {...(link.external !== false ? { target: '_blank', rel: 'noopener' } : {})}
         >
           <Icon name={link.icon} size={16} />
@@ -116,6 +116,29 @@ const t = content[lang];
     </div>
   </section>
 
+  <!-- Contact -->
+  <section class="mb-24 reveal">
+    <h2 class="text-xs font-semibold uppercase tracking-widest text-[var(--color-muted)] mb-6">{t.contact.title}</h2>
+    <div class="flex flex-wrap items-center gap-x-6 gap-y-3 text-sm">
+      <span class="inline-flex items-center gap-2 text-[var(--color-muted)]">
+        <span class="relative flex h-2 w-2">
+          <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
+          <span class="relative inline-flex rounded-full h-2 w-2 bg-green-500"></span>
+        </span>
+        {t.contact.status}
+      </span>
+      <span class="text-[var(--color-muted)]">{t.contact.location}</span>
+    </div>
+    <div class="flex flex-wrap gap-3 mt-6">
+      {t.contact.links.map(link => (
+        <a href={link.href} class="inline-flex items-center gap-2 px-4 py-2 text-sm border border-[var(--color-border)] rounded-full text-[var(--color-muted)] hover:text-[var(--color-accent)] hover:border-[var(--color-accent)] transition-colors duration-200" target="_blank" rel="noopener">
+          <Icon name={link.icon} size={14} />
+          {link.label}
+        </a>
+      ))}
+    </div>
+  </section>
+
   <!-- Footer -->
   <footer class="text-sm text-[var(--color-muted)] border-t border-[var(--color-border)] pt-8 reveal">
     <p>&copy; {new Date().getFullYear()} {t.hero.name}</p>
@@ -139,10 +162,11 @@ const t = content[lang];
   .link-underline {
     text-decoration: underline;
     text-decoration-color: var(--color-accent);
+    text-decoration-thickness: 1.5px;
     text-underline-offset: 3px;
     box-decoration-break: clone;
     -webkit-box-decoration-break: clone;
-    transition: background-color 0.15s ease-out, color 0.15s ease-out;
+    transition: background-color 0.2s ease-out, color 0.2s ease-out, text-decoration-color 0.2s ease-out;
   }
 
   .link-underline:hover,

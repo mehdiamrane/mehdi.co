@@ -70,6 +70,12 @@ export interface PageContent {
   experienceTitle: string;
   techStackTitle: string;
   experience: Job[];
+  contact: {
+    title: string;
+    location: string;
+    status: string;
+    links: { label: string; href: string; icon: string; external?: boolean }[];
+  };
 }
 
 const content: Record<Lang, PageContent> = {
@@ -166,6 +172,16 @@ const content: Record<Lang, PageContent> = {
         techs: ['React', 'Node.js', 'MongoDB', 'Express.js'],
       },
     ],
+    contact: {
+      title: 'Get in touch',
+      location: 'Paris, France',
+      status: 'Available for work',
+      links: [
+        { label: 'Email', href: 'mailto:me.amrane@icloud.com', icon: 'envelope' },
+        { label: 'LinkedIn', href: 'https://linkedin.com/in/mehdiamrane', icon: 'linkedin-logo' },
+        { label: 'X', href: 'https://x.com/indiemehdi', icon: 'x-logo' },
+      ],
+    },
   },
   fr: {
     meta: {
@@ -260,6 +276,16 @@ const content: Record<Lang, PageContent> = {
         techs: ['React', 'Node.js', 'MongoDB', 'Express.js'],
       },
     ],
+    contact: {
+      title: 'Me contacter',
+      location: 'Paris, France',
+      status: 'Disponible pour des missions',
+      links: [
+        { label: 'Email', href: 'mailto:me.amrane@icloud.com', icon: 'envelope' },
+        { label: 'LinkedIn', href: 'https://linkedin.com/in/mehdiamrane', icon: 'linkedin-logo' },
+        { label: 'X', href: 'https://x.com/indiemehdi', icon: 'x-logo' },
+      ],
+    },
   },
 };
 
