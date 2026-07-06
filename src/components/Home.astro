@@ -13,14 +13,16 @@ const t = content[lang];
 
 <Base title={t.meta.title} description={t.meta.description} lang={lang} image="/og/home.png">
   <!-- Hero -->
-  <header class="mb-24 reveal">
-    <div class="flex items-start gap-5 mb-8">
-      <img
-        src="/avatar.png"
-        alt={t.hero.name}
-        class="w-20 h-20 rounded-full ring-2 ring-[var(--color-border)] flex-shrink-0 object-cover"
-        width="80" height="80"
-      />
+  <header class="mb-24">
+    <div class="flex flex-col sm:flex-row items-start gap-5 mb-8">
+      <div class="w-[92px] h-[92px] rounded-full ring-2 ring-[var(--color-border)] flex-shrink-0 overflow-hidden">
+        <img
+          src="/avatar.png"
+          alt={t.hero.name}
+          class="w-full h-full rounded-full object-cover scale-[1.25]"
+          width="92" height="92"
+        />
+      </div>
       <div>
         <h1 class="text-3xl font-semibold tracking-tight mb-2">{t.hero.name}</h1>
         <p class="text-[var(--color-muted)] leading-relaxed max-w-md">
@@ -38,7 +40,7 @@ const t = content[lang];
       </span>
     </div>
 
-    <nav class="flex flex-wrap gap-x-5 gap-y-2 text-sm mb-4">
+    <nav class="flex flex-wrap gap-x-5 gap-y-2 text-sm">
       {t.links.map(link => (
         <a
           href={link.href}
@@ -54,12 +56,11 @@ const t = content[lang];
 
   <!-- Work Experience -->
   <section class="mb-24">
-    <h2 class="text-xs font-semibold uppercase tracking-widest text-[var(--color-muted)] mb-10 reveal">{t.experienceTitle}</h2>
+    <h2 class="text-xs font-semibold uppercase tracking-widest text-[var(--color-muted)] mb-10">{t.experienceTitle}</h2>
     <div class="space-y-8">
-      {t.experience.map((job, i) => (
+      {t.experience.map((job) => (
         <article
-          class="reveal group rounded-2xl border border-[var(--color-border)] bg-[var(--color-card)] overflow-hidden transition-shadow duration-300 hover:shadow-[0_12px_32px_rgba(0,0,0,0.06)] dark:hover:shadow-[0_12px_32px_rgba(255,255,255,0.06)]"
-          style={`animation-delay: ${(i + 1) * 80}ms`}
+          class="group rounded-2xl border border-[var(--color-border)] bg-[var(--color-card)] overflow-hidden transition-shadow duration-300 hover:shadow-[0_12px_32px_rgba(0,0,0,0.06)] dark:hover:shadow-[0_12px_32px_rgba(255,255,255,0.06)]"
         >
           {job.image && (
             <a
@@ -114,10 +115,10 @@ const t = content[lang];
 
   <!-- Education -->
   <section class="mb-24">
-    <h2 class="text-xs font-semibold uppercase tracking-widest text-[var(--color-muted)] mb-10 reveal">{t.educationTitle}</h2>
+    <h2 class="text-xs font-semibold uppercase tracking-widest text-[var(--color-muted)] mb-10">{t.educationTitle}</h2>
     <div class="space-y-6">
-      {t.education.map((edu, i) => (
-        <div class="reveal flex items-baseline justify-between gap-4" style={`animation-delay: ${(i + 1) * 80}ms`}>
+      {t.education.map((edu) => (
+        <div class="flex items-baseline justify-between gap-4">
           <div>
             <h3 class="font-semibold">{edu.school}</h3>
             <p class="text-sm text-[var(--color-muted)]">{edu.degree} · {edu.location}</p>
@@ -130,8 +131,8 @@ const t = content[lang];
 
   <!-- Tech Stack -->
   <section class="mb-24">
-    <h2 class="text-xs font-semibold uppercase tracking-widest text-[var(--color-muted)] mb-6 reveal">{t.techStackTitle}</h2>
-    <div class="space-y-5 reveal">
+    <h2 class="text-xs font-semibold uppercase tracking-widest text-[var(--color-muted)] mb-6">{t.techStackTitle}</h2>
+    <div class="space-y-5">
       {techStackCategories[lang].map(category => (
         <div>
           <h3 class="text-xs font-medium text-[var(--color-muted)] mb-2">{category.label}</h3>
@@ -149,7 +150,7 @@ const t = content[lang];
   </section>
 
   <!-- Contact -->
-  <section class="mb-24 reveal">
+  <section class="mb-24">
     <h2 class="text-xs font-semibold uppercase tracking-widest text-[var(--color-muted)] mb-6">{t.contact.title}</h2>
 
     <div class="flex flex-wrap items-center gap-x-5 gap-y-2 mb-7">
@@ -170,25 +171,12 @@ const t = content[lang];
   </section>
 
   <!-- Footer -->
-  <footer class="text-sm text-[var(--color-muted)] border-t border-[var(--color-border)] pt-8 reveal">
-    <p>&copy; {new Date().getFullYear()} {t.hero.name}</p>
+  <footer class="text-sm text-[var(--color-muted)] border-t border-[var(--color-border)] pt-8">
+    <p>&copy; 2020 &ndash; {new Date().getFullYear()} {t.hero.name}</p>
   </footer>
 </Base>
 
 <style is:global>
-  .reveal {
-    opacity: 0;
-    transform: translateY(12px);
-    animation: reveal 0.5s ease-out forwards;
-  }
-
-  @keyframes reveal {
-    to {
-      opacity: 1;
-      transform: translateY(0);
-    }
-  }
-
   .link-underline {
     color: inherit;
     text-decoration: none;
