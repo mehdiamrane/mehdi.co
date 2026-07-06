@@ -11,12 +11,3 @@ import Icon from './Icon.astro';
   <Icon name="sun" size={18} class="hidden dark:block" />
   <Icon name="moon" size={18} class="block dark:hidden" />
 </button>
-
-<script>
-  const button = document.getElementById('theme-toggle');
-
-  button?.addEventListener('click', () => {
-    const isDark = document.documentElement.classList.toggle('dark');
-    localStorage.setItem('theme', isDark ? 'dark' : 'light');
-  });
-</script>
