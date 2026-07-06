@@ -6,7 +6,7 @@ const experience = [
     role: 'Co-founder & Full-Stack Developer',
     company: 'Inkvoice',
     url: null,
-    period: '2025 &ndash; Present',
+    period: '2025 – Present',
     location: 'Paris, Remote',
     highlights: [
       'Architected and built a mobile-first SaaS for tattoo artists (React Native, Expo, Convex)',
@@ -18,7 +18,7 @@ const experience = [
     role: 'Front-End Developer',
     company: 'Shadow',
     url: 'https://eu.shadow.tech/shop/fr-fr',
-    period: '2022 &ndash; 2025 · 2 yr 10 mo',
+    period: '2022 \u2013 2025 · 2 yr 10 mo',
     location: 'Paris',
     highlights: [
       'Owned the shop & customer portal (subscriptions, B2C/B2B addons, payments) within a 6-dev team',
@@ -30,7 +30,7 @@ const experience = [
     role: 'Front-End Developer',
     company: 'Oxeva / Nua.ge',
     url: 'https://nua.ge/',
-    period: '2021 &ndash; 2022 · 1 yr 5 mo',
+    period: '2021 \u2013 2022 · 1 yr 5 mo',
     location: 'Paris',
     highlights: [
       'Built a 50+ component internal library (Atomic Design, Styled-Components, Storybook)',
@@ -42,7 +42,7 @@ const experience = [
     role: 'Freelance Web & Mobile Developer',
     company: 'Restaurant sector',
     url: null,
-    period: '2020 &ndash; 2021 · 9 mo',
+    period: '2020 \u2013 2021 · 9 mo',
     location: 'Lyon',
     highlights: [
       'End-to-end ordering web app (React, Next.js, Firebase, Stripe), 30% customer growth, ~500 orders',
@@ -58,12 +58,24 @@ const techStack = [
 ];
 
 const links = [
-  { label: 'Email', href: 'mailto:me.amrane@icloud.com' },
-  { label: 'LinkedIn', href: 'https://linkedin.com/in/mehdiamrane' },
-  { label: 'GitHub', href: 'https://github.com/mehdiamrane' },
-  { label: 'X', href: 'https://x.com/indiemehdi' },
-  { label: 'CV', href: '/cv', external: false },
+  { label: 'Email', href: 'mailto:me.amrane@icloud.com', icon: 'envelope' },
+  { label: 'LinkedIn', href: 'https://linkedin.com/in/mehdiamrane', icon: 'linkedin-logo' },
+  { label: 'GitHub', href: 'https://github.com/mehdiamrane', icon: 'github-logo' },
+  { label: 'X', href: 'https://x.com/indiemehdi', icon: 'x-logo' },
+  { label: 'CV', href: '/cv', icon: 'file-text', external: false },
 ];
+
+function iconPath(name: string): string {
+  const paths: Record<string, string> = {
+    'envelope': 'M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z',
+    'linkedin-logo': 'M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2zM4 6a2 2 0 100-4 2 2 0 000 4z',
+    'github-logo': 'M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 00-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0020 4.77 5.07 5.07 0 0019.91 1S18.73.65 16 2.48a13.38 13.38 0 00-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 005 4.77a5.44 5.44 0 00-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 009 18.13V22',
+    'x-logo': 'M4 4l11.733 16h4.267l-11.733 -16zM4 20l6.768 -6.768M14.538 8.538L20 4M14 4l4 2.667',
+    'file-text': 'M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8zM14 2v6h6M16 13H8M16 17H8M10 9H8',
+    'arrow-up-right': 'M7 17L17 7M7 7h10v10',
+  };
+  return paths[name] || '';
+}
 ---
 
 <Base
@@ -77,30 +89,28 @@ const links = [
       <img
         src="/avatar.png"
         alt="Mehdi Amrane"
-        class="w-16 h-16 rounded-full ring-2 ring-[var(--color-border)] flex-shrink-0 object-cover"
-        width="64" height="64"
+        class="w-20 h-20 rounded-full ring-2 ring-[var(--color-border)] flex-shrink-0 object-cover"
+        width="80" height="80"
       />
       <div>
-        <h1 class="text-2xl font-semibold tracking-tight mb-2">Mehdi Amrane</h1>
-        <p class="text-[var(--color-muted)] leading-relaxed max-w-md text-sm">
+        <h1 class="text-3xl font-semibold tracking-tight mb-2">Mehdi Amrane</h1>
+        <p class="text-[var(--color-muted)] leading-relaxed max-w-md">
           Senior Front-End Developer. React, Next.js, TypeScript. Based in Paris. I build SaaS products, mobile apps, and clean codebases.
         </p>
       </div>
     </div>
 
-    <nav class="flex flex-wrap gap-x-5 gap-y-1.5 text-sm">
+    <nav class="flex flex-wrap gap-x-5 gap-y-2 text-sm">
       {links.map(link => (
         <a
           href={link.href}
-          class="inline-flex items-center gap-1 text-[var(--color-muted)] hover:text-[var(--color-accent)] transition-colors duration-150"
+          class="inline-flex items-center gap-2 text-[var(--color-muted)] hover:text-[var(--color-accent)] transition-colors duration-150"
           {...(link.external !== false ? { target: '_blank', rel: 'noopener' } : {})}
         >
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" d={iconPath(link.icon)} />
+          </svg>
           {link.label}
-          {link.external !== false && (
-            <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="opacity-40">
-              <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 6H5.25A2.25 2.25 0 0 0 3 8.25v10.5A2.25 2.25 0 0 0 5.25 21h10.5A2.25 2.25 0 0 0 18 18.75V10.5m-10.5 6L21 3m0 0h-5.25M21 3v5.25" />
-            </svg>
-          )}
         </a>
       ))}
     </nav>
@@ -112,25 +122,25 @@ const links = [
     <div class="space-y-14">
       {experience.map((job, i) => (
         <article class="reveal" style={`animation-delay: ${(i + 1) * 80}ms`}>
-          <div class="flex items-baseline justify-between gap-4 mb-1">
-            <h3 class="font-semibold text-sm">
+          <div class="flex items-baseline justify-between gap-4 mb-2">
+            <h3 class="font-semibold">
               {job.role}
             </h3>
-            <span class="text-xs text-[var(--color-muted)] whitespace-nowrap tabular-nums">{job.period}</span>
+            <span class="text-sm text-[var(--color-muted)] whitespace-nowrap tabular-nums">{job.period}</span>
           </div>
-          <p class="text-xs text-[var(--color-muted)] mb-3">
+          <p class="text-sm text-[var(--color-muted)] mb-3">
             {job.url ? (
-              <a href={job.url} class="inline-flex items-center gap-1 font-medium text-[var(--color-text)] hover:text-[var(--color-accent)] transition-colors duration-150" target="_blank" rel="noopener">
+              <a href={job.url} class="inline-flex items-center gap-1.5 font-medium text-[var(--color-text)] hover:text-[var(--color-accent)] transition-colors duration-150 group" target="_blank" rel="noopener">
                 {job.company}
-                <svg xmlns="http://www.w3.org/2000/svg" width="11" height="11" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="opacity-50">
-                  <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 6H5.25A2.25 2.25 0 0 0 3 8.25v10.5A2.25 2.25 0 0 0 5.25 21h10.5A2.25 2.25 0 0 0 18 18.75V10.5m-10.5 6L21 3m0 0h-5.25M21 3v5.25" />
+                <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="opacity-40 group-hover:opacity-100 group-hover:text-[var(--color-accent)] transition-all duration-150">
+                  <path stroke-linecap="round" stroke-linejoin="round" d={iconPath('arrow-up-right')} />
                 </svg>
               </a>
             ) : job.company}
             <span class="mx-2">·</span>
             {job.location}
           </p>
-          <ul class="list-disc list-outside ml-4 space-y-1.5 text-xs leading-relaxed text-[var(--color-muted)]">
+          <ul class="list-disc list-outside ml-4 space-y-1.5 text-sm leading-relaxed text-[var(--color-muted)]">
             {job.highlights.map(h => <li>{h}</li>)}
           </ul>
         </article>
@@ -143,7 +153,7 @@ const links = [
     <h2 class="text-xs font-semibold uppercase tracking-widest text-[var(--color-muted)] mb-6 reveal">Tech Stack</h2>
     <div class="flex flex-wrap gap-2 reveal">
       {techStack.map(tech => (
-        <span class="px-3 py-1 text-xs border border-[var(--color-border)] rounded-full text-[var(--color-muted)] hover:text-[var(--color-text)] hover:border-[var(--color-accent)] transition-colors duration-200 cursor-default">
+        <span class="px-3 py-1 text-sm border border-[var(--color-border)] rounded-full text-[var(--color-muted)] hover:text-[var(--color-text)] hover:border-[var(--color-accent)] transition-colors duration-200 cursor-default">
           {tech}
         </span>
       ))}
@@ -151,7 +161,7 @@ const links = [
   </section>
 
   <!-- Footer -->
-  <footer class="text-xs text-[var(--color-muted)] border-t border-[var(--color-border)] pt-8 reveal">
+  <footer class="text-sm text-[var(--color-muted)] border-t border-[var(--color-border)] pt-8 reveal">
     <p>&copy; {new Date().getFullYear()} Mehdi Amrane</p>
   </footer>
 </Base>
