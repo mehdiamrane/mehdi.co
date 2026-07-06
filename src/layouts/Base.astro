@@ -2,6 +2,8 @@
 import '../styles/global.css';
 import LanguageSwitcher from '../components/LanguageSwitcher.astro';
 import ThemeToggle from '../components/ThemeToggle.astro';
+import Logo from '../components/Logo.astro';
+import Icon from '../components/Icon.astro';
 
 export interface Props {
   title: string;
@@ -16,6 +18,13 @@ const { title, description, lang = 'en', image = '/og-image.png', hrefEn, hrefFr
 const desc = description || title;
 const ogImage = new URL(image, Astro.site ?? Astro.url).toString();
 const canonicalURL = new URL(Astro.url.pathname, Astro.site ?? Astro.url).toString();
+
+const homeHref = lang === 'fr' ? '/fr/' : '/';
+const blogHref = lang === 'fr' ? '/fr/blog' : '/blog';
+const pathname = Astro.url.pathname;
+const isHomeActive = pathname === '/' || pathname === '/fr' || pathname === '/fr/';
+const isBlogActive = pathname.startsWith('/blog') || pathname.startsWith('/fr/blog');
+const navLabels = lang === 'fr' ? { home: 'Accueil', blog: 'Blog' } : { home: 'Home', blog: 'Blog' };
 ---
 
 <!doctype html>
@@ -52,12 +61,84 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site ?? Astro.url).toStri
     <meta name="twitter:image" content={ogImage} />
   </head>
   <body class="min-h-screen">
-    <main class="mx-auto max-w-2xl px-6 py-16 md:py-24">
-      <div class="flex items-center justify-end gap-4 mb-8 reveal">
-        <ThemeToggle />
-        <LanguageSwitcher lang={lang} hrefEn={hrefEn} hrefFr={hrefFr} />
+    <header class="sticky top-0 z-50 border-b border-[var(--color-border)] bg-[var(--color-bg)]/80 backdrop-blur-sm">
+      <div class="mx-auto max-w-2xl px-6 h-14 flex items-center justify-between">
+        <Logo lang={lang} />
+
+        <div class="flex items-center gap-5">
+          <nav class="hidden sm:flex items-center gap-5 text-sm font-medium" aria-label="Primary">
+            <a
+              href={homeHref}
+              class={`transition-colors duration-150 ${isHomeActive ? 'text-[var(--color-text)]' : 'text-[var(--color-muted)] hover:text-[var(--color-accent)]'}`}
+              aria-current={isHomeActive ? 'page' : undefined}
+            >
+              {navLabels.home}
+            </a>
+            <a
+              href={blogHref}
+              class={`transition-colors duration-150 ${isBlogActive ? 'text-[var(--color-text)]' : 'text-[var(--color-muted)] hover:text-[var(--color-accent)]'}`}
+              aria-current={isBlogActive ? 'page' : undefined}
+            >
+              {navLabels.blog}
+            </a>
+          </nav>
+
+          <div class="flex items-center gap-4">
+            <ThemeToggle />
+            <LanguageSwitcher lang={lang} hrefEn={hrefEn} hrefFr={hrefFr} />
+          </div>
+
+          <button
+            id="mobile-menu-toggle"
+            type="button"
+            class="sm:hidden inline-flex items-center justify-center w-7 h-7 text-[var(--color-muted)] hover:text-[var(--color-accent)] transition-colors duration-150"
+            aria-label="Toggle menu"
+            aria-expanded="false"
+            aria-controls="mobile-menu"
+          >
+            <Icon name="list" size={20} class="block" data-icon="open" />
+            <Icon name="x" size={20} class="hidden" data-icon="close" />
+          </button>
+        </div>
       </div>
+
+      <nav id="mobile-menu" class="hidden sm:hidden flex-col px-6 pb-4 text-sm font-medium" aria-label="Primary mobile">
+        <a
+          href={homeHref}
+          class={`block py-2 transition-colors duration-150 ${isHomeActive ? 'text-[var(--color-text)]' : 'text-[var(--color-muted)] hover:text-[var(--color-accent)]'}`}
+          aria-current={isHomeActive ? 'page' : undefined}
+        >
+          {navLabels.home}
+        </a>
+        <a
+          href={blogHref}
+          class={`block py-2 transition-colors duration-150 ${isBlogActive ? 'text-[var(--color-text)]' : 'text-[var(--color-muted)] hover:text-[var(--color-accent)]'}`}
+          aria-current={isBlogActive ? 'page' : undefined}
+        >
+          {navLabels.blog}
+        </a>
+      </nav>
+    </header>
+
+    <main class="mx-auto max-w-2xl px-6 py-16 md:py-24">
       <slot />
     </main>
+
+    <script>
+      const toggle = document.getElementById('mobile-menu-toggle');
+      const menu = document.getElementById('mobile-menu');
+      const openIcon = toggle?.querySelector('[data-icon="open"]');
+      const closeIcon = toggle?.querySelector('[data-icon="close"]');
+
+      toggle?.addEventListener('click', () => {
+        const isOpen = menu?.classList.toggle('flex');
+        menu?.classList.toggle('hidden', !isOpen);
+        toggle.setAttribute('aria-expanded', String(Boolean(isOpen)));
+        openIcon?.classList.toggle('hidden', isOpen);
+        openIcon?.classList.toggle('block', !isOpen);
+        closeIcon?.classList.toggle('hidden', !isOpen);
+        closeIcon?.classList.toggle('block', isOpen);
+      });
+    </script>
   </body>
 </html>

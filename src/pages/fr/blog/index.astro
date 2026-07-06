@@ -12,6 +12,7 @@ const posts = (await getCollection('blog', ({ data }) => data.lang === 'fr')).so
   title="Blog — Mehdi Amrane"
   description="Notes sur le développement front-end, les outils, et la construction de projets."
   lang="fr"
+  image="/og/blog.png"
   hrefEn="/blog"
 >
   <BlogList lang="fr" posts={posts} heading="Blog" postHref={(slug) => `/fr/blog/${slug}`} />

@@ -11,7 +11,7 @@ const { lang } = Astro.props;
 const t = content[lang];
 ---
 
-<Base title={t.meta.title} description={t.meta.description} lang={lang}>
+<Base title={t.meta.title} description={t.meta.description} lang={lang} image="/og/home.png">
   <!-- Hero -->
   <header class="mb-24 reveal">
     <div class="flex items-start gap-5 mb-8">
