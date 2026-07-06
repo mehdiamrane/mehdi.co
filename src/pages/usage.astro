@@ -85,8 +85,8 @@ import Icon from '../components/Icon.astro';
         <h3 class="font-semibold text-sm">${title}</h3>
         <span class="text-[11px] text-[var(--color-muted)]" title="UTC: ${resetUTC}">Resets ${resetTime}</span>
       </div>`;
+      html += bar(svc.tokensPct, codingColor, 'Coding wk.');
       html += bar(svc.sessionPct, mcpColor, 'MCP mo.');
-      html += bar(svc.tokensPct, codingColor, 'Coding');
       if (svc.sessionModels?.length) {
         const models = svc.sessionModels.map((m: any) => `${m.modelCode}:${m.usage}%`).join(' · ');
         html += `<p class="text-[11px] text-[var(--color-muted)] mt-2">${models}</p>`;
