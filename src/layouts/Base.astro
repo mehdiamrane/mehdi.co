@@ -8,9 +8,11 @@ export interface Props {
   description?: string;
   lang?: 'en' | 'fr';
   image?: string;
+  hrefEn?: string;
+  hrefFr?: string;
 }
 
-const { title, description, lang = 'en', image = '/og-image.png' } = Astro.props;
+const { title, description, lang = 'en', image = '/og-image.png', hrefEn, hrefFr } = Astro.props;
 const desc = description || title;
 const ogImage = new URL(image, Astro.site ?? Astro.url).toString();
 const canonicalURL = new URL(Astro.url.pathname, Astro.site ?? Astro.url).toString();
@@ -53,7 +55,7 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site ?? Astro.url).toStri
     <main class="mx-auto max-w-2xl px-6 py-16 md:py-24">
       <div class="flex items-center justify-end gap-4 mb-8 reveal">
         <ThemeToggle />
-        <LanguageSwitcher lang={lang} />
+        <LanguageSwitcher lang={lang} hrefEn={hrefEn} hrefFr={hrefFr} />
       </div>
       <slot />
     </main>

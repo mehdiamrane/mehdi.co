@@ -1,0 +1,135 @@
+---
+import { render, type CollectionEntry } from 'astro:content';
+import type { Lang } from '../data/content';
+
+export interface Props {
+  lang: Lang;
+  post: CollectionEntry<'blog'>;
+  backHref: string;
+  backLabel: string;
+}
+
+const { lang, post, backHref, backLabel } = Astro.props;
+const { Content } = await render(post);
+
+const dateFormatter = new Intl.DateTimeFormat(lang === 'fr' ? 'fr-FR' : 'en-US', {
+  year: 'numeric',
+  month: 'long',
+  day: 'numeric',
+});
+---
+
+<a
+  href={backHref}
+  class="inline-flex items-center gap-1.5 text-sm text-[var(--color-muted)] hover:text-[var(--color-accent)] transition-colors duration-150 mb-10 reveal"
+>
+  ← {backLabel}
+</a>
+
+<article class="reveal">
+  <header class="mb-10">
+    <h1 class="text-3xl font-semibold tracking-tight mb-3">{post.data.title}</h1>
+    <time datetime={post.data.date.toISOString()} class="text-sm text-[var(--color-muted)] tabular-nums">
+      {dateFormatter.format(post.data.date)}
+    </time>
+  </header>
+
+  <div class="prose">
+    <Content />
+  </div>
+</article>
+
+<style is:global>
+  .prose {
+    color: var(--color-text);
+    line-height: 1.75;
+  }
+
+  .prose p {
+    margin-bottom: 1.25em;
+  }
+
+  .prose p:last-child {
+    margin-bottom: 0;
+  }
+
+  .prose h2 {
+    font-size: 1.25rem;
+    font-weight: 600;
+    letter-spacing: -0.01em;
+    margin-top: 2em;
+    margin-bottom: 0.75em;
+  }
+
+  .prose h3 {
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin-top: 1.75em;
+    margin-bottom: 0.5em;
+  }
+
+  .prose ul,
+  .prose ol {
+    margin: 0 0 1.25em 1.25em;
+  }
+
+  .prose ul {
+    list-style: disc;
+  }
+
+  .prose ol {
+    list-style: decimal;
+  }
+
+  .prose li {
+    margin-bottom: 0.4em;
+  }
+
+  .prose strong {
+    font-weight: 600;
+  }
+
+  .prose code {
+    font-size: 0.875em;
+    background: var(--color-card);
+    border: 1px solid var(--color-border);
+    border-radius: 4px;
+    padding: 0.15em 0.4em;
+  }
+
+  .prose pre {
+    background: var(--color-card);
+    border: 1px solid var(--color-border);
+    border-radius: 8px;
+    padding: 1em;
+    overflow-x: auto;
+    margin-bottom: 1.25em;
+  }
+
+  .prose pre code {
+    border: none;
+    background: none;
+    padding: 0;
+  }
+
+  .prose blockquote {
+    border-left: 2px solid var(--color-border);
+    padding-left: 1em;
+    color: var(--color-muted);
+    margin: 1.25em 0;
+  }
+
+  .prose a {
+    color: var(--color-text);
+    text-decoration: underline;
+    text-decoration-color: var(--color-accent);
+    text-underline-offset: 3px;
+    transition: background-color 0.15s ease-out, color 0.15s ease-out;
+  }
+
+  .prose a:hover {
+    text-decoration-color: transparent;
+    background-color: var(--color-accent);
+    color: #fff;
+  }
+</style>

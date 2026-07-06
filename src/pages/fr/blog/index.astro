@@ -1,0 +1,18 @@
+---
+import Base from '../../../layouts/Base.astro';
+import BlogList from '../../../components/BlogList.astro';
+import { getCollection } from 'astro:content';
+
+const posts = (await getCollection('blog', ({ data }) => data.lang === 'fr')).sort(
+  (a, b) => b.data.date.valueOf() - a.data.date.valueOf()
+);
+---
+
+<Base
+  title="Blog — Mehdi Amrane"
+  description="Notes sur le développement front-end, les outils, et la construction de projets."
+  lang="fr"
+  hrefEn="/blog"
+>
+  <BlogList lang="fr" posts={posts} heading="Blog" postHref={(slug) => `/fr/blog/${slug}`} />
+</Base>

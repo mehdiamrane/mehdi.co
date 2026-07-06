@@ -1,0 +1,21 @@
+---
+import Base from '../../layouts/Base.astro';
+import BlogPost from '../../components/BlogPost.astro';
+import { getCollection } from 'astro:content';
+
+export async function getStaticPaths() {
+  const posts = await getCollection('blog', ({ data }) => data.lang === 'en');
+  return posts.map((post) => ({ params: { slug: post.id }, props: { post } }));
+}
+
+const { post } = Astro.props;
+---
+
+<Base
+  title={`${post.data.title} — Mehdi Amrane`}
+  description={post.data.description}
+  lang="en"
+  hrefFr="/fr/blog"
+>
+  <BlogPost lang="en" post={post} backHref="/blog" backLabel="Blog" />
+</Base>

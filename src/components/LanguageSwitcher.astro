@@ -3,14 +3,16 @@ import type { Lang } from '../data/content';
 
 export interface Props {
   lang: Lang;
+  hrefEn?: string;
+  hrefFr?: string;
 }
 
-const { lang } = Astro.props;
+const { lang, hrefEn = '/', hrefFr = '/fr/' } = Astro.props;
 ---
 
 <nav class="flex items-center gap-2 text-sm font-medium" aria-label="Language switcher">
   <a
-    href="/"
+    href={hrefEn}
     class={`transition-colors duration-150 ${lang === 'en' ? 'text-[var(--color-text)]' : 'text-[var(--color-muted)] hover:text-[var(--color-accent)]'}`}
     aria-current={lang === 'en' ? 'page' : undefined}
   >
@@ -18,7 +20,7 @@ const { lang } = Astro.props;
   </a>
   <span class="text-[var(--color-border)]">/</span>
   <a
-    href="/fr/"
+    href={hrefFr}
     class={`transition-colors duration-150 ${lang === 'fr' ? 'text-[var(--color-text)]' : 'text-[var(--color-muted)] hover:text-[var(--color-accent)]'}`}
     aria-current={lang === 'fr' ? 'page' : undefined}
   >

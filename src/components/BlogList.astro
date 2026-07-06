@@ -1,0 +1,42 @@
+---
+import type { CollectionEntry } from 'astro:content';
+import type { Lang } from '../data/content';
+
+export interface Props {
+  lang: Lang;
+  posts: CollectionEntry<'blog'>[];
+  heading: string;
+  postHref: (slug: string) => string;
+}
+
+const { lang, posts, heading, postHref } = Astro.props;
+
+const dateFormatter = new Intl.DateTimeFormat(lang === 'fr' ? 'fr-FR' : 'en-US', {
+  year: 'numeric',
+  month: 'short',
+  day: 'numeric',
+});
+---
+
+<header class="mb-16 reveal">
+  <h1 class="text-3xl font-semibold tracking-tight">{heading}</h1>
+</header>
+
+<ul>
+  {posts.map((post, i) => (
+    <li class="reveal" style={`animation-delay: ${(i + 1) * 60}ms`}>
+      <a
+        href={postHref(post.id)}
+        class="flex items-baseline justify-between gap-4 py-3 border-b border-[var(--color-border)] transition-colors duration-150 hover:text-[var(--color-accent)]"
+      >
+        <span class="font-medium">{post.data.title}</span>
+        <time
+          datetime={post.data.date.toISOString()}
+          class="text-sm text-[var(--color-muted)] whitespace-nowrap tabular-nums flex-shrink-0"
+        >
+          {dateFormatter.format(post.data.date)}
+        </time>
+      </a>
+    </li>
+  ))}
+</ul>
