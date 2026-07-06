@@ -1,7 +1,7 @@
 ---
 import Base from '../layouts/Base.astro';
 import Icon from '../components/Icon.astro';
-import content, { techIcons, techStack, type Lang } from '../data/content';
+import content, { techIcons, techStackCategories, type Lang } from '../data/content';
 
 export interface Props {
   lang: Lang;
@@ -14,6 +14,14 @@ const t = content[lang];
 <Base title={t.meta.title} description={t.meta.description} lang={lang} image="/og/home.png">
   <!-- Hero -->
   <header class="mb-24 reveal">
+    <div class="inline-flex items-center gap-1.5 text-xs text-[var(--color-muted)] mb-4">
+      <span class="relative flex h-1.5 w-1.5">
+        <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
+        <span class="relative inline-flex rounded-full h-1.5 w-1.5 bg-green-500"></span>
+      </span>
+      {t.contact.status}
+    </div>
+
     <div class="flex items-start gap-5 mb-8">
       <img
         src="/avatar.png"
@@ -49,7 +57,7 @@ const t = content[lang];
     <div class="space-y-8">
       {t.experience.map((job, i) => (
         <article
-          class="reveal group rounded-2xl border border-[var(--color-border)] bg-[var(--color-card)] overflow-hidden transition-shadow duration-300 hover:shadow-[0_12px_32px_rgba(0,0,0,0.06)]"
+          class="reveal group rounded-2xl border border-[var(--color-border)] bg-[var(--color-card)] overflow-hidden transition-shadow duration-300 hover:shadow-[0_12px_32px_rgba(0,0,0,0.06)] dark:hover:shadow-[0_12px_32px_rgba(255,255,255,0.06)]"
           style={`animation-delay: ${(i + 1) * 80}ms`}
         >
           {job.image && (
@@ -122,12 +130,19 @@ const t = content[lang];
   <!-- Tech Stack -->
   <section class="mb-24">
     <h2 class="text-xs font-semibold uppercase tracking-widest text-[var(--color-muted)] mb-6 reveal">{t.techStackTitle}</h2>
-    <div class="flex flex-wrap gap-2 reveal">
-      {techStack.map(tech => (
-        <span class="inline-flex items-center gap-2 px-3 py-1.5 text-sm border border-[var(--color-border)] rounded-full text-[var(--color-muted)] hover:text-[var(--color-text)] hover:border-[var(--color-accent)] transition-colors duration-200 cursor-default">
-          {techIcons[tech] && <img src={techIcons[tech]} alt="" width="16" height="16" class="w-4 h-4 object-contain" />}
-          {tech}
-        </span>
+    <div class="space-y-5 reveal">
+      {techStackCategories[lang].map(category => (
+        <div>
+          <h3 class="text-xs font-medium text-[var(--color-muted)] mb-2">{category.label}</h3>
+          <div class="flex flex-wrap gap-2">
+            {category.items.map(tech => (
+              <span class="inline-flex items-center gap-2 px-3 py-1.5 text-sm border border-[var(--color-border)] rounded-full text-[var(--color-muted)] hover:text-[var(--color-text)] hover:border-[var(--color-accent)] transition-colors duration-200 cursor-default">
+                {techIcons[tech] && <img src={techIcons[tech]} alt="" width="16" height="16" class="w-4 h-4 object-contain" />}
+                {tech}
+              </span>
+            ))}
+          </div>
+        </div>
       ))}
     </div>
   </section>
@@ -137,22 +152,15 @@ const t = content[lang];
     <h2 class="text-xs font-semibold uppercase tracking-widest text-[var(--color-muted)] mb-6">{t.contact.title}</h2>
 
     <div class="flex flex-wrap items-center gap-x-5 gap-y-2 mb-7">
-      <span class="inline-flex items-center gap-1.5 pl-2 pr-3 py-1 rounded-full bg-green-500/10 text-sm font-medium text-green-600 dark:text-green-400">
-        <span class="relative flex h-2 w-2">
-          <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
-          <span class="relative inline-flex rounded-full h-2 w-2 bg-green-500"></span>
-        </span>
-        {t.contact.status}
-      </span>
       <span class="inline-flex items-center gap-1.5 text-sm text-[var(--color-muted)]">
         <Icon name="map-pin" size={14} />
         {t.contact.location}
       </span>
     </div>
 
-    <div class="flex flex-wrap gap-3">
+    <div class="flex flex-wrap gap-x-5 gap-y-2 text-sm">
       {t.contact.links.map(link => (
-        <a href={link.href} class="inline-flex items-center gap-2 px-5 py-2.5 text-sm font-medium border border-[var(--color-border)] rounded-full text-[var(--color-text)] hover:bg-[var(--color-accent)]/10 hover:border-[var(--color-accent)] hover:text-[var(--color-accent)] transition-colors duration-200" target="_blank" rel="noopener">
+        <a href={link.href} class="link-underline inline-flex items-center gap-2 text-[var(--color-muted)]" target="_blank" rel="noopener">
           <Icon name={link.icon} size={14} />
           {link.label}
         </a>

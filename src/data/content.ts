@@ -36,14 +36,49 @@ export const techIcons: Record<string, string> = {
   'Vercel': '/images/techs/vercel.svg',
 };
 
-export const techStack = [
-  'TypeScript', 'JavaScript', 'React', 'Next.js', 'React Native', 'Expo',
-  'Node.js', 'Convex', 'Hono.js', 'Express.js', 'MongoDB', 'Stripe',
-  'Tailwind CSS', 'Chakra-UI', 'Styled-Components', 'Sass', 'CSS',
-  'Firebase', 'Storybook', 'Git', 'GitHub Actions', 'GitLab CI', 'Docker',
-  'Semantic-Release', 'Webpack', 'Rollup', 'Jest', 'Playwright', 'Sentry',
-  'React Query', 'Google Tag Manager', 'npm',
-];
+export interface TechCategory {
+  label: string;
+  items: string[];
+}
+
+export const techStackCategories: Record<Lang, TechCategory[]> = {
+  en: [
+    {
+      label: 'Frontend',
+      items: ['React', 'Next.js', 'React Native', 'Expo', 'TypeScript', 'JavaScript', 'Tailwind CSS', 'Chakra-UI', 'Styled-Components', 'Sass', 'CSS'],
+    },
+    {
+      label: 'Backend & Infra',
+      items: ['Node.js', 'Convex', 'Hono.js', 'Express.js', 'MongoDB', 'Docker', 'Stripe'],
+    },
+    {
+      label: 'Testing & CI/CD',
+      items: ['Jest', 'Playwright', 'Storybook', 'GitHub Actions', 'GitLab CI', 'Semantic-Release'],
+    },
+    {
+      label: 'Tooling',
+      items: ['Git', 'npm', 'Webpack', 'Rollup', 'Sentry', 'React Query', 'Google Tag Manager', 'Vercel'],
+    },
+  ],
+  fr: [
+    {
+      label: 'Frontend',
+      items: ['React', 'Next.js', 'React Native', 'Expo', 'TypeScript', 'JavaScript', 'Tailwind CSS', 'Chakra-UI', 'Styled-Components', 'Sass', 'CSS'],
+    },
+    {
+      label: 'Backend & Infra',
+      items: ['Node.js', 'Convex', 'Hono.js', 'Express.js', 'MongoDB', 'Docker', 'Stripe'],
+    },
+    {
+      label: 'Tests & CI/CD',
+      items: ['Jest', 'Playwright', 'Storybook', 'GitHub Actions', 'GitLab CI', 'Semantic-Release'],
+    },
+    {
+      label: 'Outils',
+      items: ['Git', 'npm', 'Webpack', 'Rollup', 'Sentry', 'React Query', 'Google Tag Manager', 'Vercel'],
+    },
+  ],
+};
 
 export interface Job {
   role: string;
@@ -98,7 +133,7 @@ const content: Record<Lang, PageContent> = {
       description: 'Senior Front-End Developer. React, Next.js, TypeScript. Based in Paris. I build SaaS products, mobile apps, and clean codebases.',
     },
     links: [
-      { label: 'Email', href: 'mailto:me.amrane@icloud.com', icon: 'envelope' },
+      { label: 'Email', href: 'mailto:hello@mehdi.co', icon: 'envelope' },
       { label: 'LinkedIn', href: 'https://linkedin.com/in/mehdiamrane', icon: 'linkedin-logo' },
       { label: 'GitHub', href: 'https://github.com/mehdiamrane', icon: 'github-logo' },
       { label: 'X', href: 'https://x.com/indiemehdi', icon: 'x-logo' },
@@ -201,7 +236,7 @@ const content: Record<Lang, PageContent> = {
       location: 'Paris, France',
       status: 'Available for work',
       links: [
-        { label: 'Email', href: 'mailto:me.amrane@icloud.com', icon: 'envelope' },
+        { label: 'Email', href: 'mailto:hello@mehdi.co', icon: 'envelope' },
         { label: 'LinkedIn', href: 'https://linkedin.com/in/mehdiamrane', icon: 'linkedin-logo' },
         { label: 'X', href: 'https://x.com/indiemehdi', icon: 'x-logo' },
       ],
@@ -217,7 +252,7 @@ const content: Record<Lang, PageContent> = {
       description: 'Développeur Front-End Senior. React, Next.js, TypeScript. Basé à Paris. Je construis des SaaS, des apps mobiles, et des codebases propres.',
     },
     links: [
-      { label: 'Email', href: 'mailto:me.amrane@icloud.com', icon: 'envelope' },
+      { label: 'Email', href: 'mailto:hello@mehdi.co', icon: 'envelope' },
       { label: 'LinkedIn', href: 'https://linkedin.com/in/mehdiamrane', icon: 'linkedin-logo' },
       { label: 'GitHub', href: 'https://github.com/mehdiamrane', icon: 'github-logo' },
       { label: 'X', href: 'https://x.com/indiemehdi', icon: 'x-logo' },
@@ -306,13 +341,13 @@ const content: Record<Lang, PageContent> = {
         school: 'La Capsule',
         degree: 'Développeur Web et Web Mobile (Bac+2)',
         location: 'Lyon',
-        period: 'Jan. – Mars 2020',
+        period: 'Janvier-Mars 2020',
       },
       {
         school: 'Université Lumière Lyon II',
         degree: 'Licence Administration économique et sociale',
         location: 'Lyon',
-        period: '2015 – 2018',
+        period: '2015-2018',
       },
     ],
     contact: {
@@ -320,7 +355,7 @@ const content: Record<Lang, PageContent> = {
       location: 'Paris, France',
       status: 'Disponible pour des missions',
       links: [
-        { label: 'Email', href: 'mailto:me.amrane@icloud.com', icon: 'envelope' },
+        { label: 'Email', href: 'mailto:hello@mehdi.co', icon: 'envelope' },
         { label: 'LinkedIn', href: 'https://linkedin.com/in/mehdiamrane', icon: 'linkedin-logo' },
         { label: 'X', href: 'https://x.com/indiemehdi', icon: 'x-logo' },
       ],

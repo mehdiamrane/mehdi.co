@@ -10,18 +10,17 @@ export interface Props {
 const { lang, hrefEn = '/', hrefFr = '/fr/' } = Astro.props;
 ---
 
-<nav class="flex items-center gap-2 text-sm font-medium" aria-label="Language switcher">
+<nav class="inline-flex items-center p-0.5 rounded-full border border-[var(--color-border)] text-xs font-semibold" aria-label="Language switcher">
   <a
     href={hrefEn}
-    class={`transition-colors duration-150 ${lang === 'en' ? 'text-[var(--color-text)]' : 'text-[var(--color-muted)] hover:text-[var(--color-accent)]'}`}
+    class={`px-2.5 py-1 rounded-full transition-colors duration-150 ${lang === 'en' ? 'bg-[var(--color-accent)] text-white' : 'text-[var(--color-muted)] hover:text-[var(--color-text)]'}`}
     aria-current={lang === 'en' ? 'page' : undefined}
   >
     EN
   </a>
-  <span class="text-[var(--color-border)]">/</span>
   <a
     href={hrefFr}
-    class={`transition-colors duration-150 ${lang === 'fr' ? 'text-[var(--color-text)]' : 'text-[var(--color-muted)] hover:text-[var(--color-accent)]'}`}
+    class={`px-2.5 py-1 rounded-full transition-colors duration-150 ${lang === 'fr' ? 'bg-[var(--color-accent)] text-white' : 'text-[var(--color-muted)] hover:text-[var(--color-text)]'}`}
     aria-current={lang === 'fr' ? 'page' : undefined}
   >
     FR
