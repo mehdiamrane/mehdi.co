@@ -6,7 +6,7 @@
   --color-accent: #FD3659;
   --color-bg: #fafafa;
   --color-text: #1a1a1a;
-  --color-muted: #6b7280;
+  --color-muted: #4b5563;
   --color-border: #e5e7eb;
   --color-card: #fafafa;
 }
@@ -14,7 +14,7 @@
 .dark {
   --color-bg: #0f0f0f;
   --color-text: #e5e5e5;
-  --color-muted: #9ca3af;
+  --color-muted: #d1d5db;
   --color-border: #2a2a2a;
   --color-card: #1a1a1a;
 }

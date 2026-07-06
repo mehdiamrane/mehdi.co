@@ -57,6 +57,13 @@ export interface Job {
   techs: string[];
 }
 
+export interface Education {
+  school: string;
+  degree: string;
+  location: string;
+  period: string;
+}
+
 export interface PageContent {
   meta: {
     title: string;
@@ -68,8 +75,10 @@ export interface PageContent {
   };
   links: { label: string; href: string; icon: string; external?: boolean }[];
   experienceTitle: string;
+  educationTitle: string;
   techStackTitle: string;
   experience: Job[];
+  education: Education[];
   contact: {
     title: string;
     location: string;
@@ -97,6 +106,7 @@ const content: Record<Lang, PageContent> = {
       { label: 'Blog', href: '/blog', icon: 'article', external: false },
     ],
     experienceTitle: 'Experience',
+    educationTitle: 'Education',
     techStackTitle: 'Tech Stack',
     experience: [
       {
@@ -172,6 +182,20 @@ const content: Record<Lang, PageContent> = {
         techs: ['React', 'Node.js', 'MongoDB', 'Express.js'],
       },
     ],
+    education: [
+      {
+        school: 'La Capsule',
+        degree: 'Développeur Web et Web Mobile (Bac+2)',
+        location: 'Lyon',
+        period: 'Jan – Mar 2020',
+      },
+      {
+        school: 'Université Lumière Lyon II',
+        degree: 'Licence Administration économique et sociale',
+        location: 'Lyon',
+        period: '2015 – 2018',
+      },
+    ],
     contact: {
       title: 'Get in touch',
       location: 'Paris, France',
@@ -201,6 +225,7 @@ const content: Record<Lang, PageContent> = {
       { label: 'Blog', href: '/fr/blog', icon: 'article', external: false },
     ],
     experienceTitle: 'Expérience',
+    educationTitle: 'Formation',
     techStackTitle: 'Stack Technique',
     experience: [
       {
@@ -274,6 +299,20 @@ const content: Record<Lang, PageContent> = {
           "Revue de projets étudiants et mentorat individuel tout au long de la formation",
         ],
         techs: ['React', 'Node.js', 'MongoDB', 'Express.js'],
+      },
+    ],
+    education: [
+      {
+        school: 'La Capsule',
+        degree: 'Développeur Web et Web Mobile (Bac+2)',
+        location: 'Lyon',
+        period: 'Jan. – Mars 2020',
+      },
+      {
+        school: 'Université Lumière Lyon II',
+        degree: 'Licence Administration économique et sociale',
+        location: 'Lyon',
+        period: '2015 – 2018',
       },
     ],
     contact: {

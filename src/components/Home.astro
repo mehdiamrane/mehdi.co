@@ -103,6 +103,22 @@ const t = content[lang];
     </div>
   </section>
 
+  <!-- Education -->
+  <section class="mb-24">
+    <h2 class="text-xs font-semibold uppercase tracking-widest text-[var(--color-muted)] mb-10 reveal">{t.educationTitle}</h2>
+    <div class="space-y-6">
+      {t.education.map((edu, i) => (
+        <div class="reveal flex items-baseline justify-between gap-4" style={`animation-delay: ${(i + 1) * 80}ms`}>
+          <div>
+            <h3 class="font-semibold">{edu.school}</h3>
+            <p class="text-sm text-[var(--color-muted)]">{edu.degree} · {edu.location}</p>
+          </div>
+          <span class="text-sm text-[var(--color-muted)] whitespace-nowrap tabular-nums">{edu.period}</span>
+        </div>
+      ))}
+    </div>
+  </section>
+
   <!-- Tech Stack -->
   <section class="mb-24">
     <h2 class="text-xs font-semibold uppercase tracking-widest text-[var(--color-muted)] mb-6 reveal">{t.techStackTitle}</h2>
@@ -119,19 +135,24 @@ const t = content[lang];
   <!-- Contact -->
   <section class="mb-24 reveal">
     <h2 class="text-xs font-semibold uppercase tracking-widest text-[var(--color-muted)] mb-6">{t.contact.title}</h2>
-    <div class="flex flex-wrap items-center gap-x-6 gap-y-3 text-sm">
-      <span class="inline-flex items-center gap-2 text-[var(--color-muted)]">
+
+    <div class="flex flex-wrap items-center gap-x-5 gap-y-2 mb-7">
+      <span class="inline-flex items-center gap-1.5 pl-2 pr-3 py-1 rounded-full bg-green-500/10 text-sm font-medium text-green-600 dark:text-green-400">
         <span class="relative flex h-2 w-2">
           <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
           <span class="relative inline-flex rounded-full h-2 w-2 bg-green-500"></span>
         </span>
         {t.contact.status}
       </span>
-      <span class="text-[var(--color-muted)]">{t.contact.location}</span>
+      <span class="inline-flex items-center gap-1.5 text-sm text-[var(--color-muted)]">
+        <Icon name="map-pin" size={14} />
+        {t.contact.location}
+      </span>
     </div>
-    <div class="flex flex-wrap gap-3 mt-6">
+
+    <div class="flex flex-wrap gap-3">
       {t.contact.links.map(link => (
-        <a href={link.href} class="inline-flex items-center gap-2 px-4 py-2 text-sm border border-[var(--color-border)] rounded-full text-[var(--color-muted)] hover:text-[var(--color-accent)] hover:border-[var(--color-accent)] transition-colors duration-200" target="_blank" rel="noopener">
+        <a href={link.href} class="inline-flex items-center gap-2 px-5 py-2.5 text-sm font-medium border border-[var(--color-border)] rounded-full text-[var(--color-text)] hover:bg-[var(--color-accent)]/10 hover:border-[var(--color-accent)] hover:text-[var(--color-accent)] transition-colors duration-200" target="_blank" rel="noopener">
           <Icon name={link.icon} size={14} />
           {link.label}
         </a>
