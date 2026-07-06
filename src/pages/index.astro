@@ -1,17 +1,122 @@
 ---
+import Base from '../layouts/Base.astro';
 
+const experience = [
+  {
+    role: 'Co-founder & Full-Stack Developer',
+    company: 'Inkvoice',
+    period: '2025 — Present',
+    location: 'Paris, Remote',
+    highlights: [
+      'Architected and built a mobile-first SaaS for tattoo artists (React Native, Expo, Convex)',
+      'Marketing site (Next.js), Stripe subscriptions & webhooks',
+      'Monorepo (NPM Workspaces), CI/CD via GitHub Actions, Dokploy deployment, Sentry monitoring',
+    ]
+  },
+  {
+    role: 'Front-End Developer',
+    company: 'Shadow',
+    period: '2022 — 2025 · 2 yr 10 mo',
+    location: 'Paris',
+    highlights: [
+      'Owned the shop & customer portal (subscriptions, B2C/B2B addons, payment failures) within a 6-dev front-end team',
+      'Designed and shipped an anti-churn flow, reducing cancellation rate by 10%',
+      'Set up unit & E2E testing strategy, reorganized codebase, mentored junior devs',
+    ]
+  },
+  {
+    role: 'Front-End Developer',
+    company: 'Oxeva / Nua.ge',
+    period: '2021 — 2022 · 1 yr 5 mo',
+    location: 'Paris',
+    highlights: [
+      'Built a 50+ component internal library (Atomic Design, Styled-Components, Storybook)',
+      'Set up CI/CD pipeline (GitLab CI, Semantic-Release), 80% test coverage',
+      'Owned the JavaScript SDK — bug fixes, features, NPM releases',
+    ]
+  },
+  {
+    role: 'Freelance Web & Mobile Developer',
+    company: 'Restaurant sector',
+    period: '2020 — 2021 · 9 mo',
+    location: 'Lyon',
+    highlights: [
+      'End-to-end ordering web app (React, Next.js, Firebase, Stripe) — 30% customer growth, ~500 orders processed',
+      'Mobile order management app (React Native, Fastlane, Firebase App Distribution)',
+    ]
+  },
+];
+
+const techStack = [
+  'TypeScript', 'React', 'Next.js', 'React Native', 'Expo',
+  'Node.js', 'Convex', 'Hono.js', 'Stripe', 'Tailwind CSS',
+  'Docker', 'GitHub Actions', 'Jest', 'Playwright', 'Storybook',
+];
 ---
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="icon" href="/favicon.ico" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro</h1>
-	</body>
-</html>
+<Base
+  title="Mehdi Amrane — Senior Front-End Developer"
+  description="Senior Front-End Developer specializing in React, Next.js, and TypeScript. Based in Paris."
+  lang="en"
+>
+  <!-- Header -->
+  <header class="mb-16">
+    <h1 class="text-3xl font-semibold tracking-tight mb-3">Mehdi Amrane</h1>
+    <p class="text-lg text-[var(--color-muted)] leading-relaxed max-w-lg">
+      Senior Front-End Developer — React, Next.js, TypeScript.<br/>
+      Based in Paris. I build SaaS products, mobile apps, and clean codebases.
+    </p>
+  </header>
+
+  <!-- Work Experience -->
+  <section class="mb-16">
+    <h2 class="text-xs font-semibold uppercase tracking-widest text-[var(--color-muted)] mb-8">Experience</h2>
+    <div class="space-y-10">
+      {experience.map((job) => (
+        <div>
+          <div class="flex items-baseline justify-between gap-4 mb-2">
+            <h3 class="font-semibold">{job.role}</h3>
+            <span class="text-sm text-[var(--color-muted)] whitespace-nowrap">{job.period}</span>
+          </div>
+          <p class="text-sm text-[var(--color-muted)] mb-3">
+            {job.company} · {job.location}
+          </p>
+          <ul class="list-disc list-outside ml-4 space-y-1.5 text-sm leading-relaxed">
+            {job.highlights.map(h => <li>{h}</li>)}
+          </ul>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <!-- Tech Stack -->
+  <section class="mb-16">
+    <h2 class="text-xs font-semibold uppercase tracking-widest text-[var(--color-muted)] mb-6">Tech Stack</h2>
+    <div class="flex flex-wrap gap-2">
+      {techStack.map(tech => (
+        <span class="px-3 py-1 text-sm bg-[var(--color-border)] rounded-full">
+          {tech}
+        </span>
+      ))}
+    </div>
+  </section>
+
+  <!-- Contact -->
+  <section>
+    <h2 class="text-xs font-semibold uppercase tracking-widest text-[var(--color-muted)] mb-6">Contact</h2>
+    <div class="space-y-2 text-sm">
+      <p>
+        <a href="mailto:me.amrane@icloud.com" class="text-[var(--color-accent)] hover:underline">
+          me.amrane@icloud.com
+        </a>
+      </p>
+      <p>
+        <a href="https://linkedin.com/in/mehdiamrane" class="hover:underline">LinkedIn</a>
+        <span class="text-[var(--color-muted)] mx-2">·</span>
+        <a href="https://github.com/mehdiamrane" class="hover:underline">GitHub</a>
+        <span class="text-[var(--color-muted)] mx-2">·</span>
+        <a href="https://x.com/indiemehdi" class="hover:underline">@indiemehdi</a>
+      </p>
+    </div>
+  </section>
+</Base>
