@@ -8,6 +8,44 @@
   --color-border: #e5e7eb;
 }
 
+@font-face {
+  font-family: "Phosphor";
+  src:
+    url("/fonts/Phosphor.woff2") format("woff2"),
+    url("/fonts/Phosphor.woff") format("woff"),
+    url("/fonts/Phosphor.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+  font-display: block;
+}
+
+.ph {
+  font-family: "Phosphor" !important;
+  speak: never;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+  letter-spacing: 0;
+  -webkit-font-feature-settings: "liga";
+  -moz-font-feature-settings: "liga=1";
+  -moz-font-feature-settings: "liga";
+  -ms-font-feature-settings: "liga" 1;
+  font-feature-settings: "liga";
+  -webkit-font-variant-ligatures: discretionary-ligatures;
+  font-variant-ligatures: discretionary-ligatures;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.ph-arrow-up-right::before { content: "\e004"; }
+.ph-envelope::before { content: "\e0c0"; }
+.ph-linkedin-logo::before { content: "\e198"; }
+.ph-github-logo::before { content: "\e13c"; }
+.ph-x-logo::before { content: "\e2a6"; }
+.ph-file-text::before { content: "\e122"; }
+
 body {
   font-family: 'Inter', system-ui, -apple-system, sans-serif;
   background: var(--color-bg);

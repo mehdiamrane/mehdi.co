@@ -18,7 +18,7 @@ const experience = [
     role: 'Front-End Developer',
     company: 'Shadow',
     url: 'https://eu.shadow.tech/shop/fr-fr',
-    period: '2022 \u2013 2025 · 2 yr 10 mo',
+    period: '2022 – 2025 · 2 yr 10 mo',
     location: 'Paris',
     highlights: [
       'Owned the shop & customer portal (subscriptions, B2C/B2B addons, payments) within a 6-dev team',
@@ -30,7 +30,7 @@ const experience = [
     role: 'Front-End Developer',
     company: 'Oxeva / Nua.ge',
     url: 'https://nua.ge/',
-    period: '2021 \u2013 2022 · 1 yr 5 mo',
+    period: '2021 – 2022 · 1 yr 5 mo',
     location: 'Paris',
     highlights: [
       'Built a 50+ component internal library (Atomic Design, Styled-Components, Storybook)',
@@ -42,7 +42,7 @@ const experience = [
     role: 'Freelance Web & Mobile Developer',
     company: 'Restaurant sector',
     url: null,
-    period: '2020 \u2013 2021 · 9 mo',
+    period: '2020 – 2021 · 9 mo',
     location: 'Lyon',
     highlights: [
       'End-to-end ordering web app (React, Next.js, Firebase, Stripe), 30% customer growth, ~500 orders',
@@ -58,24 +58,12 @@ const techStack = [
 ];
 
 const links = [
-  { label: 'Email', href: 'mailto:me.amrane@icloud.com', icon: 'envelope' },
-  { label: 'LinkedIn', href: 'https://linkedin.com/in/mehdiamrane', icon: 'linkedin-logo' },
-  { label: 'GitHub', href: 'https://github.com/mehdiamrane', icon: 'github-logo' },
-  { label: 'X', href: 'https://x.com/indiemehdi', icon: 'x-logo' },
-  { label: 'CV', href: '/cv', icon: 'file-text', external: false },
+  { label: 'Email', href: 'mailto:me.amrane@icloud.com', icon: 'ph-envelope' },
+  { label: 'LinkedIn', href: 'https://linkedin.com/in/mehdiamrane', icon: 'ph-linkedin-logo' },
+  { label: 'GitHub', href: 'https://github.com/mehdiamrane', icon: 'ph-github-logo' },
+  { label: 'X', href: 'https://x.com/indiemehdi', icon: 'ph-x-logo' },
+  { label: 'CV', href: '/cv', icon: 'ph-file-text', external: false },
 ];
-
-function iconPath(name: string): string {
-  const paths: Record<string, string> = {
-    'envelope': 'M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z',
-    'linkedin-logo': 'M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2zM4 6a2 2 0 100-4 2 2 0 000 4z',
-    'github-logo': 'M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 00-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0020 4.77 5.07 5.07 0 0019.91 1S18.73.65 16 2.48a13.38 13.38 0 00-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 005 4.77a5.44 5.44 0 00-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 009 18.13V22',
-    'x-logo': 'M4 4l11.733 16h4.267l-11.733 -16zM4 20l6.768 -6.768M14.538 8.538L20 4M14 4l4 2.667',
-    'file-text': 'M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8zM14 2v6h6M16 13H8M16 17H8M10 9H8',
-    'arrow-up-right': 'M7 17L17 7M7 7h10v10',
-  };
-  return paths[name] || '';
-}
 ---
 
 <Base
@@ -107,9 +95,7 @@ function iconPath(name: string): string {
           class="inline-flex items-center gap-2 text-[var(--color-muted)] hover:text-[var(--color-accent)] transition-colors duration-150"
           {...(link.external !== false ? { target: '_blank', rel: 'noopener' } : {})}
         >
-          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
-            <path stroke-linecap="round" stroke-linejoin="round" d={iconPath(link.icon)} />
-          </svg>
+          <i class={`ph ${link.icon} text-base`}></i>
           {link.label}
         </a>
       ))}
@@ -132,9 +118,7 @@ function iconPath(name: string): string {
             {job.url ? (
               <a href={job.url} class="inline-flex items-center gap-1.5 font-medium text-[var(--color-text)] hover:text-[var(--color-accent)] transition-colors duration-150 group" target="_blank" rel="noopener">
                 {job.company}
-                <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="opacity-40 group-hover:opacity-100 group-hover:text-[var(--color-accent)] transition-all duration-150">
-                  <path stroke-linecap="round" stroke-linejoin="round" d={iconPath('arrow-up-right')} />
-                </svg>
+                <i class="ph ph-arrow-up-right text-xs opacity-40 group-hover:opacity-100 group-hover:text-[var(--color-accent)] transition-all duration-150"></i>
               </a>
             ) : job.company}
             <span class="mx-2">·</span>
