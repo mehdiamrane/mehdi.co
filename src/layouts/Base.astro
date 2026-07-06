@@ -5,9 +5,13 @@ export interface Props {
   title: string;
   description?: string;
   lang?: 'en' | 'fr';
+  image?: string;
 }
 
-const { title, description, lang = 'en' } = Astro.props;
+const { title, description, lang = 'en', image = '/avatar.png' } = Astro.props;
+const desc = description || title;
+const ogImage = new URL(image, Astro.site ?? Astro.url).toString();
+const canonicalURL = new URL(Astro.url.pathname, Astro.site ?? Astro.url).toString();
 ---
 
 <!doctype html>
@@ -17,8 +21,21 @@ const { title, description, lang = 'en' } = Astro.props;
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="icon" href="/favicon.ico" />
     <meta name="viewport" content="width=device-width" />
-    <meta name="description" content={description || title} />
+    <meta name="description" content={desc} />
     <title>{title}</title>
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={desc} />
+    <meta property="og:image" content={ogImage} />
+    <meta property="og:url" content={canonicalURL} />
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={desc} />
+    <meta name="twitter:image" content={ogImage} />
   </head>
   <body class="min-h-screen">
     <main class="mx-auto max-w-2xl px-6 py-16 md:py-24">
