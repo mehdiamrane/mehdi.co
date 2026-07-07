@@ -135,6 +135,9 @@ export const HomeContent: FC<HomeContentProps> = ({ lang }) => {
             <div>
               <h3 class="text-xs font-medium text-[var(--color-muted)] mb-2">{category.label}</h3>
               <div class="flex flex-wrap gap-2">
+                {/* Tech icons served as individual SVGs (~34 requests).
+                    Trade-off: small files, but many round-trips. Fine for a personal site.
+                    Could be inlined or sprited if performance becomes an issue. */}
                 {category.items.map(tech => (
                   <span class="inline-flex items-center gap-2 px-3 py-1.5 text-xs bg-[var(--color-card)] border border-[var(--color-border)] rounded-full text-[var(--color-muted)] hover:text-[var(--color-text)] hover:border-[var(--color-accent)] transition-colors duration-200 cursor-default">
                     {techIcons[tech] && <img src={techIcons[tech]} alt="" width="16" height="16" class="w-4 h-4 object-contain flex-shrink-0" />}

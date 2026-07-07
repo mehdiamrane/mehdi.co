@@ -31,14 +31,14 @@ export interface IconProps {
 }
 
 export const Icon: FC<IconProps> = (props) => {
-  const { name, size = 16, class: className, ...rest } = props as any;
+  const { name, size = 16, class: className = "", ...rest } = props;
   const inner = iconPaths[name];
   if (!inner) return null;
-  const svgHTML = `<svg xmlns="http://www.w3.org/2000/svg" width="${size}" height="${size}" fill="currentColor" viewBox="0 0 256 256" aria-hidden="true" class="${className || ''}">${inner}</svg>`;
+  const svgHTML = `<svg xmlns="http://www.w3.org/2000/svg" width="${size}" height="${size}" fill="currentColor" viewBox="0 0 256 256" aria-hidden="true" class="${className}">${inner}</svg>`;
   // Spread remaining props (like data-icon) as HTML attributes
   let extraAttrs = "";
   for (const [k, v] of Object.entries(rest)) {
-    if (v !== undefined) extraAttrs += ` ${k}="${v}"`;
+    if (v !== undefined) extraAttrs += ` ${k}="${String(v).replace(/"/g, '&quot;')}"`;
   }
   return <span style="display:contents" dangerouslySetInnerHTML={{ __html: svgHTML.replace("<svg ", `<svg${extraAttrs} `) }} />;
 };

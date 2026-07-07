@@ -1,0 +1,13 @@
+{
+  "name": "Mehdi Amrane",
+  "short_name": "Mehdi",
+  "start_url": "/",
+  "display": "browser",
+  "icons": [
+    {
+      "src": "/favicon.png",
+      "sizes": "64x64",
+      "type": "image/png"
+    }
+  ]
+}

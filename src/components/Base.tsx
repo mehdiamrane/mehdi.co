@@ -39,6 +39,8 @@ export const Base: FC<PropsWithChildren<BaseProps>> = ({
         <meta charset="utf-8" />
         <link rel="icon" href="/favicon.ico" sizes="32x32" />
         <link rel="icon" type="image/png" href="/favicon.png" sizes="64x64" />
+        <link rel="apple-touch-icon" href="/favicon.png" />
+        <link rel="manifest" href="/site.webmanifest" />
         <meta name="viewport" content="width=device-width,initial-scale=1.0" />
         <meta name="description" content={desc} />
         <title>{title}</title>

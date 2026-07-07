@@ -100,6 +100,7 @@ async function getBlogPosts(): Promise<BlogPost[]> {
       try {
         const raw = await readFile(file.toString(), "utf-8");
         const { data, body } = parseFrontmatter(raw);
+        if (data.draft === true) continue; // Skip draft posts
         posts.push({
           slug: file.toString().split("/").pop()!.replace(".md", ""),
           title: data.title || "Untitled",
@@ -195,12 +196,46 @@ function renderBlogPostPage(post: BlogPost, lang: Lang): string {
 
 const app = new Hono();
 
+// Cache-Control for static assets
+app.use("/images/*", async (c, next) => {
+  await next();
+  c.res.headers.set("Cache-Control", "public, max-age=31536000, immutable");
+});
+app.use("/fonts/*", async (c, next) => {
+  await next();
+  c.res.headers.set("Cache-Control", "public, max-age=31536000, immutable");
+});
+app.use("/avatar.png", async (c, next) => {
+  await next();
+  c.res.headers.set("Cache-Control", "public, max-age=31536000, immutable");
+});
+app.use("/og-image.png", async (c, next) => {
+  await next();
+  c.res.headers.set("Cache-Control", "public, max-age=31536000, immutable");
+});
+app.use("/favicon.ico", async (c, next) => {
+  await next();
+  c.res.headers.set("Cache-Control", "public, max-age=31536000, immutable");
+});
+app.use("/favicon.png", async (c, next) => {
+  await next();
+  c.res.headers.set("Cache-Control", "public, max-age=31536000, immutable");
+});
+
+// CSP header
+app.use("*", async (c, next) => {
+  await next();
+  c.res.headers.set("Content-Security-Policy",
+    "default-src 'self'; script-src 'self' 'unsafe-inline' https://cdn.tailwindcss.com; style-src 'self' 'unsafe-inline'; img-src 'self' data:");
+});
+
 // Static files
 app.use("/favicon.ico", serveStatic({ path: "./public/favicon.ico" }));
 app.use("/favicon.png", serveStatic({ path: "./public/favicon.png" }));
 app.use("/avatar.png", serveStatic({ path: "./public/avatar.png" }));
 app.use("/og-image.png", serveStatic({ path: "./public/og-image.png" }));
 app.use("/robots.txt", serveStatic({ path: "./public/robots.txt" }));
+app.use("/site.webmanifest", serveStatic({ path: "./public/site.webmanifest" }));
 app.use("/images/*", serveStatic({ root: "./public" }));
 app.use("/fonts/*", serveStatic({ root: "./public" }));
 
