@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://mehdi.co/sitemap.xml

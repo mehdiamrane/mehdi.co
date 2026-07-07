@@ -196,6 +196,7 @@ app.use("/favicon.ico", serveStatic({ path: "./public/favicon.ico" }));
 app.use("/favicon.png", serveStatic({ path: "./public/favicon.png" }));
 app.use("/avatar.png", serveStatic({ path: "./public/avatar.png" }));
 app.use("/og-image.png", serveStatic({ path: "./public/og-image.png" }));
+app.use("/robots.txt", serveStatic({ path: "./public/robots.txt" }));
 app.use("/images/*", serveStatic({ root: "./public" }));
 app.use("/fonts/*", serveStatic({ root: "./public" }));
 
