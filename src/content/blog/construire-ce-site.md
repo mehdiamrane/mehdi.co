@@ -14,7 +14,7 @@ La stack actuelle est brutalement simple :
 - **Bun** fait tourner le serveur nativement. Pas de Node.js, pas de transpileur, pas de bundler.
 - **Hono** gère le routing. C'est rapide, léger, et son moteur JSX fait le rendu côté serveur sans overhead client.
 - **Tailwind CSS via CDN.** Pas de `tailwind.config.js`, pas de PostCSS, pas de build. Une balise `<script>` dans le `<head>` et Tailwind scanne le DOM à la volée. Oui, ça pèse ~70 Ko. Non, je m'en fous — le compromis vaut largement le fait de ne plus jamais attendre un build.
-- **Une dépendance.** `hono@^4`. C'est tout.
+- **Une dépendance : `hono` + `marked`.** C'est tout.
 
 ## Ce qui a changé
 
@@ -28,7 +28,7 @@ Astro est excellent pour les sites de contenu. Mais dès qu'on a besoin de SSR p
 
 ## Les chiffres
 
-- **1 dépendance** (contre ~500 avec Astro)
+- **2 dépendances** (contre ~500 avec la toolchain Astro + Tailwind)
 - **0 étape de build**
 - **828 Ko** d'assets statiques (contre 1,5 Mo après optimisation)
 - **1 commande** pour tout lancer

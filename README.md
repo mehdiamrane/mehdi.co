@@ -1,6 +1,6 @@
 # mehdi.co
 
-Personal site & AI usage dashboard. One dependency, zero build steps.
+Personal site & AI usage dashboard. Two dependencies, zero build steps.
 
 ```
 bun --watch server.tsx
@@ -41,7 +41,7 @@ That's it. Edit any file, refresh, done.
 │   │   └── Icons.tsx       # Phosphor SVG icons (inline)
 │   └── content/
 │       └── blog/           # Markdown blog posts
-└── package.json            # One dependency: hono
+└── package.json            # Two deps: hono, marked
 ```
 
 ## Routes
@@ -73,7 +73,7 @@ Data is collected every 15 minutes by a Hermes cron job running `usage/collector
 ## Local development
 
 ```bash
-# Install (one dep)
+# Install (two deps)
 bun install
 
 # Start dev server with hot reload
