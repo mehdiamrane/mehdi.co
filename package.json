@@ -5,6 +5,7 @@
     "dev": "bun --watch server.tsx"
   },
   "dependencies": {
-    "hono": "^4"
+    "hono": "^4",
+    "marked": "^18.0.5"
   }
 }

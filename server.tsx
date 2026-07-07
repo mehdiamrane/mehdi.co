@@ -8,7 +8,7 @@ import { join } from "node:path";
 import { Base } from "./src/components/Base";
 import { HomeContent } from "./src/components/HomeContent";
 import { UsageGauges } from "./src/components/UsageGauges";
-import { Icon } from "./src/components/Icons";
+import { marked } from "marked";
 import type { Lang } from "./src/data/content";
 
 const PORT = parseInt(process.env.PORT || "4321");
@@ -70,49 +70,7 @@ function parseFrontmatter(raw: string): { data: Record<string, any>; body: strin
 }
 
 function mdToHtml(md: string): string {
-  let html = md;
-
-  // Inline code
-  html = html.replace(/`([^`]+)`/g, "<code>$1</code>");
-
-  // Bold
-  html = html.replace(/\*\*(.+?)\*\*/g, "<strong>$1</strong>");
-
-  // Links
-  html = html.replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2">$1</a>');
-
-  // Headings (must be before paragraphs)
-  html = html.replace(/^### (.+)$/gm, "<h3>$1</h3>");
-  html = html.replace(/^## (.+)$/gm, "<h2>$1</h2>");
-
-  // Horizontal rules
-  html = html.replace(/^---$/gm, "<hr />");
-
-  // Unordered lists — group consecutive list items
-  // First wrap each list item
-  html = html.replace(/^- (.+)$/gm, "<li>$1</li>");
-  // Then wrap consecutive <li> blocks in <ul>
-  html = html.replace(/((?:<li>.*<\/li>\n?)+)/g, "<ul>$1</ul>");
-
-  // Paragraphs: wrap lines that aren't already HTML block elements
-  const lines = html.split("\n");
-  const result: string[] = [];
-  for (const line of lines) {
-    const trimmed = line.trim();
-    if (!trimmed) {
-      result.push("");
-      continue;
-    }
-    // Skip lines that start with HTML tags
-    if (trimmed.match(/^<(h[1-6]|ul|ol|li|hr|div|pre|blockquote|p)/)) {
-      result.push(line);
-    } else {
-      result.push(`<p>${trimmed}</p>`);
-    }
-  }
-  html = result.join("\n");
-
-  return html;
+  return marked.parse(md) as string;
 }
 
 // ─── Blog helpers ─────────────────────────────────────────────────
