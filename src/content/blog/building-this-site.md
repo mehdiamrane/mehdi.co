@@ -1,18 +1,36 @@
 ---
 title: Building this site
-date: 2026-06-02
-description: Notes on rebuilding my personal site with Astro, Tailwind, and a bit of help from Claude Code.
+date: 2026-07-07
+description: From Astro to Bun + Hono — why I dropped the build step and went full SSR with one dependency.
 lang: en
 ---
 
-I rebuilt this site from scratch with Astro. No framework baggage, just static HTML with a sprinkle of client-side JS for the theme toggle.
+I rebuilt this site twice in two weeks. The first version was Astro + Tailwind. It worked. But every change meant waiting for Astro's dev server to recompile, and I kept asking myself: *why am I building a static site that has exactly one dynamic page?*
 
-A few decisions that mattered:
+## Version 2: Bun + Hono + JSX
 
-- **Astro over Next.js.** For a mostly-static personal site, shipping zero JS by default is the right trade-off.
-- **Tailwind v4.** The new CSS-first config (`@theme` in `global.css`) removes the need for a `tailwind.config.js` entirely.
-- **i18n via routing, not a library.** Astro's built-in `i18n` config handles `/fr/*` prefixing without pulling in `astro-i18next` or similar.
+The current stack is brutally simple:
 
-The whole thing is under 200KB of shipped JS, most of which is the theme toggle script and language switcher.
+- **Bun** runs the server natively. No Node.js, no transpiler, no bundler.
+- **Hono** handles routing. It's fast, lightweight, and its JSX engine renders pages server-side with zero client overhead.
+- **Tailwind CSS via CDN.** No `tailwind.config.js`, no PostCSS, no build. One `<script>` tag in the `<head>` and Tailwind scans the DOM at runtime. Yes, it's ~70KB. No, I don't care — the trade-off is worth never running a build again.
+- **One dependency.** `hono@^4`. That's it.
 
-More notes to come as I keep tinkering with it.
+## What changed
+
+- **No build step.** `bun --watch server.tsx` reloads on every file save. Edit, refresh, done.
+- **Single process.** The usage dashboard API (`/api/usage`) lives inside the same server. No CORS, no separate port, no second tunnel.
+- **Assets are real files.** No symlinks, no build output. Static files served directly from `public/`.
+
+## Why not Astro anymore?
+
+Astro is great for content sites. But once you need SSR for a dashboard, you're either adding an API server alongside it or switching to Astro's hybrid mode — which *still* has a build step. I wanted zero friction between editing a file and seeing the result. Bun + Hono gives me that.
+
+## The numbers
+
+- **1 dependency** (down from ~500 with Astro)
+- **0 build steps**
+- **828 KB** of static assets (down from 1.5 MB after optimization)
+- **1 command** to run everything
+
+More notes as I keep simplifying.
