@@ -186,6 +186,8 @@ const API_URL = import.meta.env.PUBLIC_USAGE_API_URL || 'http://localhost:3099';
     }
   }
 
+  const order = ['claude','openAi','cursor','zai','openCodeGo','deepSeek','openRouter','kiro'];
+
   async function fetchUsage() {
     const container = document.getElementById('gauges')!;
     const updatedEl = document.getElementById('updated-at')!;
@@ -199,7 +201,14 @@ const API_URL = import.meta.env.PUBLIC_USAGE_API_URL || 'http://localhost:3099';
       const data = await res.json();
       if (data.updated) updatedEl.textContent = `Last updated: ${new Date(data.updated).toLocaleString()}`;
 
-      const entries = Object.entries(data.services || {});
+      const services = data.services || {};
+      // Sort by predefined order, then any unknown services at the end
+      const entries = order
+        .filter(k => k in services)
+        .map(k => [k, services[k]])
+        .concat(
+          Object.entries(services).filter(([k]) => !order.includes(k))
+        );
       container.innerHTML = entries.length
         ? entries.map(([n, s]) => renderGauge(n, s)).join('')
         : '<p class="text-[var(--color-muted)]">No data yet.</p>';
