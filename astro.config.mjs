@@ -14,7 +14,10 @@ export default defineConfig({
     }
   },
   server: {
-    allowedHosts: true
+    allowedHosts: true,
+    proxy: {
+      '/api': 'http://localhost:3099'
+    }
   },
   vite: {
     plugins: [tailwindcss()]

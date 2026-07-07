@@ -31,7 +31,7 @@ const API_URL = import.meta.env.PUBLIC_USAGE_API_URL || 'http://localhost:3099';
 </Base>
 
 <script>
-  const API_URL = document.getElementById('gauges')?.dataset.apiUrl || 'http://localhost:3099';
+  const API_URL = document.getElementById('gauges')?.dataset.apiUrl || '/api';
 
   const gaugeLabels: Record<string, string> = {
     openRouter: 'OpenRouter', deepSeek: 'DeepSeek', zai: 'Z.AI',
