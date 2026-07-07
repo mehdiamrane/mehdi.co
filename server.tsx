@@ -10,9 +10,9 @@ import { HomeContent } from "./src/components/HomeContent";
 import { UsageGauges } from "./src/components/UsageGauges";
 import { marked } from "marked";
 import type { Lang } from "./src/data/content";
+import { shared } from "./src/data/content";
 
 const PORT = parseInt(process.env.PORT || "4321");
-const CV_URL = "https://drive.google.com/drive/folders/1HeYTn72Iy9IqNsPSv6_5kWeDEiaAbjze?usp=sharing";
 const BLOG_DIR = join(import.meta.dir, "src", "content", "blog");
 const USAGE_JSON = join(import.meta.dir, "usage", "usage.json");
 const COLLECTOR_PATH = join(import.meta.dir, "usage", "collector.ts");
@@ -221,8 +221,8 @@ app.get("/fr/usage", (c) => c.html(renderUsagePage("fr")));
 
 // ─── CV Redirect ──────────────────────────────────────────────────
 
-app.get("/cv", (c) => c.redirect(CV_URL, 307));
-app.get("/fr/cv", (c) => c.redirect(CV_URL, 307));
+app.get("/cv", (c) => c.redirect(shared.cvUrl, 307));
+app.get("/fr/cv", (c) => c.redirect(shared.cvUrl, 307));
 
 // ─── API Routes ───────────────────────────────────────────────────
 
