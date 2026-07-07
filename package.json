@@ -1,0 +1,10 @@
+{
+  "name": "mehdi.co",
+  "type": "module",
+  "scripts": {
+    "dev": "bun --watch server.tsx"
+  },
+  "dependencies": {
+    "hono": "^4"
+  }
+}

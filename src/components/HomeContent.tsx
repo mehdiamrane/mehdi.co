@@ -1,0 +1,172 @@
+/** @jsxImportSource hono/jsx */
+import type { FC } from "hono/jsx";
+import type { Lang } from "../data/content";
+import content, { techIcons, techStackCategories } from "../data/content";
+import { Icon } from "./Icons";
+
+export interface HomeContentProps {
+  lang: Lang;
+}
+
+export const HomeContent: FC<HomeContentProps> = ({ lang }) => {
+  const t = content[lang];
+  return (
+    <>
+      {/* Hero */}
+      <header class="mb-24">
+        <div class="flex flex-col sm:flex-row items-start gap-5 mb-8">
+          <div class="w-[92px] h-[92px] rounded-full ring-2 ring-[var(--color-border)] flex-shrink-0 overflow-hidden">
+            <img
+              src="/avatar.png"
+              alt={t.hero.name}
+              class="w-full h-full rounded-full object-cover scale-[1.25]"
+              width="92" height="92"
+            />
+          </div>
+          <div>
+            <h1 class="text-3xl font-semibold tracking-tight mb-2">{t.hero.name}</h1>
+            <p class="text-[var(--color-muted)] leading-relaxed max-w-md">
+              {t.hero.description}
+            </p>
+          </div>
+        </div>
+
+        <div class="inline-flex items-center gap-1.5 text-xs mb-4">
+          <span class="inline-flex items-center gap-1.5 px-3 py-1.5 text-xs bg-[var(--color-card)] border border-[var(--color-border)] rounded-full text-[var(--color-muted)]">
+            <span class="relative flex h-1.5 w-1.5">
+              <span class="relative inline-flex rounded-full h-1.5 w-1.5 bg-green-500"></span>
+            </span>
+            {t.contact.status}
+          </span>
+        </div>
+
+        <nav class="flex flex-wrap gap-x-5 gap-y-2 text-sm">
+          {t.links.map(link => (
+            <a
+              href={link.href}
+              class="link-underline inline-flex items-center gap-2 text-[var(--color-muted)]"
+              {...(link.external !== false ? { target: '_blank', rel: 'noopener' } : {})}
+            >
+              <Icon name={link.icon} size={16} />
+              {link.label}
+            </a>
+          ))}
+        </nav>
+      </header>
+
+      {/* Work Experience */}
+      <section class="mb-24">
+        <h2 class="text-xs font-semibold uppercase tracking-widest text-[var(--color-muted)] mb-10">{t.experienceTitle}</h2>
+        <div class="space-y-8">
+          {t.experience.map((job) => (
+            <article class="group rounded-2xl border border-[var(--color-border)] bg-[var(--color-card)] overflow-hidden transition-shadow duration-300 hover:shadow-[0_12px_32px_rgba(0,0,0,0.06)] dark:hover:shadow-[0_12px_32px_rgba(255,255,255,0.06)]">
+              {job.image && (
+                <a
+                  href={job.url ?? undefined}
+                  target={job.url ? '_blank' : undefined}
+                  rel={job.url ? 'noopener' : undefined}
+                  class={`block overflow-hidden ${job.url ? '' : 'pointer-events-none'}`}
+                  tabindex={job.url ? 0 : -1}
+                >
+                  <img
+                    src={job.image}
+                    alt={job.imageAlt}
+                    loading="lazy"
+                    class="w-full h-40 sm:h-48 object-cover transition-transform duration-500 group-hover:scale-[1.04]"
+                  />
+                </a>
+              )}
+
+              <div class="p-6 sm:p-7">
+                <div class="flex items-baseline justify-between gap-4 mb-2">
+                  <h3 class="font-semibold">
+                    {job.role}
+                  </h3>
+                  <span class="text-sm text-[var(--color-muted)] whitespace-nowrap tabular-nums">{job.period}</span>
+                </div>
+                <p class="text-sm text-[var(--color-muted)] mb-3">
+                  {job.url ? (
+                    <a href={job.url} class="link-underline inline-flex items-center gap-1 font-medium text-[var(--color-text)]" target="_blank" rel="noopener">
+                      {job.company}
+                      <Icon name="arrow-up-right" size={11} class="-mt-px" />
+                    </a>
+                  ) : <span class="font-medium text-[var(--color-text)]">{job.company}</span>}
+                  <span class="mx-2">·</span>
+                  {job.location}
+                </p>
+                <ul class="list-disc list-outside ml-4 space-y-1.5 text-sm leading-relaxed text-[var(--color-muted)] mb-4">
+                  {job.highlights.map(h => <li>{h}</li>)}
+                </ul>
+                <div class="flex flex-wrap gap-1.5">
+                  {job.techs.map(tech => (
+                    <span class="inline-flex items-center gap-1.5 px-2.5 py-1 text-xs rounded-full border border-[var(--color-border)] text-[var(--color-muted)]">
+                      {techIcons[tech] && <img src={techIcons[tech]} alt="" width="12" height="12" class="w-3 h-3 object-contain" />}
+                      {tech}
+                    </span>
+                  ))}
+                </div>
+              </div>
+            </article>
+          ))}
+        </div>
+      </section>
+
+      {/* Education */}
+      <section class="mb-24">
+        <h2 class="text-xs font-semibold uppercase tracking-widest text-[var(--color-muted)] mb-10">{t.educationTitle}</h2>
+        <div class="space-y-6">
+          {t.education.map((edu) => (
+            <div class="flex items-baseline justify-between gap-4">
+              <div>
+                <h3 class="font-semibold">{edu.school}</h3>
+                <p class="text-sm text-[var(--color-muted)]">{edu.degree} · {edu.location}</p>
+              </div>
+              <span class="text-sm text-[var(--color-muted)] whitespace-nowrap tabular-nums">{edu.period}</span>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* Tech Stack */}
+      <section class="mb-24">
+        <h2 class="text-xs font-semibold uppercase tracking-widest text-[var(--color-muted)] mb-6">{t.techStackTitle}</h2>
+        <div class="space-y-5">
+          {techStackCategories[lang].map(category => (
+            <div>
+              <h3 class="text-xs font-medium text-[var(--color-muted)] mb-2">{category.label}</h3>
+              <div class="flex flex-wrap gap-2">
+                {category.items.map(tech => (
+                  <span class="inline-flex items-center gap-2 px-3 py-1.5 text-xs bg-[var(--color-card)] border border-[var(--color-border)] rounded-full text-[var(--color-muted)] hover:text-[var(--color-text)] hover:border-[var(--color-accent)] transition-colors duration-200 cursor-default">
+                    {techIcons[tech] && <img src={techIcons[tech]} alt="" width="16" height="16" class="w-4 h-4 object-contain flex-shrink-0" />}
+                    {tech}
+                  </span>
+                ))}
+              </div>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* Contact */}
+      <section>
+        <h2 class="text-xs font-semibold uppercase tracking-widest text-[var(--color-muted)] mb-6">{t.contact.title}</h2>
+
+        <div class="flex flex-wrap items-center gap-x-5 gap-y-2 mb-7">
+          <span class="inline-flex items-center gap-1.5 text-sm text-[var(--color-muted)]">
+            <Icon name="map-pin" size={14} />
+            {t.contact.location}
+          </span>
+        </div>
+
+        <div class="flex flex-wrap gap-x-5 gap-y-2 text-sm">
+          {t.contact.links.map(link => (
+            <a href={link.href} class="link-underline inline-flex items-center gap-2 text-[var(--color-muted)]" target="_blank" rel="noopener">
+              <Icon name={link.icon} size={14} />
+              {link.label}
+            </a>
+          ))}
+        </div>
+      </section>
+    </>
+  );
+};

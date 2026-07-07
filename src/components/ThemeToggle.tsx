@@ -1,0 +1,20 @@
+/** @jsxImportSource hono/jsx */
+import type { FC } from "hono/jsx";
+import { Icon } from "./Icons";
+import type { Lang } from "../data/content";
+
+export interface ThemeToggleProps {
+  lang?: Lang;
+}
+
+export const ThemeToggle: FC<ThemeToggleProps> = () => (
+  <button
+    id="theme-toggle"
+    type="button"
+    aria-label="Toggle dark mode"
+    class="inline-flex items-center justify-center w-7 h-7 rounded-full text-[var(--color-muted)] hover:text-[var(--color-accent)] transition-colors duration-150 cursor-pointer"
+  >
+    <Icon name="sun" size={18} class="hidden dark:block" />
+    <Icon name="moon" size={18} class="block dark:hidden" />
+  </button>
+);

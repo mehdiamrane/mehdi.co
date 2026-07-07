@@ -1,0 +1,44 @@
+{
+  "updated": "2026-07-07T00:44:54.703Z",
+  "services": {
+    "openRouter": {
+      "status": "not_configured",
+      "error": "No OPENROUTER_API_KEY set"
+    },
+    "deepSeek": {
+      "status": "not_configured",
+      "error": "No DEEPSEEK_API_KEY set"
+    },
+    "zai": {
+      "status": "not_configured",
+      "error": "No ZAI_API_KEY set"
+    },
+    "claude": {
+      "status": "ok",
+      "plan": "pro",
+      "sessionPct": 0,
+      "sessionResets": null,
+      "weeklyPct": 7,
+      "weeklyResets": "2026-07-13T02:59:59.617164+00:00",
+      "overageCredits": 0,
+      "overageLimit": 5000,
+      "models": {}
+    },
+    "openAi": {
+      "status": "not_configured",
+      "error": "No OPENAI_ADMIN_KEY set"
+    },
+    "kiro": {
+      "status": "not_configured",
+      "error": "kiro-cli not installed"
+    },
+    "openCodeGo": {
+      "status": "not_configured",
+      "error": "Browser cookie scraping — not yet implemented"
+    },
+    "cursor": {
+      "status": "not_configured",
+      "error": "Browser cookie scraping — not yet implemented"
+    }
+  }
+}
