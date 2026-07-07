@@ -1,5 +1,5 @@
 {
-  "updated": "2026-07-07T00:53:31.287Z",
+  "updated": "2026-07-07T01:00:39.495Z",
   "services": {
     "openRouter": {
       "status": "ok",
@@ -45,7 +45,7 @@
       "sessionPct": 0,
       "sessionResets": null,
       "weeklyPct": 7,
-      "weeklyResets": "2026-07-13T02:59:59.634101+00:00",
+      "weeklyResets": "2026-07-13T02:59:59.688423+00:00",
       "overageCredits": 0,
       "overageLimit": 5000,
       "models": {}
