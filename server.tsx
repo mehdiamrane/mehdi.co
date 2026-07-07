@@ -19,6 +19,10 @@ const COLLECTOR_PATH = join(import.meta.dir, "usage", "collector.ts");
 
 // ─── Helpers ─────────────────────────────────────────────────────
 
+function escapeXml(s: string): string {
+  return s.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;").replace(/'/g, "&apos;");
+}
+
 function renderPage(lang: Lang, Component: FC<{ lang: Lang }>, extra?: { title?: string; description?: string; image?: string; pathname?: string }): string {
   const t = extra || {};
   return "<!doctype html>" + String(
@@ -329,6 +333,26 @@ app.get("/sitemap.xml", async (c) => {
   xml += `</urlset>`;
 
   return c.text(xml, 200, { "Content-Type": "application/xml" });
+});
+
+// ─── RSS Feed ──────────────────────────────────────────────────────
+
+app.get("/rss.xml", async (c) => {
+  const allPosts = await getBlogPosts();
+  const baseUrl = "https://mehdi.co";
+
+  const items = allPosts
+    .sort((a, b) => b.date.getTime() - a.date.getTime())
+    .map(post => {
+      const loc = post.lang === "fr" ? `/fr/blog/${post.slug}` : `/blog/${post.slug}`;
+      const pubDate = post.date instanceof Date ? post.date.toUTCString() : new Date(post.date).toUTCString();
+      return `    <item>\n      <title>${escapeXml(post.title)}</title>\n      <link>${baseUrl}${loc}</link>\n      <description>${escapeXml(post.description)}</description>\n      <pubDate>${pubDate}</pubDate>\n      <guid>${baseUrl}${loc}</guid>\n    </item>`;
+    })
+    .join("\n");
+
+  const rss = `<?xml version="1.0" encoding="UTF-8"?>\n<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">\n  <channel>\n    <title>Mehdi Amrane — Blog</title>\n    <link>${baseUrl}</link>\n    <description>Blog posts by Mehdi Amrane on front-end development, tools, and building things.</description>\n    <language>en</language>\n    <atom:link href="${baseUrl}/rss.xml" rel="self" type="application/rss+xml"/>\n${items}\n  </channel>\n</rss>`;
+
+  return c.text(rss, 200, { "Content-Type": "application/rss+xml" });
 });
 
 // ─── Health ───────────────────────────────────────────────────────
