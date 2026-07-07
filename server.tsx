@@ -39,7 +39,7 @@ function renderUsagePage(lang: Lang): string {
       lang,
       title: "Usage — Mehdi Amrane",
       description: "AI services usage dashboard",
-      image: "/og/home.png",
+      image: "/og-image.png",
       pathname: "/usage",
       children: jsx(UsageGauges, {}),
     })
@@ -70,7 +70,10 @@ function parseFrontmatter(raw: string): { data: Record<string, any>; body: strin
 }
 
 function mdToHtml(md: string): string {
-  return marked.parse(md) as string;
+  const html = marked.parse(md) as string;
+  // Strip dangerous tags (marked allows raw HTML by default)
+  return html.replace(/<script[^>]*>[\s\S]*?<\/script>/gi, "")
+             .replace(/<iframe[^>]*>[\s\S]*?<\/iframe>/gi, "");
 }
 
 // ─── Blog helpers ─────────────────────────────────────────────────
@@ -101,9 +104,9 @@ async function getBlogPosts(): Promise<BlogPost[]> {
           lang: data.lang || "en",
           html: mdToHtml(body),
         });
-      } catch {}
+      } catch (e) { console.warn("Failed to parse blog post:", file, e); }
     }
-  } catch {}
+  } catch (e) { console.warn("Failed to read blog directory:", e); }
   return posts;
 }
 
@@ -143,7 +146,7 @@ function renderBlogListPage(posts: BlogPost[], lang: Lang): string {
       lang,
       title: "Blog — Mehdi Amrane",
       description: lang === "fr" ? descFr : descEn,
-      image: "/og/blog.png",
+      image: "/og-image.png",
       pathname: lang === "fr" ? "/fr/blog" : "/blog",
       children: content,
     })
@@ -179,7 +182,7 @@ function renderBlogPostPage(post: BlogPost, lang: Lang): string {
       lang,
       title: `${post.title} — Mehdi Amrane`,
       description: post.description,
-      image: `/og/${post.slug}.png`,
+      image: "/og-image.png",
       pathname: lang === "fr" ? `/fr/blog/${post.slug}` : `/blog/${post.slug}`,
       children: content,
     })
@@ -233,14 +236,29 @@ app.get("/api/usage", async (c) => {
   }
 });
 
+// Simple rate limiter for /api/refresh
+const refreshCooldowns = new Map<string, number>();
+const REFRESH_COOLDOWN = 60_000; // 1 minute between refreshes
+
 app.post("/api/refresh", async (c) => {
+  const ip = c.req.header("x-forwarded-for") || c.req.header("x-real-ip") || "unknown";
+  const last = refreshCooldowns.get(ip);
+  const now = Date.now();
+  if (last && (now - last) < REFRESH_COOLDOWN) {
+    return c.json({ error: "Rate limited — try again in " + Math.ceil((REFRESH_COOLDOWN - (now - last)) / 1000) + "s" }, 429);
+  }
+  refreshCooldowns.set(ip, now);
+
   const proc = Bun.spawn(["bun", "run", COLLECTOR_PATH], {
     stdout: "pipe",
     stderr: "pipe",
     cwd: join(import.meta.dir, "usage"),
   });
+  const timeout = setTimeout(() => { proc.kill(); }, 30_000);
+
   const output = await new Response(proc.stdout).text();
   await proc.exited;
+  clearTimeout(timeout);
 
   if (proc.exitCode !== 0) {
     return c.json({ error: "Collector failed", output }, 500);
@@ -283,6 +301,31 @@ app.get("/fr/blog/:slug", async (c) => {
 // ─── Health ───────────────────────────────────────────────────────
 
 app.get("/health", (c) => c.json({ status: "ok" }));
+
+// ─── 404 ───────────────────────────────────────────────────────────
+
+app.notFound((c) => {
+  return c.html(renderPage("en", () => (
+    <div class="text-center py-24">
+      <h1 class="text-6xl font-bold text-[var(--color-muted)] mb-4">404</h1>
+      <p class="text-[var(--color-muted)] mb-6">This page doesn't exist.</p>
+      <a href="/" class="text-[var(--color-accent)] hover:underline">← Back home</a>
+    </div>
+  ), { title: "404 — Mehdi Amrane", pathname: c.req.path }));
+}, 404);
+
+// ─── Error handler ─────────────────────────────────────────────────
+
+app.onError((err, c) => {
+  console.error("Server error:", err);
+  return c.html(renderPage("en", () => (
+    <div class="text-center py-24">
+      <h1 class="text-6xl font-bold text-[var(--color-muted)] mb-4">500</h1>
+      <p class="text-[var(--color-muted)] mb-6">Something went wrong.</p>
+      <a href="/" class="text-[var(--color-accent)] hover:underline">← Back home</a>
+    </div>
+  ), { title: "500 — Mehdi Amrane", pathname: c.req.path }), 500);
+});
 
 // ─── Start ────────────────────────────────────────────────────────
 

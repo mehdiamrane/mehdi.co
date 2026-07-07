@@ -39,20 +39,20 @@ export const Base: FC<PropsWithChildren<BaseProps>> = ({
         <meta charset="utf-8" />
         <link rel="icon" href="/favicon.ico" sizes="32x32" />
         <link rel="icon" type="image/png" href="/favicon.png" sizes="64x64" />
-        <meta name="viewport" content="width=device-width" />
+        <meta name="viewport" content="width=device-width,initial-scale=1.0" />
         <meta name="description" content={desc} />
         <title>{title}</title>
 
         <meta property="og:type" content="website" />
         <meta property="og:title" content={title} />
         <meta property="og:description" content={desc} />
-        <meta property="og:image" content={image} />
-        <meta property="og:url" content={pathname} />
+        <meta property="og:image" content={image.startsWith("http") ? image : `https://mehdi.co${image}`} />
+        <meta property="og:url" content={`https://mehdi.co${pathname}`} />
 
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content={title} />
         <meta name="twitter:description" content={desc} />
-        <meta name="twitter:image" content={image} />
+        <meta name="twitter:image" content={image.startsWith("http") ? image : `https://mehdi.co${image}`} />
 
         <script src="https://cdn.tailwindcss.com"></script>
         <script

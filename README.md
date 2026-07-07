@@ -20,6 +20,39 @@ That's it. Edit any file, refresh, done.
 
 **Why no build step?** Because this is a personal site, not a SaaS. Bun runs TypeScript and JSX natively. Hono renders pages server-side. Tailwind CDN scans the DOM at runtime. There is nothing to compile.
 
+## How it works
+
+This is **not a static site**. Every request is server-side rendered (SSR):
+
+1. Request hits Hono → route matched
+2. JSX component renders to an HTML string on the server
+3. Full HTML page returned to the browser
+
+No build step, no pre-generated HTML files, no hydration. The JSX is evaluated at request time.
+
+### SSR vs Astro vs Next.js
+
+| | Astro SSG | Astro hybrid | **This setup** | Next.js |
+|---|---|---|---|---|
+| Build step | Required | Required | **None** | Required |
+| Static pages | Pre-built HTML | `prerender: true` | SSR on demand | SSG/ISR |
+| Dynamic pages | N/A | SSR | **SSR** | SSR + RSC |
+| API routes | Endpoints | Endpoints | **Same process** | Route handlers |
+| Client JS | 0 KB default | 0 KB default | Vanilla `<script>` | React runtime |
+| Dependencies | ~500 | ~500 | **2** | ~800+ |
+
+### Can it do webapp stuff like Next.js?
+
+Yes — but differently. For interactivity, use:
+- Vanilla JS in `<script>` tags (what we do now — theme toggle, mobile menu, dashboard fetch)
+- `hono/jsx/dom` — a 2KB reactive UI layer (like a mini-React) for complex interactive pages, no extra dependency needed
+
+And because it's Bun:
+- WebSocket support is built-in (`Bun.serve` WebSocket)
+- SQLite via `bun:sqlite` (no ORM needed)
+- Postgres via `Bun.sql`
+- File system, streams, crypto — all native
+
 ## Project structure
 
 ```
