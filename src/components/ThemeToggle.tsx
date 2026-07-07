@@ -1,13 +1,8 @@
 /** @jsxImportSource hono/jsx */
 import type { FC } from "hono/jsx";
 import { Icon } from "./Icons";
-import type { Lang } from "../data/content";
 
-export interface ThemeToggleProps {
-  lang?: Lang;
-}
-
-export const ThemeToggle: FC<ThemeToggleProps> = () => (
+export const ThemeToggle: FC = () => (
   <button
     id="theme-toggle"
     type="button"

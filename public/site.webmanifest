@@ -1,8 +1,11 @@
 {
   "name": "Mehdi Amrane",
   "short_name": "Mehdi",
+  "description": "Senior Front-End Developer — React, Next.js, TypeScript.",
   "start_url": "/",
   "display": "browser",
+  "theme_color": "#FD3659",
+  "background_color": "#fafafa",
   "icons": [
     {
       "src": "/favicon.png",

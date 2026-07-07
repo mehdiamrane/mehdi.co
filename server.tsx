@@ -264,7 +264,21 @@ app.get("/fr/cv", (c) => c.redirect(shared.cvUrl, 307));
 
 // ─── API Routes ───────────────────────────────────────────────────
 
+// Rate limit for API endpoints
+const apiCooldowns = new Map<string, number>();
+const API_COOLDOWN = 10_000; // 10s between API calls per IP
+
+function checkApiRateLimit(c: any): boolean {
+  const ip = c.req.header("x-forwarded-for") || c.req.header("x-real-ip") || "unknown";
+  const last = apiCooldowns.get(ip);
+  const now = Date.now();
+  if (last && (now - last) < API_COOLDOWN) return false;
+  apiCooldowns.set(ip, now);
+  return true;
+}
+
 app.get("/api/usage", async (c) => {
+  if (!checkApiRateLimit(c)) return c.json({ error: "Rate limited" }, 429);
   try {
     const raw = await readFile(USAGE_JSON, "utf-8");
     const data = JSON.parse(raw);
@@ -372,22 +386,34 @@ app.get("/sitemap.xml", async (c) => {
 
 // ─── RSS Feed ──────────────────────────────────────────────────────
 
-app.get("/rss.xml", async (c) => {
-  const allPosts = await getBlogPosts();
+function renderRss(posts: BlogPost[], lang: "en" | "fr"): string {
   const baseUrl = "https://mehdi.co";
+  const isFr = lang === "fr";
+  const title = isFr ? "Mehdi Amrane — Blog" : "Mehdi Amrane — Blog";
+  const desc = isFr ? "Articles de Mehdi Amrane sur le développement front-end." : "Blog posts by Mehdi Amrane on front-end development.";
+  const feedPath = isFr ? "/fr/rss.xml" : "/rss.xml";
 
-  const items = allPosts
+  const items = posts
+    .filter(p => p.lang === lang)
     .sort((a, b) => b.date.getTime() - a.date.getTime())
     .map(post => {
-      const loc = post.lang === "fr" ? `/fr/blog/${post.slug}` : `/blog/${post.slug}`;
+      const loc = `/blog/${post.slug}`;
       const pubDate = post.date instanceof Date ? post.date.toUTCString() : new Date(post.date).toUTCString();
-      return `    <item>\n      <title>${escapeXml(post.title)}</title>\n      <link>${baseUrl}${loc}</link>\n      <description>${escapeXml(post.description)}</description>\n      <pubDate>${pubDate}</pubDate>\n      <guid>${baseUrl}${loc}</guid>\n    </item>`;
+      return `    <item xml:lang="${lang}">\n      <title>${escapeXml(post.title)}</title>\n      <link>${baseUrl}${loc}</link>\n      <description>${escapeXml(post.description)}</description>\n      <pubDate>${pubDate}</pubDate>\n      <guid>${baseUrl}${loc}</guid>\n    </item>`;
     })
     .join("\n");
 
-  const rss = `<?xml version="1.0" encoding="UTF-8"?>\n<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">\n  <channel>\n    <title>Mehdi Amrane — Blog</title>\n    <link>${baseUrl}</link>\n    <description>Blog posts by Mehdi Amrane on front-end development, tools, and building things.</description>\n    <language>en</language>\n    <atom:link href="${baseUrl}/rss.xml" rel="self" type="application/rss+xml"/>\n${items}\n  </channel>\n</rss>`;
+  return `<?xml version="1.0" encoding="UTF-8"?>\n<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">\n  <channel>\n    <title>${title}</title>\n    <link>${baseUrl}</link>\n    <description>${desc}</description>\n    <language>${lang}</language>\n    <atom:link href="${baseUrl}${feedPath}" rel="self" type="application/rss+xml"/>\n${items}\n  </channel>\n</rss>`;
+}
 
-  return c.text(rss, 200, { "Content-Type": "application/rss+xml" });
+app.get("/rss.xml", async (c) => {
+  const posts = await getBlogPosts();
+  return c.text(renderRss(posts, "en"), 200, { "Content-Type": "application/rss+xml" });
+});
+
+app.get("/fr/rss.xml", async (c) => {
+  const posts = await getBlogPosts();
+  return c.text(renderRss(posts, "fr"), 200, { "Content-Type": "application/rss+xml" });
 });
 
 // ─── Health ───────────────────────────────────────────────────────
@@ -397,26 +423,36 @@ app.get("/health", (c) => c.json({ status: "ok" }));
 // ─── 404 ───────────────────────────────────────────────────────────
 
 app.notFound((c) => {
-  return c.html(renderPage("en", () => (
+  const isFr = c.req.path.startsWith("/fr");
+  const lang: Lang = isFr ? "fr" : "en";
+  const txt = isFr
+    ? { title: "404 — Page introuvable", msg: "Cette page n'existe pas.", back: "← Retour" }
+    : { title: "404 — Page not found", msg: "This page doesn't exist.", back: "← Back home" };
+  return c.html(renderPage(lang, () => (
     <div class="text-center py-24">
       <h1 class="text-6xl font-bold text-[var(--color-muted)] mb-4">404</h1>
-      <p class="text-[var(--color-muted)] mb-6">This page doesn't exist.</p>
-      <a href="/" class="text-[var(--color-accent)] hover:underline">← Back home</a>
+      <p class="text-[var(--color-muted)] mb-6">{txt.msg}</p>
+      <a href={isFr ? "/fr/" : "/"} class="text-[var(--color-accent)] hover:underline">{txt.back}</a>
     </div>
-  ), { title: "404 — Mehdi Amrane", pathname: c.req.path }), 404);
+  ), { title: txt.title, pathname: c.req.path }), 404);
 }, 404);
 
 // ─── Error handler ─────────────────────────────────────────────────
 
 app.onError((err, c) => {
   console.error("Server error:", err);
-  return c.html(renderPage("en", () => (
+  const isFr = c.req.path.startsWith("/fr");
+  const lang: Lang = isFr ? "fr" : "en";
+  const txt = isFr
+    ? { title: "500 — Erreur serveur", msg: "Une erreur est survenue.", back: "← Retour" }
+    : { title: "500 — Server error", msg: "Something went wrong.", back: "← Back home" };
+  return c.html(renderPage(lang, () => (
     <div class="text-center py-24">
       <h1 class="text-6xl font-bold text-[var(--color-muted)] mb-4">500</h1>
-      <p class="text-[var(--color-muted)] mb-6">Something went wrong.</p>
-      <a href="/" class="text-[var(--color-accent)] hover:underline">← Back home</a>
+      <p class="text-[var(--color-muted)] mb-6">{txt.msg}</p>
+      <a href={isFr ? "/fr/" : "/"} class="text-[var(--color-accent)] hover:underline">{txt.back}</a>
     </div>
-  ), { title: "500 — Mehdi Amrane", pathname: c.req.path }), 500);
+  ), { title: txt.title, pathname: c.req.path }), 500);
 });
 
 // ─── Start ────────────────────────────────────────────────────────

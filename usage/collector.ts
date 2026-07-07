@@ -239,7 +239,7 @@ async function fetchKiro(): Promise<ServiceResult> {
       status: "ok",
       creditsUsed: creditsMatch ? parseFloat(creditsMatch[1].replace(/,/g, "")) : 0,
       planCap: capMatch ? parseInt(capMatch[1].replace(/[,.]/g, "")) : 0,
-      overages: overageMatch ? parseInt(overageMatch[1].replace(/[,.]/g, "")) : 0,
+      overages: overageMatch ? parseFloat(overageMatch[1].replace(/,/g, "")) : 0,
       estimatedCost: costMatch ? parseFloat(costMatch[1]) : 0,
     };
   } catch (e: any) {
