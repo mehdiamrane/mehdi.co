@@ -297,6 +297,40 @@ app.get("/fr/blog/:slug", async (c) => {
   return c.html(renderBlogPostPage(post, "fr"));
 });
 
+// ─── Sitemap ───────────────────────────────────────────────────────
+
+app.get("/sitemap.xml", async (c) => {
+  const allPosts = await getBlogPosts();
+  const baseUrl = "https://mehdi.co";
+
+  const staticPages = [
+    { loc: "/", changefreq: "monthly", priority: "1.0" },
+    { loc: "/fr/", changefreq: "monthly", priority: "1.0" },
+    { loc: "/usage", changefreq: "daily", priority: "0.8" },
+    { loc: "/fr/usage", changefreq: "daily", priority: "0.8" },
+    { loc: "/blog", changefreq: "weekly", priority: "0.9" },
+    { loc: "/fr/blog", changefreq: "weekly", priority: "0.9" },
+    { loc: "/cv", changefreq: "monthly", priority: "0.7" },
+    { loc: "/fr/cv", changefreq: "monthly", priority: "0.7" },
+  ];
+
+  let xml = `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n`;
+
+  for (const page of staticPages) {
+    xml += `  <url>\n    <loc>${baseUrl}${page.loc}</loc>\n    <changefreq>${page.changefreq}</changefreq>\n    <priority>${page.priority}</priority>\n  </url>\n`;
+  }
+
+  for (const post of allPosts) {
+    const loc = post.lang === "fr" ? `/fr/blog/${post.slug}` : `/blog/${post.slug}`;
+    const lastmod = post.date instanceof Date ? post.date.toISOString() : new Date(post.date).toISOString();
+    xml += `  <url>\n    <loc>${baseUrl}${loc}</loc>\n    <lastmod>${lastmod}</lastmod>\n    <changefreq>monthly</changefreq>\n    <priority>0.6</priority>\n  </url>\n`;
+  }
+
+  xml += `</urlset>`;
+
+  return c.text(xml, 200, { "Content-Type": "application/xml" });
+});
+
 // ─── Health ───────────────────────────────────────────────────────
 
 app.get("/health", (c) => c.json({ status: "ok" }));
