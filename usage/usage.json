@@ -1,17 +1,43 @@
 {
-  "updated": "2026-07-07T00:44:54.703Z",
+  "updated": "2026-07-07T00:53:31.287Z",
   "services": {
     "openRouter": {
-      "status": "not_configured",
-      "error": "No OPENROUTER_API_KEY set"
+      "status": "ok",
+      "used": 0.414583625,
+      "limit": null,
+      "daily": 0,
+      "weekly": 0,
+      "monthly": 0,
+      "isFreeTier": false,
+      "totalCredits": 150,
+      "totalUsage": 128.374485091
     },
     "deepSeek": {
       "status": "not_configured",
       "error": "No DEEPSEEK_API_KEY set"
     },
     "zai": {
-      "status": "not_configured",
-      "error": "No ZAI_API_KEY set"
+      "status": "ok",
+      "plan": "lite",
+      "sessionPct": 100,
+      "sessionResets": 1784622620997,
+      "sessionModels": [
+        {
+          "modelCode": "search-prime",
+          "usage": 61
+        },
+        {
+          "modelCode": "web-reader",
+          "usage": 39
+        },
+        {
+          "modelCode": "zread",
+          "usage": 0
+        }
+      ],
+      "tokensPct": 0,
+      "tokensUnit": 3,
+      "tokensNumber": 5
     },
     "claude": {
       "status": "ok",
@@ -19,7 +45,7 @@
       "sessionPct": 0,
       "sessionResets": null,
       "weeklyPct": 7,
-      "weeklyResets": "2026-07-13T02:59:59.617164+00:00",
+      "weeklyResets": "2026-07-13T02:59:59.634101+00:00",
       "overageCredits": 0,
       "overageLimit": 5000,
       "models": {}

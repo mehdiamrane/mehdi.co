@@ -279,6 +279,7 @@ app.post("/api/refresh", async (c) => {
   const proc = Bun.spawn(["bun", "run", COLLECTOR_PATH], {
     stdout: "pipe",
     stderr: "pipe",
+    cwd: join(import.meta.dir, "usage"),
   });
   const output = await new Response(proc.stdout).text();
   await proc.exited;
