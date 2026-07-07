@@ -21,7 +21,7 @@ const API_URL = import.meta.env.PUBLIC_USAGE_API_URL || 'http://localhost:3099';
   </header>
 
   <div id="gauges" class="space-y-4" data-api-url={API_URL}>
-    {['openRouter','deepSeek','zai','claude','openAi','kiro','openCodeGo','cursor'].map(name => (
+    {['claude','openAi','cursor','zai','openCodeGo','deepSeek','openRouter','kiro'].map(name => (
       <div class="rounded-2xl border border-[var(--color-border)] bg-[var(--color-card)] p-5 animate-pulse">
         <div class="h-4 w-24 bg-[var(--color-border)] rounded mb-3"></div>
         <div class="h-2 w-full bg-[var(--color-border)] rounded"></div>
