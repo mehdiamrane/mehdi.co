@@ -194,6 +194,7 @@ body { font-family: 'Inter', system-ui, -apple-system, sans-serif; background: v
         />
       </head>
       <body class="min-h-screen flex flex-col">
+        <a href="#main" class="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-50 focus:px-4 focus:py-2 focus:bg-[var(--color-accent)] focus:text-white focus:rounded-full focus:font-medium">Skip to content</a>
         <header class="sticky top-0 z-50 border-b border-[var(--color-border)] bg-[var(--color-bg)]/80 backdrop-blur-sm">
           <div class="mx-auto max-w-2xl px-6 h-14 flex items-center justify-between">
             <a href={homeHref} class="logo inline-flex items-center text-xl font-semibold text-[var(--color-text)]" aria-label="mehdi.co">
@@ -261,7 +262,7 @@ body { font-family: 'Inter', system-ui, -apple-system, sans-serif; background: v
           </nav>
         </header>
 
-        <main class="grow mx-auto w-full max-w-2xl px-6 py-16 md:py-24">
+        <main id="main" class="grow mx-auto w-full max-w-2xl px-6 py-16 md:py-24">
           {children}
         </main>
 
