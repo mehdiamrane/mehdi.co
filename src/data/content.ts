@@ -5,6 +5,12 @@ export const shared = {
   cvUrl: "https://drive.google.com/drive/folders/1HeYTn72Iy9IqNsPSv6_5kWeDEiaAbjze?usp=sharing",
 } as const;
 
+// Blog texts (both languages)
+export const blogDescription: Record<Lang, string> = {
+  en: "Notes on front-end development, tools, and building things.",
+  fr: "Notes sur le développement front-end, les outils, et la construction de projets.",
+};
+
 export const techIcons: Record<string, string> = {
   'React': '/images/techs/react.svg',
   'TypeScript': '/images/techs/typescript.svg',

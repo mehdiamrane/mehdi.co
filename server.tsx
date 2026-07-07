@@ -10,7 +10,7 @@ import { HomeContent } from "./src/components/HomeContent";
 import { UsageGauges } from "./src/components/UsageGauges";
 import { marked } from "marked";
 import type { Lang } from "./src/data/content";
-import { shared } from "./src/data/content";
+import { shared, blogDescription } from "./src/data/content";
 
 const PORT = parseInt(process.env.PORT || "4321");
 const BLOG_DIR = join(import.meta.dir, "src", "content", "blog");
@@ -112,8 +112,6 @@ async function getBlogPosts(): Promise<BlogPost[]> {
 
 function renderBlogListPage(posts: BlogPost[], lang: Lang): string {
   const heading = "Blog";
-  const descEn = "Notes on front-end development, tools, and building things.";
-  const descFr = "Notes sur le développement front-end, les outils, et la construction de projets.";
   const dateFormatter = new Intl.DateTimeFormat(lang === "fr" ? "fr-FR" : "en-US", {
     year: "numeric", month: "short", day: "numeric",
   });
@@ -145,7 +143,7 @@ function renderBlogListPage(posts: BlogPost[], lang: Lang): string {
     jsx(Base, {
       lang,
       title: "Blog — Mehdi Amrane",
-      description: lang === "fr" ? descFr : descEn,
+      description: blogDescription[lang],
       image: "/og-image.png",
       pathname: lang === "fr" ? "/fr/blog" : "/blog",
       children: content,
