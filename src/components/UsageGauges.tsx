@@ -42,7 +42,7 @@ export const UsageGauges: FC = () => {
   const fmtCost = (n) => typeof n !== 'number' ? '$?' : '$'+n.toFixed(2);
 
   function bar(pct, color, label) {
-    return '<div class="flex items-center gap-3 mb-1.5"><span class="text-[11px] text-[var(--color-muted)] w-16 flex-shrink-0">'+label+'</span><div class="flex-1 h-1.5 bg-[var(--color-border)] rounded-full overflow-hidden"><div class="h-full '+color+' rounded-full transition-all duration-500" style="width:'+Math.min(pct,100)+'%"></div></div><span class="text-[11px] text-[var(--color-muted)] tabular-nums w-10 text-right">'+pct+'%</span></div>';
+    return '<div class="flex items-center gap-3 mb-1.5"><span class="text-[11px] text-[var(--color-muted)] w-16 flex-shrink-0">'+label+'</span><div class="flex-1 h-1.5 bg-[var(--color-border)] rounded-full overflow-hidden"><div class="h-full '+color+' rounded-full transition-all duration-500" style="width:'+Math.min(pct,100)+'%" role="progressbar" aria-valuenow="'+Math.round(pct)+'" aria-valuemin="0" aria-valuemax="100" aria-label="'+label+'"></div></div><span class="text-[11px] text-[var(--color-muted)] tabular-nums w-10 text-right">'+Math.round(pct)+'%</span></div>';
   }
 
   function renderGauge(name, svc) {
