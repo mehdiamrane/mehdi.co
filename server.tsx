@@ -311,7 +311,7 @@ app.notFound((c) => {
       <p class="text-[var(--color-muted)] mb-6">This page doesn't exist.</p>
       <a href="/" class="text-[var(--color-accent)] hover:underline">← Back home</a>
     </div>
-  ), { title: "404 — Mehdi Amrane", pathname: c.req.path }));
+  ), { title: "404 — Mehdi Amrane", pathname: c.req.path }), 404);
 }, 404);
 
 // ─── Error handler ─────────────────────────────────────────────────

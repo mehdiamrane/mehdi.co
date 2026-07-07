@@ -45,7 +45,7 @@ export const HomeContent: FC<HomeContentProps> = ({ lang }) => {
             <a
               href={link.href}
               class="link-underline inline-flex items-center gap-2 text-[var(--color-muted)]"
-              {...(link.external !== false ? { target: '_blank', rel: 'noopener' } : {})}
+              {...(link.external !== false ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
             >
               <Icon name={link.icon} size={16} />
               {link.label}
@@ -64,7 +64,7 @@ export const HomeContent: FC<HomeContentProps> = ({ lang }) => {
                 <a
                   href={job.url ?? undefined}
                   target={job.url ? '_blank' : undefined}
-                  rel={job.url ? 'noopener' : undefined}
+                  rel={job.url ? 'noopener noreferrer' : undefined}
                   class={`block overflow-hidden ${job.url ? '' : 'pointer-events-none'}`}
                   tabindex={job.url ? 0 : -1}
                 >
@@ -86,7 +86,7 @@ export const HomeContent: FC<HomeContentProps> = ({ lang }) => {
                 </div>
                 <p class="text-sm text-[var(--color-muted)] mb-3">
                   {job.url ? (
-                    <a href={job.url} class="link-underline inline-flex items-center gap-1 font-medium text-[var(--color-text)]" target="_blank" rel="noopener">
+                    <a href={job.url} class="link-underline inline-flex items-center gap-1 font-medium text-[var(--color-text)]" target="_blank" rel="noopener noreferrer">
                       {job.company}
                       <Icon name="arrow-up-right" size={11} class="-mt-px" />
                     </a>
@@ -160,7 +160,7 @@ export const HomeContent: FC<HomeContentProps> = ({ lang }) => {
 
         <div class="flex flex-wrap gap-x-5 gap-y-2 text-sm">
           {t.contact.links.map(link => (
-            <a href={link.href} class="link-underline inline-flex items-center gap-2 text-[var(--color-muted)]" target="_blank" rel="noopener">
+            <a href={link.href} class="link-underline inline-flex items-center gap-2 text-[var(--color-muted)]" target="_blank" rel="noopener noreferrer">
               <Icon name={link.icon} size={14} />
               {link.label}
             </a>

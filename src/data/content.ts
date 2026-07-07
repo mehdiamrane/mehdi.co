@@ -138,6 +138,7 @@ const content: Record<Lang, PageContent> = {
       { label: 'GitHub', href: 'https://github.com/mehdiamrane', icon: 'github-logo' },
       { label: 'X', href: 'https://x.com/indiemehdi', icon: 'x-logo' },
       { label: 'CV', href: '/cv', icon: 'file-text', external: false },
+      { label: 'Blog', href: '/blog', icon: 'article', external: false },
     ],
     experienceTitle: 'Experience',
     educationTitle: 'Education',

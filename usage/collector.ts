@@ -2,6 +2,14 @@
 // Run: bun run collector.ts
 // Cron: every 15min, no LLM needed unless error
 
+const FETCH_TIMEOUT = 15_000; // 15 second timeout for all API calls
+
+function fetchWithTimeout(url: string, opts: RequestInit = {}, timeout = FETCH_TIMEOUT): Promise<Response> {
+  const controller = new AbortController();
+  const timer = setTimeout(() => controller.abort(), timeout);
+  return fetch(url, { ...opts, signal: controller.signal }).finally(() => clearTimeout(timer));
+}
+
 const CONFIG = {
   outputPath: process.env.HOME + "/dev/mehdi.co-bun/usage/usage.json",
   openRouterKey: process.env.OPENROUTER_API_KEY,
@@ -35,8 +43,8 @@ async function fetchOpenRouter(): Promise<ServiceResult> {
 
     // Fetch both key usage and account credits
     const [keyRes, creditsRes] = await Promise.all([
-      fetch("https://openrouter.ai/api/v1/key", { headers }),
-      fetch("https://openrouter.ai/api/v1/credits", { headers }),
+      fetchWithTimeout("https://openrouter.ai/api/v1/key", { headers }),
+      fetchWithTimeout("https://openrouter.ai/api/v1/credits", { headers }),
     ]);
 
     const keyData = keyRes.ok ? await keyRes.json() : null;
@@ -67,7 +75,7 @@ async function fetchDeepSeek(): Promise<ServiceResult> {
     return { status: "not_configured", error: "No DEEPSEEK_API_KEY set" };
   }
   try {
-    const res = await fetch("https://api.deepseek.com/user/balance", {
+    const res = await fetchWithTimeout("https://api.deepseek.com/user/balance", {
       headers: { Authorization: `Bearer ${CONFIG.deepSeekKey}` },
     });
     if (!res.ok) return { status: "error", error: `HTTP ${res.status}` };
@@ -90,7 +98,7 @@ async function fetchZai(): Promise<ServiceResult> {
     return { status: "not_configured", error: "No ZAI_API_KEY set" };
   }
   try {
-    const res = await fetch("https://api.z.ai/api/monitor/usage/quota/limit", {
+    const res = await fetchWithTimeout("https://api.z.ai/api/monitor/usage/quota/limit", {
       headers: { Authorization: `Bearer ${CONFIG.zaiKey}` },
     });
     if (!res.ok) return { status: "error", error: `HTTP ${res.status}` };
@@ -129,8 +137,8 @@ async function fetchClaude(): Promise<ServiceResult> {
     if (!accessToken) {
       return { status: "error", error: "No OAuth token in .credentials.json" };
     }
-    const res = await fetch("https://api.anthropic.com/api/oauth/usage", {
-      headers: { Authorization: `Bearer ${accessToken}`, "Content-Type": "application/json" },
+    const res = await fetchWithTimeout("https://api.anthropic.com/api/oauth/usage", {
+      headers: { Authorization: *** ${accessToken}`, "Content-Type": "application/json" },
     });
     if (!res.ok) return { status: "error", error: `HTTP ${res.status}` };
     const data = await res.json();
@@ -181,9 +189,9 @@ async function fetchOpenAi(): Promise<ServiceResult> {
     const now = new Date();
     const startOfMonth = new Date(now.getFullYear(), now.getMonth(), 1).toISOString().split("T")[0];
     const today = now.toISOString().split("T")[0];
-    const res = await fetch(
+    const res = await fetchWithTimeout(
       `https://api.openai.com/v1/organization/costs?start_time=${startOfMonth}&end_time=${today}&limit=1000`,
-      { headers: { Authorization: `Bearer ${CONFIG.openAiAdminKey}`, "Content-Type": "application/json" } }
+      { headers: { Authorization: *** ${CONFIG.openAiAdminKey}`, "Content-Type": "application/json" } }
     );
     if (!res.ok) return { status: "error", error: `HTTP ${res.status}` };
     const data = await res.json();
@@ -229,7 +237,7 @@ async function fetchKiro(): Promise<ServiceResult> {
 
     return {
       status: "ok",
-      creditsUsed: creditsMatch ? parseInt(creditsMatch[1].replace(/[,.]/g, "")) : 0,
+      creditsUsed: creditsMatch ? parseFloat(creditsMatch[1].replace(/,/g, "")) : 0,
       planCap: capMatch ? parseInt(capMatch[1].replace(/[,.]/g, "")) : 0,
       overages: overageMatch ? parseInt(overageMatch[1].replace(/[,.]/g, "")) : 0,
       estimatedCost: costMatch ? parseFloat(costMatch[1]) : 0,
