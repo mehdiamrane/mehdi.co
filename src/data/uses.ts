@@ -22,7 +22,7 @@ const uses: Record<Lang, UsesData> = {
     description: "Hardware, software, and tools I use daily.",
     editor: [
       { name: "Cursor", description: "AI-first code editor — my daily driver", url: "https://cursor.com/" },
-      { name: "Material Theme Palenight High Contrast", description: "My go-to theme. Also adapted it for Telegram iOS", url: "https://github.com/mehdiamrane/telegram-themes" },
+      { name: "Material Theme Palenight High Contrast", description: "My go-to theme, adapted from the Material Palenight palette" },
       { name: "JetBrains Mono", description: "The only font that looks good at any size", url: "https://www.jetbrains.com/lp/mono/" },
       { name: "ZSH", description: "My shell of choice, configured via dotfiles", url: "https://github.com/mehdiamrane/dotfiles" },
     ],
@@ -74,7 +74,7 @@ const uses: Record<Lang, UsesData> = {
     description: "Le matériel, les logiciels et les outils que j'utilise au quotidien.",
     editor: [
       { name: "Cursor", description: "Éditeur de code augmenté par IA — mon outil principal", url: "https://cursor.com/" },
-      { name: "Material Theme Palenight High Contrast", description: "Mon thème fétiche. Je l'ai aussi adapté pour Telegram iOS", url: "https://github.com/mehdiamrane/telegram-themes" },
+      { name: "Material Theme Palenight High Contrast", description: "Mon thème fétiche, adapté de la palette Material Palenight" },
       { name: "JetBrains Mono", description: "La seule police qui reste nette quelle que soit la taille", url: "https://www.jetbrains.com/lp/mono/" },
       { name: "ZSH", description: "Mon shell, configuré via mes dotfiles", url: "https://github.com/mehdiamrane/dotfiles" },
     ],
