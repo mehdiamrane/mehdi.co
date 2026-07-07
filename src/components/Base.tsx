@@ -44,6 +44,21 @@ export const Base: FC<PropsWithChildren<BaseProps>> = ({
         <title>{title}</title>
         <link rel="canonical" href={`https://mehdi.co${pathname}`} />
 
+        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "Person",
+          "name": "Mehdi Amrane",
+          "url": "https://mehdi.co",
+          "jobTitle": "Senior Front-End Developer",
+          "sameAs": [
+            "https://linkedin.com/in/mehdiamrane",
+            "https://github.com/mehdiamrane",
+            "https://x.com/indiemehdi",
+          ],
+          "knowsAbout": ["React", "Next.js", "TypeScript", "React Native", "Node.js"],
+          "description": "Senior Front-End Developer specializing in React, Next.js, and TypeScript. Based in Paris.",
+        }) }} />
+
         <meta property="og:type" content="website" />
         <meta property="og:title" content={title} />
         <meta property="og:description" content={desc} />
