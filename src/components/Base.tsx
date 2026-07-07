@@ -24,9 +24,13 @@ export const Base: FC<PropsWithChildren<BaseProps>> = ({
   const desc = description || title;
   const homeHref = lang === "fr" ? "/fr/" : "/";
   const blogHref = lang === "fr" ? "/fr/blog" : "/blog";
+  const aboutHref = lang === "fr" ? "/fr/about" : "/about";
+  const usesHref = lang === "fr" ? "/fr/uses" : "/uses";
   const isHomeActive = pathname === "/" || pathname === "/fr" || pathname === "/fr/";
   const isBlogActive = pathname.startsWith("/blog") || pathname.startsWith("/fr/blog");
-  const navLabels = lang === "fr" ? { home: "Accueil", blog: "Blog" } : { home: "Home", blog: "Blog" };
+  const isAboutActive = pathname === "/about" || pathname === "/fr/about";
+  const isUsesActive = pathname === "/uses" || pathname === "/fr/uses";
+  const navLabels = lang === "fr" ? { home: "Accueil", blog: "Blog", about: "À propos", uses: "Uses" } : { home: "Home", blog: "Blog", about: "About", uses: "Uses" };
 
   return (
     <html lang={lang}>
@@ -240,6 +244,22 @@ body { font-family: 'Inter', system-ui, -apple-system, sans-serif; background: v
                 >
                   {navLabels.blog}
                 </a>
+                <a
+                  href={aboutHref}
+                  class={`transition-colors duration-150 ${isAboutActive ? 'text-[var(--color-text)] font-semibold' : 'text-[var(--color-muted)] hover:text-[var(--color-accent)]'}`}
+                  style={isAboutActive ? 'box-shadow: inset 0 -0.125em 0 var(--color-accent)' : ''}
+                  aria-current={isAboutActive ? 'page' : undefined}
+                >
+                  {navLabels.about}
+                </a>
+                <a
+                  href={usesHref}
+                  class={`transition-colors duration-150 ${isUsesActive ? 'text-[var(--color-text)] font-semibold' : 'text-[var(--color-muted)] hover:text-[var(--color-accent)]'}`}
+                  style={isUsesActive ? 'box-shadow: inset 0 -0.125em 0 var(--color-accent)' : ''}
+                  aria-current={isUsesActive ? 'page' : undefined}
+                >
+                  {navLabels.uses}
+                </a>
               </nav>
 
               <div class="flex items-center gap-4">
@@ -275,6 +295,20 @@ body { font-family: 'Inter', system-ui, -apple-system, sans-serif; background: v
               aria-current={isBlogActive ? 'page' : undefined}
             >
               <span style={isBlogActive ? 'box-shadow: inset 0 -0.125em 0 var(--color-accent)' : ''}>{navLabels.blog}</span>
+            </a>
+            <a
+              href={aboutHref}
+              class={`block py-2 transition-colors duration-150 ${isAboutActive ? 'text-[var(--color-text)] font-semibold' : 'text-[var(--color-muted)] hover:text-[var(--color-accent)]'}`}
+              aria-current={isAboutActive ? 'page' : undefined}
+            >
+              <span style={isAboutActive ? 'box-shadow: inset 0 -0.125em 0 var(--color-accent)' : ''}>{navLabels.about}</span>
+            </a>
+            <a
+              href={usesHref}
+              class={`block py-2 transition-colors duration-150 ${isUsesActive ? 'text-[var(--color-text)] font-semibold' : 'text-[var(--color-muted)] hover:text-[var(--color-accent)]'}`}
+              aria-current={isUsesActive ? 'page' : undefined}
+            >
+              <span style={isUsesActive ? 'box-shadow: inset 0 -0.125em 0 var(--color-accent)' : ''}>{navLabels.uses}</span>
             </a>
           </nav>
         </header>

@@ -7,6 +7,8 @@ import { readFile } from "node:fs/promises";
 import { join } from "node:path";
 import { Base } from "./src/components/Base";
 import { HomeContent } from "./src/components/HomeContent";
+import { AboutContent } from "./src/components/AboutContent";
+import { UsesContent } from "./src/components/UsesContent";
 import { UsageGauges } from "./src/components/UsageGauges";
 import { marked } from "marked";
 import type { Lang } from "./src/data/content";
@@ -262,6 +264,32 @@ app.get("/fr/usage", (c) => c.html(renderUsagePage("fr")));
 app.get("/cv", (c) => c.redirect(shared.cvUrl, 307));
 app.get("/fr/cv", (c) => c.redirect(shared.cvUrl, 307));
 
+// ─── About Page ────────────────────────────────────────────────────
+
+app.get("/about", (c) => c.html(renderPage("en", AboutContent, {
+  title: "About — Mehdi Amrane",
+  description: "Senior Front-End Developer based in Paris. React, Next.js, TypeScript. Building SaaS and mobile apps.",
+  pathname: "/about",
+})));
+app.get("/fr/about", (c) => c.html(renderPage("fr", AboutContent, {
+  title: "À propos — Mehdi Amrane",
+  description: "Développeur Front-End Senior basé à Paris. React, Next.js, TypeScript. Je construis des SaaS et des apps mobiles.",
+  pathname: "/fr/about",
+})));
+
+// ─── Uses Page ─────────────────────────────────────────────────────
+
+app.get("/uses", (c) => c.html(renderPage("en", UsesContent, {
+  title: "Uses — Mehdi Amrane",
+  description: "Hardware, software, and tools I use daily.",
+  pathname: "/uses",
+})));
+app.get("/fr/uses", (c) => c.html(renderPage("fr", UsesContent, {
+  title: "Uses — Mehdi Amrane",
+  description: "Le matériel, les logiciels et les outils que j'utilise au quotidien.",
+  pathname: "/fr/uses",
+})));
+
 // ─── API Routes ───────────────────────────────────────────────────
 
 // Rate limit for API endpoints
@@ -419,6 +447,87 @@ app.get("/fr/rss.xml", async (c) => {
 // ─── Health ───────────────────────────────────────────────────────
 
 app.get("/health", (c) => c.json({ status: "ok" }));
+
+// ─── CMS Page System ───────────────────────────────────────────────
+
+const PAGES_DIR = join(import.meta.dir, "src", "content", "pages");
+
+app.get("/:page", async (c) => {
+  const page = c.req.param("page");
+  // Skip reserved paths
+  if (["blog", "usage", "cv", "api", "health", "rss.xml", "sitemap.xml", "favicon.ico", "favicon.png", "robots.txt", "site.webmanifest", "about", "uses"].includes(page)) {
+    return c.notFound();
+  }
+
+  const filePath = join(PAGES_DIR, `${page}.en.md`);
+  try {
+    const raw = await readFile(filePath, "utf-8");
+    const { data, body } = parseFrontmatter(raw);
+    if (data.draft === true) return c.notFound();
+
+    const html = mdToHtml(body);
+    const title = data.title || page;
+    const description = data.description || "";
+
+    return c.html(renderPage("en", () => (
+      <article>
+        <header class="mb-10">
+          <h1 class="text-3xl font-semibold tracking-tight mb-3">{title}</h1>
+          {data.date && (
+            <time datetime={new Date(data.date).toISOString()} class="text-sm text-[var(--color-muted)] tabular-nums">
+              {new Date(data.date).toLocaleDateString("en-US", { year: "numeric", month: "long", day: "numeric" })}
+            </time>
+          )}
+        </header>
+        <div class="prose" dangerouslySetInnerHTML={{ __html: html }} />
+      </article>
+    ), {
+      title: `${title} — Mehdi Amrane`,
+      description,
+      pathname: `/${page}`,
+    }));
+  } catch {
+    return c.notFound();
+  }
+});
+
+app.get("/fr/:page", async (c) => {
+  const page = c.req.param("page");
+  if (["blog", "usage", "cv", "api", "health", "rss.xml", "sitemap.xml", "favicon.ico", "favicon.png", "robots.txt", "site.webmanifest", "about", "uses"].includes(page)) {
+    return c.notFound();
+  }
+
+  const filePath = join(PAGES_DIR, `${page}.fr.md`);
+  try {
+    const raw = await readFile(filePath, "utf-8");
+    const { data, body } = parseFrontmatter(raw);
+    if (data.draft === true) return c.notFound();
+
+    const html = mdToHtml(body);
+    const title = data.title || page;
+    const description = data.description || "";
+
+    return c.html(renderPage("fr", () => (
+      <article>
+        <header class="mb-10">
+          <h1 class="text-3xl font-semibold tracking-tight mb-3">{title}</h1>
+          {data.date && (
+            <time datetime={new Date(data.date).toISOString()} class="text-sm text-[var(--color-muted)] tabular-nums">
+              {new Date(data.date).toLocaleDateString("fr-FR", { year: "numeric", month: "long", day: "numeric" })}
+            </time>
+          )}
+        </header>
+        <div class="prose" dangerouslySetInnerHTML={{ __html: html }} />
+      </article>
+    ), {
+      title: `${title} — Mehdi Amrane`,
+      description,
+      pathname: `/fr/${page}`,
+    }));
+  } catch {
+    return c.notFound();
+  }
+});
 
 // ─── 404 ───────────────────────────────────────────────────────────
 
