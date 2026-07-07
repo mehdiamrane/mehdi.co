@@ -7,7 +7,9 @@ import { readFile } from "node:fs/promises";
 import { join } from "node:path";
 import { Base } from "./src/components/Base";
 import { HomeContent } from "./src/components/HomeContent";
+import { HomeContentV2 } from "./src/components/HomeContentV2";
 import { AboutContent } from "./src/components/AboutContent";
+import { AboutContentV2 } from "./src/components/AboutContentV2";
 import { UsesContent } from "./src/components/UsesContent";
 import { UsageGauges } from "./src/components/UsageGauges";
 import { marked } from "marked";
@@ -275,6 +277,30 @@ app.get("/fr/about", (c) => c.html(renderPage("fr", AboutContent, {
   title: "À propos — Mehdi Amrane",
   description: "Développeur Front-End Senior basé à Paris. React, Next.js, TypeScript. Je construis des SaaS et des apps mobiles.",
   pathname: "/fr/about",
+})));
+
+// ─── V2 Previews ────────────────────────────────────────────────────
+
+app.get("/home-2", (c) => c.html(renderPage("en", HomeContentV2, {
+  title: "Mehdi Amrane — Senior Front-End Developer",
+  description: "Senior Front-End Developer specializing in React, Next.js, and TypeScript. Based in Paris.",
+  pathname: "/home-2",
+})));
+app.get("/fr/home-2", (c) => c.html(renderPage("fr", HomeContentV2, {
+  title: "Mehdi Amrane — Développeur Front-End Senior",
+  description: "Développeur Front-End Senior spécialisé en React, Next.js et TypeScript. Basé à Paris.",
+  pathname: "/fr/home-2",
+})));
+
+app.get("/about-2", (c) => c.html(renderPage("en", AboutContentV2, {
+  title: "About — Mehdi Amrane",
+  description: "Senior Front-End Developer based in Paris. React, Next.js, TypeScript. Building SaaS and mobile apps.",
+  pathname: "/about-2",
+})));
+app.get("/fr/about-2", (c) => c.html(renderPage("fr", AboutContentV2, {
+  title: "À propos — Mehdi Amrane",
+  description: "Développeur Front-End Senior basé à Paris. React, Next.js, TypeScript. Je construis des SaaS et des apps mobiles.",
+  pathname: "/fr/about-2",
 })));
 
 // ─── Uses Page ─────────────────────────────────────────────────────
