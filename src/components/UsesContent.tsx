@@ -43,6 +43,7 @@ export const UsesContent: FC<UsesContentProps> = ({ lang }) => {
         <p class="text-[var(--color-muted)]">{t.description}</p>
       </header>
 
+      <Section title={lang === "fr" ? "⌨️ Éditeur" : "⌨️ Editor"} items={t.editor} />
       <Section title={lang === "fr" ? "🖥 Matériel" : "🖥 Hardware"} items={t.hardware} />
       <Section title={lang === "fr" ? "💻 Logiciels" : "💻 Software"} items={t.software} />
       <Section title={lang === "fr" ? "☁️ Services" : "☁️ Services"} items={t.services} />

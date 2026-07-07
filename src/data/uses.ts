@@ -9,6 +9,7 @@ export interface UsesItem {
 export interface UsesData {
   title: string;
   description: string;
+  editor: UsesItem[];
   hardware: UsesItem[];
   software: UsesItem[];
   services: UsesItem[];
@@ -19,15 +20,22 @@ const uses: Record<Lang, UsesData> = {
   en: {
     title: "Uses",
     description: "Hardware, software, and tools I use daily.",
+    editor: [
+      { name: "Cursor", description: "AI-first code editor — my daily driver", url: "https://cursor.com/" },
+      { name: "Material Theme Palenight High Contrast", description: "My go-to theme. Also adapted it for Telegram iOS", url: "https://github.com/mehdiamrane/telegram-themes" },
+      { name: "JetBrains Mono", description: "The only font that looks good at any size", url: "https://www.jetbrains.com/lp/mono/" },
+      { name: "ZSH", description: "My shell of choice, configured via dotfiles", url: "https://github.com/mehdiamrane/dotfiles" },
+    ],
     hardware: [
       { name: "MacBook Pro M4", description: "16GB RAM, 512GB SSD — 2025", url: "https://www.apple.com/macbook-pro/" },
-      { name: "LG Curved Monitor", description: 'UltraWide — the extra screen real estate is a game changer' },
+      { name: "iPhone 13 Pro", description: "Still going strong", url: "https://www.apple.com/iphone/" },
+      { name: "LG Curved Monitor", description: "UltraWide — the extra screen real estate is a game changer" },
       { name: "Logitech MX Master 3S", description: "Best mouse ever made", url: "https://www.logitech.com/products/mice/mx-master-3s.html" },
       { name: "Logitech MX Keys", description: "Low-profile, quiet, backlit", url: "https://www.logitech.com/products/keyboards/mx-keys.html" },
+      { name: "AirPods", description: "For music, calls, and focus mode", url: "https://www.apple.com/airpods/" },
       { name: "Synology DS224+", description: "NAS with 2× 8TB WD Red HDDs — backups & media", url: "https://www.synology.com/products/DS224+" },
     ],
     software: [
-      { name: "Cursor", description: "AI-first code editor — my daily driver", url: "https://cursor.com/" },
       { name: "Claude Code", description: "Agentic coding in the terminal", url: "https://claude.ai/" },
       { name: "OpenAI Codex", description: "Another agent in the toolbox", url: "https://openai.com/" },
       { name: "Warp", description: "Modern terminal with AI built-in", url: "https://www.warp.dev/" },
@@ -56,23 +64,30 @@ const uses: Record<Lang, UsesData> = {
       { name: "Sentry", description: "Error tracking & performance monitoring", url: "https://sentry.io/" },
     ],
     desk: [
-      { name: "Titan XL Chair", description: "2021 edition — comfortable for long coding sessions" },
+      { name: "Secretlab Titan XL", description: "2021 edition — built like a tank, comfortable for long coding sessions", url: "https://secretlab.co/" },
       { name: "LG Mousepad", description: "Clean, minimal, does the job" },
-      { name: "Standing desk", description: "Nothing fancy, just functional" },
+      { name: "Simple desk", description: "No dock, no hub — just a clean surface" },
     ],
   },
   fr: {
     title: "Uses",
     description: "Le matériel, les logiciels et les outils que j'utilise au quotidien.",
+    editor: [
+      { name: "Cursor", description: "Éditeur de code augmenté par IA — mon outil principal", url: "https://cursor.com/" },
+      { name: "Material Theme Palenight High Contrast", description: "Mon thème fétiche. Je l'ai aussi adapté pour Telegram iOS", url: "https://github.com/mehdiamrane/telegram-themes" },
+      { name: "JetBrains Mono", description: "La seule police qui reste nette quelle que soit la taille", url: "https://www.jetbrains.com/lp/mono/" },
+      { name: "ZSH", description: "Mon shell, configuré via mes dotfiles", url: "https://github.com/mehdiamrane/dotfiles" },
+    ],
     hardware: [
       { name: "MacBook Pro M4", description: "16 Go RAM, 512 Go SSD — 2025", url: "https://www.apple.com/fr/macbook-pro/" },
+      { name: "iPhone 13 Pro", description: "Toujours au top", url: "https://www.apple.com/fr/iphone/" },
       { name: "Écran incurvé LG", description: "UltraWide — l'espace en plus change tout" },
       { name: "Logitech MX Master 3S", description: "La meilleure souris jamais créée", url: "https://www.logitech.com/fr-fr/products/mice/mx-master-3s.html" },
       { name: "Logitech MX Keys", description: "Clavier fin, silencieux, rétroéclairé", url: "https://www.logitech.com/fr-fr/products/keyboards/mx-keys.html" },
+      { name: "AirPods", description: "Pour la musique, les appels, et le mode focus", url: "https://www.apple.com/fr/airpods/" },
       { name: "Synology DS224+", description: "NAS avec 2× 8 To WD Red — sauvegardes & média", url: "https://www.synology.com/fr-fr/products/DS224+" },
     ],
     software: [
-      { name: "Cursor", description: "Éditeur de code augmenté par IA — mon outil principal", url: "https://cursor.com/" },
       { name: "Claude Code", description: "Agent de code dans le terminal", url: "https://claude.ai/" },
       { name: "OpenAI Codex", description: "Un autre agent dans la boîte à outils", url: "https://openai.com/" },
       { name: "Warp", description: "Terminal moderne avec IA intégrée", url: "https://www.warp.dev/" },
@@ -101,9 +116,9 @@ const uses: Record<Lang, UsesData> = {
       { name: "Sentry", description: "Monitoring d'erreurs et de performances", url: "https://sentry.io/" },
     ],
     desk: [
-      { name: "Chaise Titan XL", description: "Édition 2021 — confortable pour les longues sessions de code" },
+      { name: "Secretlab Titan XL", description: "Édition 2021 — solide comme un roc, confortable pour les longues sessions", url: "https://secretlab.co/" },
       { name: "Tapis de souris LG", description: "Sobre, minimal, fait le job" },
-      { name: "Bureau assis-debout", description: "Rien de spécial, juste fonctionnel" },
+      { name: "Bureau simple", description: "Pas de dock, pas de hub — juste une surface propre" },
     ],
   },
 };
