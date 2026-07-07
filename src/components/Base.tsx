@@ -225,7 +225,7 @@ body { font-family: 'Inter', system-ui, -apple-system, sans-serif; background: v
 
               <div class="flex items-center gap-4">
                 <ThemeToggle />
-                <LanguageSwitcher lang={lang} />
+                <LanguageSwitcher lang={lang} pathname={pathname} />
               </div>
 
               <button
