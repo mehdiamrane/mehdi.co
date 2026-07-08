@@ -2,7 +2,7 @@
 import type { FC } from "hono/jsx";
 import type { Lang } from "../data/content";
 import uses from "../data/uses";
-import type { UsesItem } from "../data/uses";
+import type { UsesItem, SoftwareCategory } from "../data/uses";
 
 export interface UsesContentProps {
   lang: Lang;
@@ -16,7 +16,7 @@ const ItemRow: FC<{ item: UsesItem }> = ({ item }) => (
         alt=""
         width={32}
         height={32}
-        class="shrink-0 mt-0.5"
+        class="shrink-0 mt-0.5 uses-icon"
         loading="lazy"
       />
     ) : (
@@ -48,11 +48,26 @@ const Section: FC<{ title: string; items: UsesItem[] }> = ({ title, items }) => 
   </section>
 );
 
+const SoftwareSection: FC<{ categories: SoftwareCategory[]; lang: Lang }> = ({ categories, lang }) => (
+  <section class="mb-10">
+    <h2 class="text-xs font-semibold uppercase tracking-widest text-[var(--color-muted)] mb-4">
+      {lang === "fr" ? "💻 Logiciels" : "💻 Software"}
+    </h2>
+    {categories.map((cat) => (
+      <div class="mb-6">
+        <h3 class="text-xs font-medium text-[var(--color-muted)] mb-3">{cat.category}</h3>
+        <div class="divide-y divide-[var(--color-border)]">
+          {cat.items.map((item) => (
+            <ItemRow item={item} />
+          ))}
+        </div>
+      </div>
+    ))}
+  </section>
+);
+
 export const UsesContent: FC<UsesContentProps> = ({ lang }) => {
   const t = uses[lang];
-  const note = lang === "fr"
-    ? "Cette page est un clin d'œil à uses.tech — un classique des sites perso de devs."
-    : "This page is a nod to uses.tech — a classic among developer personal sites.";
 
   return (
     <>
@@ -63,14 +78,8 @@ export const UsesContent: FC<UsesContentProps> = ({ lang }) => {
 
       <Section title={lang === "fr" ? "⌨️ Éditeur" : "⌨️ Editor"} items={t.editor} />
       <Section title={lang === "fr" ? "🖥 Matériel" : "🖥 Hardware"} items={t.hardware} />
-      <Section title={lang === "fr" ? "💻 Logiciels" : "💻 Software"} items={t.software} />
-      <Section title={lang === "fr" ? "☁️ Services" : "☁️ Services"} items={t.services} />
-      <Section title={lang === "fr" ? "🪑 Bureau" : "🪑 Desk"} items={t.desk} />
-
-      <p class="text-xs text-[var(--color-muted)] mt-8 italic">
-        <a href="https://uses.tech" class="link-underline" target="_blank" rel="noopener noreferrer">uses.tech</a>
-        {" "}— {note}
-      </p>
+      <SoftwareSection categories={t.software} lang={lang} />
+      <Section title="☁️ Services" items={t.services} />
     </>
   );
 };

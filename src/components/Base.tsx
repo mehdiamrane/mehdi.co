@@ -102,6 +102,7 @@ export const Base: FC<PropsWithChildren<BaseProps>> = ({
   --color-card: #1a1a1a;
 }
 .dark img[src*='/images/techs/'] { filter: brightness(0) invert(1); }
+.dark img[src*='/images/uses/'] { filter: brightness(0) invert(1); }
 body { font-family: 'Inter', system-ui, -apple-system, sans-serif; background: var(--color-bg); color: var(--color-text); -webkit-font-smoothing: antialiased; transition: background-color 0.2s ease-out, color 0.2s ease-out; }
 ::selection { background: var(--color-accent); color: white; }
 
