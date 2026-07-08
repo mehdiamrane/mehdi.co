@@ -48,11 +48,19 @@ const Section: FC<{ title: string; items: UsesItem[] }> = ({ title, items }) => 
   </section>
 );
 
-const SoftwareSection: FC<{ categories: SoftwareCategory[]; lang: Lang }> = ({ categories, lang }) => (
+const SoftwareSection: FC<{ categories: SoftwareCategory[]; lang: Lang; editorItems: UsesItem[] }> = ({ categories, lang, editorItems }) => (
   <section class="mb-10">
     <h2 class="text-xs font-semibold uppercase tracking-widest text-[var(--color-muted)] mb-4">
       {lang === "fr" ? "💻 Logiciels" : "💻 Software"}
     </h2>
+    <div class="mb-6">
+      <h3 class="text-xs font-medium text-[var(--color-muted)] mb-3">{lang === "fr" ? "Code" : "Code"}</h3>
+      <div class="divide-y divide-[var(--color-border)]">
+        {editorItems.map((item) => (
+          <ItemRow item={item} />
+        ))}
+      </div>
+    </div>
     {categories.map((cat) => (
       <div class="mb-6">
         <h3 class="text-xs font-medium text-[var(--color-muted)] mb-3">{cat.category}</h3>
@@ -76,9 +84,8 @@ export const UsesContent: FC<UsesContentProps> = ({ lang }) => {
         <p class="text-[var(--color-muted)]">{t.description}</p>
       </header>
 
-      <Section title={lang === "fr" ? "⌨️ Éditeur" : "⌨️ Editor"} items={t.editor} />
       <Section title={lang === "fr" ? "🖥 Matériel" : "🖥 Hardware"} items={t.hardware} />
-      <SoftwareSection categories={t.software} lang={lang} />
+      <SoftwareSection categories={t.software} lang={lang} editorItems={t.editor} />
       <Section title="☁️ Services" items={t.services} />
     </>
   );

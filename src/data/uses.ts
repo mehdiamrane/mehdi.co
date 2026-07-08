@@ -27,7 +27,7 @@ const uses: Record<Lang, UsesData> = {
     description: "Hardware, software, and tools I use daily.",
     editor: [
       { name: "Cursor", description: "AI-first code editor, my daily driver", url: "https://cursor.com/", image: "/images/uses/cursor.svg" },
-      { name: "Material Theme Palenight High Contrast", description: "The theme I have been using since my first VS Code install", url: "https://github.com/t3dotgg/vsc-material-but-i-wont-sue-you", image: "/images/uses/materialdesign.svg" },
+      { name: "Material Theme Palenight High Contrast", description: "The theme I have been using since my first VS Code install", url: "https://github.com/t3dotgg/vsc-material-but-i-wont-sue-you" },
       { name: "JetBrains Mono", description: "The only font that looks good at any size", url: "https://www.jetbrains.com/lp/mono/", image: "/images/uses/jetbrains.svg" },
     ],
     hardware: [
@@ -77,7 +77,7 @@ const uses: Record<Lang, UsesData> = {
           { name: "Shottr", description: "Fast screenshot annotation", url: "https://shottr.cc/" },
           { name: "VoiceInk", description: "Voice-to-text everywhere", url: "https://voiceink.app/" },
           { name: "MonitorControl", description: "Control external display brightness from the keyboard", url: "https://github.com/MonitorControl/MonitorControl" },
-          { name: "Spark", description: "Email client that doesn't suck", url: "https://sparkmailapp.com/", image: "/images/uses/spark.svg" },
+          { name: "Spark", description: "Email client that doesn't suck", url: "https://sparkmailapp.com/" },
         ],
       },
       {
@@ -105,7 +105,7 @@ const uses: Record<Lang, UsesData> = {
     description: "Le matériel, les logiciels et les outils que j'utilise au quotidien.",
     editor: [
       { name: "Cursor", description: "Éditeur de code augmenté par IA, mon outil principal", url: "https://cursor.com/", image: "/images/uses/cursor.svg" },
-      { name: "Material Theme Palenight High Contrast", description: "Le thème que j'utilise depuis mon premier install VS Code", url: "https://github.com/t3dotgg/vsc-material-but-i-wont-sue-you", image: "/images/uses/materialdesign.svg" },
+      { name: "Material Theme Palenight High Contrast", description: "Le thème que j'utilise depuis mon premier install VS Code", url: "https://github.com/t3dotgg/vsc-material-but-i-wont-sue-you" },
       { name: "JetBrains Mono", description: "La seule police qui reste nette quelle que soit la taille", url: "https://www.jetbrains.com/lp/mono/", image: "/images/uses/jetbrains.svg" },
     ],
     hardware: [
@@ -155,7 +155,7 @@ const uses: Record<Lang, UsesData> = {
           { name: "Shottr", description: "Captures d'écran rapides avec annotations", url: "https://shottr.cc/" },
           { name: "VoiceInk", description: "Dictée vocale partout", url: "https://voiceink.app/" },
           { name: "MonitorControl", description: "Contrôler la luminosité de l'écran externe au clavier", url: "https://github.com/MonitorControl/MonitorControl" },
-          { name: "Spark", description: "Client email qui ne pique pas les yeux", url: "https://sparkmailapp.com/", image: "/images/uses/spark.svg" },
+          { name: "Spark", description: "Client email qui ne pique pas les yeux", url: "https://sparkmailapp.com/" },
         ],
       },
       {
