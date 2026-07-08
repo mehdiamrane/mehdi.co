@@ -27,7 +27,7 @@ const uses: Record<Lang, UsesData> = {
     description: "Hardware, software, and tools I use daily.",
     editor: [
       { name: "Cursor", description: "AI-first code editor, my daily driver", url: "https://cursor.com/", image: "/images/uses/cursor.svg" },
-      { name: "Material Theme Palenight High Contrast", description: "The theme I have been using since my first VS Code install", url: "https://github.com/t3dotgg/vsc-material-but-i-wont-sue-you" },
+      { name: "Material Theme Palenight High Contrast", description: "The theme I have been using since my first VS Code install", url: "https://github.com/t3dotgg/vsc-material-but-i-wont-sue-you", image: "/images/uses/materialdesign.svg" },
       { name: "JetBrains Mono", description: "The only font that looks good at any size", url: "https://www.jetbrains.com/lp/mono/", image: "/images/uses/jetbrains.svg" },
     ],
     hardware: [
@@ -36,10 +36,10 @@ const uses: Record<Lang, UsesData> = {
       { name: "LG UltraWide 34WL80C-B", description: '34" curved, extra screen real estate', url: "https://www.amazon.fr/LG-UltraWide-34WL80C-B-Moniteur-incurv%C3%A9/dp/B083QT6Z8R", image: "/images/uses/lg.svg" },
       { name: "Logitech MX Master 3S", description: "Best mouse ever made", url: "https://www.amazon.fr/Logitech-Master-performante-ultra-rapide-Chrome-Graphite/dp/B0FHHV6YR5/", image: "/images/uses/logitech.svg" },
       { name: "Logitech MX Keys", description: "Low-profile, quiet, backlit", url: "https://www.amazon.fr/Logitech-programmables-r%C3%A9tro%C3%A9clair%C3%A9-Bluetooth-rechargeable/dp/B07W5JK2S7", image: "/images/uses/logitech.svg" },
-      { name: "AirPods 2 + AirPods Max", description: "1st gen, for music, calls, and focus mode", url: "https://www.apple.com/airpods/", image: "/images/uses/apple.svg" },
+      { name: "AirPods 2 + AirPods Max", description: "Everyday buds + over-ear for deep focus", url: "https://www.apple.com/airpods/", image: "/images/uses/apple.svg" },
       { name: "Synology DS224+", description: "NAS with 2x 8TB WD Red HDDs, backups and media", url: "https://www.amazon.fr/Synology-DS225-Bundle-Western-Digital/dp/B0FVG5J5CJ/", image: "/images/uses/synology.svg" },
       { name: "Logitech Desk Mat", description: "Clean, minimal desk mat", url: "https://www.amazon.fr/Logitech-Desk-Mat-Multifonctionnel-Anti-D%C3%A9rapage/dp/B07W5JK3Z2/", image: "/images/uses/logitech.svg" },
-      { name: "Secretlab Titan Evo 2022", description: "2020 edition, comfortable for long coding sessions", url: "https://secretlab.eu/pages/titan-evo-2022-series" },
+      { name: "Secretlab Titan Evo 2022", description: "Comfortable for long coding sessions", url: "https://secretlab.eu/pages/titan-evo-2022-series" },
     ],
     software: [
       {
@@ -105,7 +105,7 @@ const uses: Record<Lang, UsesData> = {
     description: "Le matériel, les logiciels et les outils que j'utilise au quotidien.",
     editor: [
       { name: "Cursor", description: "Éditeur de code augmenté par IA, mon outil principal", url: "https://cursor.com/", image: "/images/uses/cursor.svg" },
-      { name: "Material Theme Palenight High Contrast", description: "Le thème que j'utilise depuis mon premier install VS Code", url: "https://github.com/t3dotgg/vsc-material-but-i-wont-sue-you" },
+      { name: "Material Theme Palenight High Contrast", description: "Le thème que j'utilise depuis mon premier install VS Code", url: "https://github.com/t3dotgg/vsc-material-but-i-wont-sue-you", image: "/images/uses/materialdesign.svg" },
       { name: "JetBrains Mono", description: "La seule police qui reste nette quelle que soit la taille", url: "https://www.jetbrains.com/lp/mono/", image: "/images/uses/jetbrains.svg" },
     ],
     hardware: [
@@ -114,10 +114,10 @@ const uses: Record<Lang, UsesData> = {
       { name: "LG UltraWide 34WL80C-B", description: "34\" incurvé, l'espace en plus change tout", url: "https://www.amazon.fr/LG-UltraWide-34WL80C-B-Moniteur-incurv%C3%A9/dp/B083QT6Z8R", image: "/images/uses/lg.svg" },
       { name: "Logitech MX Master 3S", description: "La meilleure souris jamais créée", url: "https://www.amazon.fr/Logitech-Master-performante-ultra-rapide-Chrome-Graphite/dp/B0FHHV6YR5/", image: "/images/uses/logitech.svg" },
       { name: "Logitech MX Keys", description: "Clavier fin, silencieux, rétroéclairé", url: "https://www.amazon.fr/Logitech-programmables-r%C3%A9tro%C3%A9clair%C3%A9-Bluetooth-rechargeable/dp/B07W5JK2S7", image: "/images/uses/logitech.svg" },
-      { name: "AirPods 2 + AirPods Max", description: "1ère génération, musique, appels, focus", url: "https://www.apple.com/fr/airpods/", image: "/images/uses/apple.svg" },
+      { name: "AirPods 2 + AirPods Max", description: "Écouteurs quotidiens + casque pour le focus", url: "https://www.apple.com/fr/airpods/", image: "/images/uses/apple.svg" },
       { name: "Synology DS224+", description: "NAS avec 2x 8 To WD Red, sauvegardes et média", url: "https://www.amazon.fr/Synology-DS225-Bundle-Western-Digital/dp/B0FVG5J5CJ/", image: "/images/uses/synology.svg" },
       { name: "Tapis de bureau Logitech", description: "Tapis de bureau propre et minimal", url: "https://www.amazon.fr/Logitech-Desk-Mat-Multifonctionnel-Anti-D%C3%A9rapage/dp/B07W5JK3Z2/", image: "/images/uses/logitech.svg" },
-      { name: "Secretlab Titan Evo 2022", description: "Édition 2020, confortable pour les longues sessions de code", url: "https://secretlab.eu/pages/titan-evo-2022-series" },
+      { name: "Secretlab Titan Evo 2022", description: "Confortable pour les longues sessions de code", url: "https://secretlab.eu/pages/titan-evo-2022-series" },
     ],
     software: [
       {
