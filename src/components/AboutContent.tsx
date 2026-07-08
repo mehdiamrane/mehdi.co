@@ -42,7 +42,7 @@ export const AboutContent: FC<AboutContentProps> = ({ lang }) => {
         </div>
       </section>
 
-      {/* Journey timeline — all jobs, all highlights, all techs */}
+      {/* Journey timeline — all jobs, all highlights, all techs, all images */}
       <section class="mb-16">
         <h2 class="text-xs font-semibold uppercase tracking-widest text-[var(--color-muted)] mb-10">
           {isFr ? "Parcours" : "Journey"}
@@ -51,6 +51,17 @@ export const AboutContent: FC<AboutContentProps> = ({ lang }) => {
           {t.experience.map((job) => (
             <div class="border-l-2 border-[var(--color-border)] pl-6 pb-2 relative">
               <div class="absolute left-[-5px] top-1.5 w-2 h-2 rounded-full bg-[var(--color-accent)]" />
+              {job.image && (
+                <div class="mb-3 -ml-3 overflow-hidden rounded-xl border border-[var(--color-border)]">
+                  {job.url ? (
+                    <a href={job.url} target="_blank" rel="noopener noreferrer" class="block overflow-hidden">
+                      <img src={job.image} alt={job.imageAlt || job.company} loading="lazy" class="w-full h-32 sm:h-40 object-cover transition-transform duration-500 hover:scale-[1.04]" />
+                    </a>
+                  ) : (
+                    <img src={job.image} alt={job.imageAlt || job.company} loading="lazy" class="w-full h-32 sm:h-40 object-cover" />
+                  )}
+                </div>
+              )}
               <div class="flex items-baseline justify-between gap-4 mb-2">
                 <h3 class="font-semibold">{job.role}</h3>
                 <span class="text-sm text-[var(--color-muted)] whitespace-nowrap tabular-nums">{job.period}</span>
