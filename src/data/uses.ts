@@ -39,7 +39,7 @@ const uses: Record<Lang, UsesData> = {
       { name: "AirPods 2 + AirPods Max", description: "Everyday buds + over-ear for deep focus", url: "https://www.apple.com/airpods/", image: "/images/uses/apple.svg" },
       { name: "Synology DS224+", description: "NAS with 2x 8TB WD Red HDDs, backups and media", url: "https://www.amazon.fr/Synology-DS225-Bundle-Western-Digital/dp/B0FVG5J5CJ/", image: "/images/uses/synology.svg" },
       { name: "Logitech Desk Mat", description: "Clean, minimal desk mat", url: "https://www.amazon.fr/Logitech-Desk-Mat-Multifonctionnel-Anti-D%C3%A9rapage/dp/B07W5JK3Z2/", image: "/images/uses/logitech.svg" },
-      { name: "Secretlab Titan Evo 2022", description: "Comfortable for long coding sessions", url: "https://secretlab.eu/pages/titan-evo-2022-series" },
+      { name: "Titan (Secretlab)", description: "Comfortable for long coding sessions", url: "https://secretlab.eu/pages/titan-evo-2022-series" },
     ],
     software: [
       {
@@ -117,7 +117,7 @@ const uses: Record<Lang, UsesData> = {
       { name: "AirPods 2 + AirPods Max", description: "Écouteurs quotidiens + casque pour le focus", url: "https://www.apple.com/fr/airpods/", image: "/images/uses/apple.svg" },
       { name: "Synology DS224+", description: "NAS avec 2x 8 To WD Red, sauvegardes et média", url: "https://www.amazon.fr/Synology-DS225-Bundle-Western-Digital/dp/B0FVG5J5CJ/", image: "/images/uses/synology.svg" },
       { name: "Tapis de bureau Logitech", description: "Tapis de bureau propre et minimal", url: "https://www.amazon.fr/Logitech-Desk-Mat-Multifonctionnel-Anti-D%C3%A9rapage/dp/B07W5JK3Z2/", image: "/images/uses/logitech.svg" },
-      { name: "Secretlab Titan Evo 2022", description: "Confortable pour les longues sessions de code", url: "https://secretlab.eu/pages/titan-evo-2022-series" },
+      { name: "Titan (Secretlab)", description: "Confortable pour les longues sessions de code", url: "https://secretlab.eu/pages/titan-evo-2022-series" },
     ],
     software: [
       {
