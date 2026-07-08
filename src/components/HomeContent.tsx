@@ -1,7 +1,7 @@
 /** @jsxImportSource hono/jsx */
 import type { FC } from "hono/jsx";
 import type { Lang } from "../data/content";
-import content, { techIcons, techStackCategories } from "../data/content";
+import content from "../data/content";
 import { Icon } from "./Icons";
 
 export interface HomeContentProps {
@@ -10,17 +10,51 @@ export interface HomeContentProps {
 
 export const HomeContent: FC<HomeContentProps> = ({ lang }) => {
   const t = content[lang];
+  const isFr = lang === "fr";
+
+  const aboutHref = isFr ? "/fr/about" : "/about";
+  const blogHref = isFr ? "/fr/blog" : "/blog";
+  const usesHref = isFr ? "/fr/uses" : "/uses";
+
+  const blurb = isFr
+    ? "Je construis des SaaS et des apps mobiles à Paris. Je co-fonde Inkvoice, un outil mobile-first pour les tatoueurs."
+    : "Building SaaS products and mobile apps in Paris. Co-founding Inkvoice, a mobile-first tool for tattoo artists.";
+
+  const navCards = [
+    {
+      href: aboutHref,
+      label: isFr ? "À propos" : "About",
+      description: isFr
+        ? "Mon parcours, ma stack, mon histoire."
+        : "My journey, my stack, my story.",
+    },
+    {
+      href: blogHref,
+      label: "Blog",
+      description: isFr
+        ? "Notes sur le dev front-end et les outils."
+        : "Notes on front-end dev and tools.",
+    },
+    {
+      href: usesHref,
+      label: isFr ? "Uses" : "Uses",
+      description: isFr
+        ? "Mon setup hardware, logiciels et services."
+        : "My hardware, software, and service setup.",
+    },
+  ];
+
   return (
     <>
       {/* Hero */}
-      <header class="mb-24">
-        <div class="flex flex-col sm:flex-row items-start gap-5 mb-8">
-          <div class="w-[92px] h-[92px] rounded-full ring-2 ring-[var(--color-border)] flex-shrink-0 overflow-hidden">
+      <header class="mb-16">
+        <div class="flex flex-col sm:flex-row items-start gap-5 mb-6">
+          <div class="w-[88px] h-[88px] rounded-full ring-2 ring-[var(--color-border)] flex-shrink-0 overflow-hidden">
             <img
               src="/avatar.png"
               alt={t.hero.name}
               class="w-full h-full rounded-full object-cover scale-[1.25]"
-              width="92" height="92"
+              width="88" height="88"
             />
           </div>
           <div>
@@ -54,121 +88,29 @@ export const HomeContent: FC<HomeContentProps> = ({ lang }) => {
         </nav>
       </header>
 
-      {/* Work Experience */}
-      <section class="mb-24">
-        <h2 class="text-xs font-semibold uppercase tracking-widest text-[var(--color-muted)] mb-10">{t.experienceTitle}</h2>
-        <div class="space-y-8">
-          {t.experience.map((job) => (
-            <article class="group rounded-2xl border border-[var(--color-border)] bg-[var(--color-card)] overflow-hidden transition-shadow duration-300 hover:shadow-[0_12px_32px_rgba(0,0,0,0.06)] dark:hover:shadow-[0_12px_32px_rgba(255,255,255,0.06)]">
-              {job.image && (
-                <a
-                  href={job.url ?? undefined}
-                  target={job.url ? '_blank' : undefined}
-                  rel={job.url ? 'noopener noreferrer' : undefined}
-                  class={`block overflow-hidden ${job.url ? '' : 'pointer-events-none'}`}
-                  tabindex={job.url ? 0 : -1}
-                >
-                  <img
-                    src={job.image}
-                    alt={job.imageAlt}
-                    loading="lazy"
-                    class="w-full h-40 sm:h-48 object-cover transition-transform duration-500 group-hover:scale-[1.04]"
-                  />
-                </a>
-              )}
-
-              <div class="p-6 sm:p-7">
-                <div class="flex items-baseline justify-between gap-4 mb-2">
-                  <h3 class="font-semibold">
-                    {job.role}
-                  </h3>
-                  <span class="text-sm text-[var(--color-muted)] whitespace-nowrap tabular-nums">{job.period}</span>
-                </div>
-                <p class="text-sm text-[var(--color-muted)] mb-3">
-                  {job.url ? (
-                    <a href={job.url} class="link-underline inline-flex items-center gap-1 font-medium text-[var(--color-text)]" target="_blank" rel="noopener noreferrer">
-                      {job.company}
-                      <Icon name="arrow-up-right" size={11} class="-mt-px" />
-                    </a>
-                  ) : <span class="font-medium text-[var(--color-text)]">{job.company}</span>}
-                  <span class="mx-2">·</span>
-                  {job.location}
-                </p>
-                <ul class="list-disc list-outside ml-4 space-y-1.5 text-sm leading-relaxed text-[var(--color-muted)] mb-4">
-                  {job.highlights.map(h => <li>{h}</li>)}
-                </ul>
-                <div class="flex flex-wrap gap-1.5">
-                  {job.techs.map(tech => (
-                    <span class="inline-flex items-center gap-1.5 px-2.5 py-1 text-xs rounded-full border border-[var(--color-border)] text-[var(--color-muted)]">
-                      {techIcons[tech] && <img src={techIcons[tech]} alt="" width="12" height="12" class="w-3 h-3 object-contain" />}
-                      {tech}
-                    </span>
-                  ))}
-                </div>
-              </div>
-            </article>
-          ))}
-        </div>
+      {/* Intro blurb */}
+      <section class="mb-16">
+        <p class="text-base leading-relaxed text-[var(--color-muted)] max-w-lg">
+          {blurb}
+        </p>
       </section>
 
-      {/* Education */}
-      <section class="mb-24">
-        <h2 class="text-xs font-semibold uppercase tracking-widest text-[var(--color-muted)] mb-10">{t.educationTitle}</h2>
-        <div class="space-y-6">
-          {t.education.map((edu) => (
-            <div class="flex items-baseline justify-between gap-4">
+      {/* Nav cards — minimalist navigation */}
+      <section class="space-y-3">
+        {navCards.map((card) => (
+          <a
+            href={card.href}
+            class="group block rounded-xl border border-[var(--color-border)] bg-[var(--color-card)] px-5 py-4 transition-all duration-200 hover:border-[var(--color-accent)] hover:shadow-[0_4px_16px_rgba(0,0,0,0.04)] dark:hover:shadow-[0_4px_16px_rgba(255,255,255,0.04)]"
+          >
+            <div class="flex items-center justify-between">
               <div>
-                <h3 class="font-semibold">{edu.school}</h3>
-                <p class="text-sm text-[var(--color-muted)]">{edu.degree} · {edu.location}</p>
+                <h2 class="font-medium text-sm">{card.label}</h2>
+                <p class="text-xs text-[var(--color-muted)] mt-0.5">{card.description}</p>
               </div>
-              <span class="text-sm text-[var(--color-muted)] whitespace-nowrap tabular-nums">{edu.period}</span>
+              <span class="text-[var(--color-muted)] text-sm group-hover:text-[var(--color-accent)] transition-colors duration-200">→</span>
             </div>
-          ))}
-        </div>
-      </section>
-
-      {/* Tech Stack */}
-      <section class="mb-24">
-        <h2 class="text-xs font-semibold uppercase tracking-widest text-[var(--color-muted)] mb-6">{t.techStackTitle}</h2>
-        <div class="space-y-5">
-          {techStackCategories[lang].map(category => (
-            <div>
-              <h3 class="text-xs font-medium text-[var(--color-muted)] mb-2">{category.label}</h3>
-              <div class="flex flex-wrap gap-2">
-                {/* Tech icons served as individual SVGs (~34 requests).
-                    Trade-off: small files, but many round-trips. Fine for a personal site.
-                    Could be inlined or sprited if performance becomes an issue. */}
-                {category.items.map(tech => (
-                  <span class="inline-flex items-center gap-2 px-3 py-1.5 text-xs bg-[var(--color-card)] border border-[var(--color-border)] rounded-full text-[var(--color-muted)] hover:text-[var(--color-text)] hover:border-[var(--color-accent)] transition-colors duration-200 cursor-default">
-                    {techIcons[tech] && <img src={techIcons[tech]} alt="" width="16" height="16" class="w-4 h-4 object-contain flex-shrink-0" />}
-                    {tech}
-                  </span>
-                ))}
-              </div>
-            </div>
-          ))}
-        </div>
-      </section>
-
-      {/* Contact */}
-      <section>
-        <h2 class="text-xs font-semibold uppercase tracking-widest text-[var(--color-muted)] mb-6">{t.contact.title}</h2>
-
-        <div class="flex flex-wrap items-center gap-x-5 gap-y-2 mb-7">
-          <span class="inline-flex items-center gap-1.5 text-sm text-[var(--color-muted)]">
-            <Icon name="map-pin" size={14} />
-            {t.contact.location}
-          </span>
-        </div>
-
-        <div class="flex flex-wrap gap-x-5 gap-y-2 text-sm">
-          {t.contact.links.map(link => (
-            <a href={link.href} class="link-underline inline-flex items-center gap-2 text-[var(--color-muted)]" target="_blank" rel="noopener noreferrer">
-              <Icon name={link.icon} size={14} />
-              {link.label}
-            </a>
-          ))}
-        </div>
+          </a>
+        ))}
       </section>
     </>
   );
