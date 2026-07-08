@@ -46,7 +46,7 @@ const uses: Record<Lang, UsesData> = {
         category: "AI Tools",
         items: [
           { name: "Claude Code", description: "Agentic coding in the terminal", url: "https://claude.com/product/claude-code", image: "/images/uses/anthropic.svg" },
-          { name: "OpenAI Codex", description: "Another agent in the toolbox", url: "https://openai.com/codex/" },
+          { name: "OpenAI Codex", description: "Another agent in the toolbox", url: "https://openai.com/codex/", image: "/images/uses/openai.svg" },
         ],
       },
       {
@@ -77,7 +77,7 @@ const uses: Record<Lang, UsesData> = {
           { name: "Shottr", description: "Fast screenshot annotation", url: "https://shottr.cc/" },
           { name: "VoiceInk", description: "Voice-to-text everywhere", url: "https://voiceink.app/" },
           { name: "MonitorControl", description: "Control external display brightness from the keyboard", url: "https://github.com/MonitorControl/MonitorControl" },
-          { name: "Spark", description: "Email client that doesn't suck", url: "https://sparkmailapp.com/" },
+          { name: "Spark", description: "Email client that doesn't suck", url: "https://sparkmailapp.com/", image: "/images/uses/spark.svg" },
         ],
       },
       {
@@ -96,8 +96,8 @@ const uses: Record<Lang, UsesData> = {
     services: [
       { name: "Cloudflare", description: "DNS, Tunnel, CDN", url: "https://www.cloudflare.com/", image: "/images/uses/cloudflare.svg" },
       { name: "GitHub", description: "Code, CI/CD, project management", url: "https://github.com/mehdiamrane", image: "/images/uses/github.svg" },
-      { name: "Dokploy", description: "Self-hosted PaaS for Docker", url: "https://dokploy.com/" },
-      { name: "OpenRouter", description: "Unified API for 200+ AI models", url: "https://openrouter.ai/" },
+      { name: "Dokploy", description: "Self-hosted PaaS for Docker", url: "https://dokploy.com/", image: "/images/uses/dokploy.svg" },
+      { name: "OpenRouter", description: "Unified API for 200+ AI models", url: "https://openrouter.ai/", image: "/images/uses/openrouter.svg" },
     ],
   },
   fr: {
@@ -124,7 +124,7 @@ const uses: Record<Lang, UsesData> = {
         category: "Outils IA",
         items: [
           { name: "Claude Code", description: "Agent de code dans le terminal", url: "https://claude.com/product/claude-code", image: "/images/uses/anthropic.svg" },
-          { name: "OpenAI Codex", description: "Un autre agent dans la boîte à outils", url: "https://openai.com/codex/" },
+          { name: "OpenAI Codex", description: "Un autre agent dans la boîte à outils", url: "https://openai.com/codex/", image: "/images/uses/openai.svg" },
         ],
       },
       {
@@ -155,7 +155,7 @@ const uses: Record<Lang, UsesData> = {
           { name: "Shottr", description: "Captures d'écran rapides avec annotations", url: "https://shottr.cc/" },
           { name: "VoiceInk", description: "Dictée vocale partout", url: "https://voiceink.app/" },
           { name: "MonitorControl", description: "Contrôler la luminosité de l'écran externe au clavier", url: "https://github.com/MonitorControl/MonitorControl" },
-          { name: "Spark", description: "Client email qui ne pique pas les yeux", url: "https://sparkmailapp.com/" },
+          { name: "Spark", description: "Client email qui ne pique pas les yeux", url: "https://sparkmailapp.com/", image: "/images/uses/spark.svg" },
         ],
       },
       {
@@ -174,8 +174,8 @@ const uses: Record<Lang, UsesData> = {
     services: [
       { name: "Cloudflare", description: "DNS, Tunnel, CDN", url: "https://www.cloudflare.com/", image: "/images/uses/cloudflare.svg" },
       { name: "GitHub", description: "Code, CI/CD, gestion de projet", url: "https://github.com/mehdiamrane", image: "/images/uses/github.svg" },
-      { name: "Dokploy", description: "PaaS auto-hébergé pour Docker", url: "https://dokploy.com/" },
-      { name: "OpenRouter", description: "API unifiée pour 200+ modèles IA", url: "https://openrouter.ai/" },
+      { name: "Dokploy", description: "PaaS auto-hébergé pour Docker", url: "https://dokploy.com/", image: "/images/uses/dokploy.svg" },
+      { name: "OpenRouter", description: "API unifiée pour 200+ modèles IA", url: "https://openrouter.ai/", image: "/images/uses/openrouter.svg" },
     ],
   },
 };
