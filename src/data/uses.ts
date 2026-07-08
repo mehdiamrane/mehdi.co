@@ -46,7 +46,7 @@ const uses: Record<Lang, UsesData> = {
         category: "AI Tools",
         items: [
           { name: "Claude Code", description: "Agentic coding in the terminal", url: "https://claude.com/product/claude-code", image: "/images/uses/anthropic.svg" },
-          { name: "OpenAI Codex", description: "Another agent in the toolbox", url: "https://openai.com/codex/", image: "/images/uses/openai.svg" },
+          { name: "OpenAI Codex", description: "Another agent in the toolbox", url: "https://openai.com/codex/", image: "/images/uses/codex.png" },
         ],
       },
       {
@@ -124,7 +124,7 @@ const uses: Record<Lang, UsesData> = {
         category: "Outils IA",
         items: [
           { name: "Claude Code", description: "Agent de code dans le terminal", url: "https://claude.com/product/claude-code", image: "/images/uses/anthropic.svg" },
-          { name: "OpenAI Codex", description: "Un autre agent dans la boîte à outils", url: "https://openai.com/codex/", image: "/images/uses/openai.svg" },
+          { name: "OpenAI Codex", description: "Un autre agent dans la boîte à outils", url: "https://openai.com/codex/", image: "/images/uses/codex.png" },
         ],
       },
       {
