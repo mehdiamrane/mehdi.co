@@ -24,15 +24,13 @@ export const Base: FC<PropsWithChildren<BaseProps>> = ({
   const desc = description || title;
   const homeHref = lang === "fr" ? "/fr/" : "/";
   const blogHref = lang === "fr" ? "/fr/blog" : "/blog";
-  const usageHref = lang === "fr" ? "/fr/usage" : "/usage";
   const aboutHref = lang === "fr" ? "/fr/about" : "/about";
   const usesHref = lang === "fr" ? "/fr/uses" : "/uses";
   const isHomeActive = pathname === "/" || pathname === "/fr" || pathname === "/fr/";
   const isBlogActive = pathname.startsWith("/blog") || pathname.startsWith("/fr/blog");
-  const isUsageActive = pathname === "/usage" || pathname === "/fr/usage";
   const isAboutActive = pathname === "/about" || pathname === "/fr/about";
   const isUsesActive = pathname === "/uses" || pathname === "/fr/uses";
-  const navLabels = lang === "fr" ? { home: "Accueil", blog: "Blog", usage: "Usage", about: "À propos", uses: "Uses" } : { home: "Home", blog: "Blog", usage: "Usage", about: "About", uses: "Uses" };
+  const navLabels = lang === "fr" ? { home: "Accueil", blog: "Blog", about: "À propos", uses: "Uses" } : { home: "Home", blog: "Blog", about: "About", uses: "Uses" };
 
   return (
     <html lang={lang}>
@@ -247,14 +245,6 @@ body { font-family: 'Inter', system-ui, -apple-system, sans-serif; background: v
                   {navLabels.blog}
                 </a>
                 <a
-                  href={usageHref}
-                  class={`transition-colors duration-150 ${isUsageActive ? 'text-[var(--color-text)] font-semibold' : 'text-[var(--color-muted)] hover:text-[var(--color-accent)]'}`}
-                  style={isUsageActive ? 'box-shadow: inset 0 -0.125em 0 var(--color-accent)' : ''}
-                  aria-current={isUsageActive ? 'page' : undefined}
-                >
-                  {navLabels.usage}
-                </a>
-                <a
                   href={aboutHref}
                   class={`transition-colors duration-150 ${isAboutActive ? 'text-[var(--color-text)] font-semibold' : 'text-[var(--color-muted)] hover:text-[var(--color-accent)]'}`}
                   style={isAboutActive ? 'box-shadow: inset 0 -0.125em 0 var(--color-accent)' : ''}
@@ -305,13 +295,6 @@ body { font-family: 'Inter', system-ui, -apple-system, sans-serif; background: v
               aria-current={isBlogActive ? 'page' : undefined}
             >
               <span style={isBlogActive ? 'box-shadow: inset 0 -0.125em 0 var(--color-accent)' : ''}>{navLabels.blog}</span>
-            </a>
-            <a
-              href={usageHref}
-              class={`block py-2 transition-colors duration-150 ${isUsageActive ? 'text-[var(--color-text)] font-semibold' : 'text-[var(--color-muted)] hover:text-[var(--color-accent)]'}`}
-              aria-current={isUsageActive ? 'page' : undefined}
-            >
-              <span style={isUsageActive ? 'box-shadow: inset 0 -0.125em 0 var(--color-accent)' : ''}>{navLabels.usage}</span>
             </a>
             <a
               href={aboutHref}

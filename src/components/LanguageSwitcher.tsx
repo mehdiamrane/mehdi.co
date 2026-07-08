@@ -31,7 +31,7 @@ function buildLangHref(pathname: string, targetLang: Lang): string {
 
   // Strip /fr prefix to get the "base" path
   const isFrench = clean.startsWith("/fr/");
-  const base = isFrench ? clean.slice(3) : clean.slice(1); // e.g. "blog/building-this-site" or "usage"
+  const base = isFrench ? clean.slice(4) : clean.slice(1); // e.g. "blog/building-this-site" or "about"
 
   // Blog post: /blog/:slug → /fr/blog/:slug (with slug mapping)
   const blogMatch = base.match(/^blog\/(.+)$/);
@@ -46,14 +46,8 @@ function buildLangHref(pathname: string, targetLang: Lang): string {
     return targetLang === "fr" ? "/fr/blog" : "/blog";
   }
 
-  // Known pages
-  const knownPages = ["usage", "cv"];
-  if (knownPages.includes(base)) {
-    return targetLang === "fr" ? `/fr/${base}` : `/${base}`;
-  }
-
-  // Default fallback
-  return targetLang === "fr" ? "/fr/" : "/";
+  // Everything else (generic): swap /fr prefix
+  return targetLang === "fr" ? `/fr/${base}` : `/${base}`;
 }
 
 export const LanguageSwitcher: FC<LanguageSwitcherProps> = ({ lang, pathname = "/" }) => {

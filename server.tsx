@@ -9,15 +9,12 @@ import { Base } from "./src/components/Base";
 import { HomeContent } from "./src/components/HomeContent";
 import { AboutContent } from "./src/components/AboutContent";
 import { UsesContent } from "./src/components/UsesContent";
-import { UsageGauges } from "./src/components/UsageGauges";
 import { marked } from "marked";
 import type { Lang } from "./src/data/content";
 import { shared, blogDescription } from "./src/data/content";
 
 const PORT = parseInt(process.env.PORT || "4321");
 const BLOG_DIR = join(import.meta.dir, "src", "content", "blog");
-const USAGE_JSON = join(import.meta.dir, "usage", "usage.json");
-const COLLECTOR_PATH = join(import.meta.dir, "usage", "collector.ts");
 
 // ─── Helpers ─────────────────────────────────────────────────────
 
@@ -35,19 +32,6 @@ function renderPage(lang: Lang, Component: FC<{ lang: Lang }>, extra?: { title?:
       image: t.image || "/og-image.png",
       pathname: t.pathname || "/",
       children: jsx(Component, { lang }),
-    })
-  );
-}
-
-function renderUsagePage(lang: Lang): string {
-  return "<!doctype html>" + String(
-    jsx(Base, {
-      lang,
-      title: "Usage — Mehdi Amrane",
-      description: "AI services usage dashboard",
-      image: "/og-image.png",
-      pathname: "/usage",
-      children: jsx(UsageGauges, {}),
     })
   );
 }
@@ -254,11 +238,6 @@ app.get("/fr/", (c) => c.html(renderPage("fr", HomeContent, {
   pathname: "/fr/",
 })));
 
-// ─── Usage Dashboard ──────────────────────────────────────────────
-
-app.get("/usage", (c) => c.html(renderUsagePage("en")));
-app.get("/fr/usage", (c) => c.html(renderUsagePage("fr")));
-
 // ─── CV Redirect ──────────────────────────────────────────────────
 
 app.get("/cv", (c) => c.redirect(shared.cvUrl, 307));
@@ -291,64 +270,6 @@ app.get("/fr/uses", (c) => c.html(renderPage("fr", UsesContent, {
   description: "Le matériel, les logiciels et les outils que j'utilise au quotidien.",
   pathname: "/fr/uses",
 })));
-
-// ─── API Routes ───────────────────────────────────────────────────
-
-// Rate limit for API endpoints
-const apiCooldowns = new Map<string, number>();
-const API_COOLDOWN = 10_000; // 10s between API calls per IP
-
-function checkApiRateLimit(c: any): boolean {
-  const ip = c.req.header("x-forwarded-for") || c.req.header("x-real-ip") || "unknown";
-  const last = apiCooldowns.get(ip);
-  const now = Date.now();
-  if (last && (now - last) < API_COOLDOWN) return false;
-  apiCooldowns.set(ip, now);
-  return true;
-}
-
-app.get("/api/usage", async (c) => {
-  if (!checkApiRateLimit(c)) return c.json({ error: "Rate limited" }, 429);
-  try {
-    const raw = await readFile(USAGE_JSON, "utf-8");
-    const data = JSON.parse(raw);
-    return c.json(data);
-  } catch {
-    return c.json({ error: "No data yet", updated: null, services: {} }, 503);
-  }
-});
-
-// Simple rate limiter for /api/refresh
-const refreshCooldowns = new Map<string, number>();
-const REFRESH_COOLDOWN = 60_000; // 1 minute between refreshes
-
-app.post("/api/refresh", async (c) => {
-  const ip = c.req.header("x-forwarded-for") || c.req.header("x-real-ip") || "unknown";
-  const last = refreshCooldowns.get(ip);
-  const now = Date.now();
-  if (last && (now - last) < REFRESH_COOLDOWN) {
-    return c.json({ error: "Rate limited — try again in " + Math.ceil((REFRESH_COOLDOWN - (now - last)) / 1000) + "s" }, 429);
-  }
-  refreshCooldowns.set(ip, now);
-
-  const proc = Bun.spawn(["bun", "run", COLLECTOR_PATH], {
-    stdout: "pipe",
-    stderr: "pipe",
-    cwd: join(import.meta.dir, "usage"),
-  });
-  const timeout = setTimeout(() => { proc.kill(); }, 30_000);
-
-  const output = await new Response(proc.stdout).text();
-  await proc.exited;
-  clearTimeout(timeout);
-
-  if (proc.exitCode !== 0) {
-    return c.json({ error: "Collector failed", output }, 500);
-  }
-
-  const raw = await readFile(USAGE_JSON, "utf-8");
-  return c.json(JSON.parse(raw));
-});
 
 // ─── Blog Routes ──────────────────────────────────────────────────
 
@@ -389,8 +310,6 @@ app.get("/sitemap.xml", async (c) => {
   const staticPages = [
     { loc: "/", changefreq: "monthly", priority: "1.0" },
     { loc: "/fr/", changefreq: "monthly", priority: "1.0" },
-    { loc: "/usage", changefreq: "daily", priority: "0.8" },
-    { loc: "/fr/usage", changefreq: "daily", priority: "0.8" },
     { loc: "/blog", changefreq: "weekly", priority: "0.9" },
     { loc: "/fr/blog", changefreq: "weekly", priority: "0.9" },
     { loc: "/cv", changefreq: "monthly", priority: "0.7" },
@@ -457,7 +376,7 @@ const PAGES_DIR = join(import.meta.dir, "src", "content", "pages");
 app.get("/:page", async (c) => {
   const page = c.req.param("page");
   // Skip reserved paths
-  if (["blog", "usage", "cv", "api", "health", "rss.xml", "sitemap.xml", "favicon.ico", "favicon.png", "robots.txt", "site.webmanifest", "about", "uses", "home-2", "about-2"].includes(page)) {
+  if (["blog", "cv", "api", "health", "rss.xml", "sitemap.xml", "favicon.ico", "favicon.png", "robots.txt", "site.webmanifest", "about", "uses", "home-2", "about-2"].includes(page)) {
     return c.notFound();
   }
 
@@ -495,7 +414,7 @@ app.get("/:page", async (c) => {
 
 app.get("/fr/:page", async (c) => {
   const page = c.req.param("page");
-  if (["blog", "usage", "cv", "api", "health", "rss.xml", "sitemap.xml", "favicon.ico", "favicon.png", "robots.txt", "site.webmanifest", "about", "uses", "home-2", "about-2"].includes(page)) {
+  if (["blog", "cv", "api", "health", "rss.xml", "sitemap.xml", "favicon.ico", "favicon.png", "robots.txt", "site.webmanifest", "about", "uses", "home-2", "about-2"].includes(page)) {
     return c.notFound();
   }
 
