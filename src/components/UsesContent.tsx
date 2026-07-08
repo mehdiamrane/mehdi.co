@@ -2,29 +2,47 @@
 import type { FC } from "hono/jsx";
 import type { Lang } from "../data/content";
 import uses from "../data/uses";
-import { Icon } from "./Icons";
+import type { UsesItem } from "../data/uses";
 
 export interface UsesContentProps {
   lang: Lang;
 }
 
-const Section: FC<{ title: string; items: { name: string; description?: string; url?: string }[] }> = ({ title, items }) => (
-  <section class="mb-14">
-    <h2 class="text-xs font-semibold uppercase tracking-widest text-[var(--color-muted)] mb-6">{title}</h2>
-    <div class="grid gap-4 sm:grid-cols-2">
+const ItemRow: FC<{ item: UsesItem }> = ({ item }) => (
+  <div class="flex items-start gap-3 py-3">
+    {item.image ? (
+      <img
+        src={item.image}
+        alt=""
+        width={32}
+        height={32}
+        class="shrink-0 mt-0.5"
+        loading="lazy"
+      />
+    ) : (
+      <div class="w-8 shrink-0" />
+    )}
+    <div class="min-w-0 flex-1">
+      {item.url ? (
+        <a href={item.url} class="font-medium text-sm link-underline" target="_blank" rel="noopener noreferrer">
+          {item.name}
+        </a>
+      ) : (
+        <span class="font-medium text-sm">{item.name}</span>
+      )}
+      {item.description && (
+        <p class="text-xs text-[var(--color-muted)] leading-relaxed mt-0.5">{item.description}</p>
+      )}
+    </div>
+  </div>
+);
+
+const Section: FC<{ title: string; items: UsesItem[] }> = ({ title, items }) => (
+  <section class="mb-10">
+    <h2 class="text-xs font-semibold uppercase tracking-widest text-[var(--color-muted)] mb-4">{title}</h2>
+    <div class="divide-y divide-[var(--color-border)]">
       {items.map((item) => (
-        <div class="rounded-xl border border-[var(--color-border)] bg-[var(--color-card)] p-4 transition-shadow duration-200 hover:shadow-[0_4px_16px_rgba(0,0,0,0.04)] dark:hover:shadow-[0_4px_16px_rgba(255,255,255,0.04)]">
-          <h3 class="font-medium text-sm mb-1">
-            {item.url ? (
-              <a href={item.url} class="link-underline" target="_blank" rel="noopener noreferrer">
-                {item.name}
-              </a>
-            ) : (
-              item.name
-            )}
-          </h3>
-          {item.description && <p class="text-xs text-[var(--color-muted)] leading-relaxed">{item.description}</p>}
-        </div>
+        <ItemRow item={item} />
       ))}
     </div>
   </section>
