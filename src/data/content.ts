@@ -216,7 +216,7 @@ const content: Record<Lang, PageContent> = {
       {
         role: 'Front-End Development Instructor',
         company: 'La Capsule',
-        url: 'https://www.lacapsule.net/',
+        url: 'https://lacapsule.academy/',
         period: 'Teaching role',
         location: 'Paris',
         image: '/images/work/lacapsule.png',
@@ -335,7 +335,7 @@ const content: Record<Lang, PageContent> = {
       {
         role: 'Front-End Development Instructor',
         company: 'La Capsule',
-        url: 'https://www.lacapsule.net/',
+        url: 'https://lacapsule.academy/',
         period: 'Formateur',
         location: 'Paris',
         image: '/images/work/lacapsule.png',
